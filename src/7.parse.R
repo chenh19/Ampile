@@ -26,7 +26,7 @@ registerDoParallel(numCores)
 invisible(foreach(pileup_file = pileup_files, .combine = c) %dopar% {
   
   ## initialize
-  mut_profile <- c("Region,Position,Ref_base,Mut_percentage")
+  mut_profile <- c("Region,Position,Ref_base,Depth,Mut_percentage")
   
   ## read the file
   pileup_data <- readLines(pileup_file)
