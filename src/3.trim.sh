@@ -36,7 +36,7 @@ for r1 in ./2.fastq/*_R1*.fastq*; do
       --length_required 80 \
       --qualified_quality_phred 20 \
       --unqualified_percent_limit 20 \
-      --thread $$threads \
+      --thread $threads \
       -j /dev/null \
       -h /dev/null
 
