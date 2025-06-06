@@ -61,10 +61,8 @@ invisible(foreach(pileup_file = pileup_files, .combine = c) %dopar% {
 })
 
 # archive output spreadsheets
-message("\nZipping mutation rate spreadsheets...\n")
 files_to_zip <- list.files(path = "./3.analysis/7.parse", pattern = "*.mpileup.csv", full.names = TRUE)
-zip(zipfile = "./3.analysis/7.parse/mpileup_parse.zip", files = files_to_zip, extras = "-j")
-message("")
+invisible(zip(zipfile = "./3.analysis/7.parse/mpileup_parse.zip", files = files_to_zip, extras = "-j"))
 
 # cleanup
 rm(list = ls())
