@@ -49,4 +49,4 @@ echo "good to go"
 #curl -fsSL https://raw.githubusercontent.com/chenh19/Amplie/refs/heads/main/src/7.parse.R | Rscript -
 
 # plot
-#curl -fsSL https://raw.githubusercontent.com/chenh19/Ampile/main/src/8.plot.R | Rscript -
+#curl -fsSL https://raw.githubusercontent.com/chenh19/Amplie/refs/heads/main/src/8.plot.R | Rscript -
