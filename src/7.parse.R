@@ -12,13 +12,16 @@ for (package in packages) {
 numCores <- detectCores(all.tests = FALSE, logical = TRUE)
 
 # create folder
-if (dir.exists("./3.analysis/7.parse/")==FALSE){
-  dir.create("./3.analysis/7.parse/")
+if (dir.exists("./3.analysis/8.spreadsheets/")==FALSE){
+  dir.create("./3.analysis/8.spreadsheets/")
+}
+if (dir.exists("./3.analysis/8.spreadsheets/3.mpileup_parse/")==FALSE){
+  dir.create("./3.analysis/8.spreadsheets/3.mpileup_parse/")
 }
 
 # parse mpileup files
 message("\nParsing mutation rate...\n")
-pileup_files <- list.files(path='./3.analysis/6.mpileup', pattern='*.mpileup', full.names = TRUE)
+pileup_files <- list.files(path='./3.analysis/4.mpileup', pattern='*.mpileup', full.names = TRUE)
 registerDoParallel(numCores)
 invisible(foreach(pileup_file = pileup_files, .combine = c) %dopar% {
   
@@ -27,7 +30,7 @@ invisible(foreach(pileup_file = pileup_files, .combine = c) %dopar% {
   
   ## read the file
   pileup_data <- readLines(pileup_file)
-  filename <- paste0("./3.analysis/7.parse/", gsub("./3.analysis/6.mpileup/","",pileup_file), ".csv")
+  filename <- paste0("./3.analysis/8.spreadsheets/3.mpileup_parse/", basename(pileup_file), ".csv")
   
   ## read each line
   for (line in pileup_data) {
@@ -63,8 +66,8 @@ invisible(foreach(pileup_file = pileup_files, .combine = c) %dopar% {
 
 # archive output spreadsheetsAdd commentMore actions
 message("\nZipping mutation rate spreadsheets...\n")
-files_to_zip <- list.files(path = "./3.analysis/7.parse", pattern = "*.mpileup.csv", full.names = TRUE)
-zip(zipfile = "./3.analysis/7.parse/mpileup_parse.zip", files = files_to_zip, extras = "-j")
+files_to_zip <- list.files(path = "./3.analysis/8.spreadsheets/3.mpileup_parse/", pattern = "*.mpileup.csv", full.names = TRUE)
+zip(zipfile = "./3.analysis/8.spreadsheets/3.mpileup_parse/mpileup_parse.zip", files = files_to_zip, extras = "-j")
 message("\nDone.\n")
 
 # cleanup
