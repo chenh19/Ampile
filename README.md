@@ -1,4 +1,4 @@
-# Amplie
+# Ampile
 **Amplicon pileup analysis pipeline**  
 *Current version: v1.0.0*  
 
