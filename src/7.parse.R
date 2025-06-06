@@ -56,10 +56,11 @@ foreach (pileup_file = pileup_files) %dopar% {
   writeLines(mut_profile, filename)
 
   ### notify
-  print(paste0(gsub("./3.analysis/6.mpileup/","",pileup_file), ": mutation rate parsed"))
+  print(paste0(gsub("./3.analysis/6.mpileup/","",pileup_file), ": mutation rate successfully parsed"))
 }
 
 # archive output spreadsheets
+print("Zipping mutation rate spreadsheets...")
 files_to_zip <- list.files(path = "./3.analysis/7.parse", pattern = "*.mpileup.csv", full.names = TRUE)
 zip(zipfile = "./3.analysis/7.parse/mpileup_parse.zip", files = files_to_zip, extras = "-j")
 
