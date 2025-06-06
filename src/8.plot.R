@@ -44,7 +44,7 @@ for (csv in csvs) {
   ## notify
   message(paste0("  ", basename(csv), ": absolute mutation rate plotted"))
 }
-message("\nDone. You may now proceed to analyze the relative mutation rate.\n")
+message("\nDone.\n\nYou may now proceed to analyze the relative mutation rate.\n")
 
 # cleanup
 rm(list = ls())
