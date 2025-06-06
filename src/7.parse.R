@@ -16,6 +16,7 @@ if (dir.exists("./3.analysis/7.parse/")==FALSE){
 }
 
 # parse mpileup files
+print("Parsing mutation rate...")
 pileup_files <- list.files(path='./3.analysis/6.mpileup', pattern='*.mpileup', full.names = TRUE)
 registerDoParallel(numCores)
 foreach (pileup_file = pileup_files) %dopar% {
@@ -52,11 +53,11 @@ foreach (pileup_file = pileup_files) %dopar% {
     mut_profile <- c(mut_profile, paste(chr, pos, ref_base, round(mut_percentage, 4), sep = ","))
   }
   
-  ### write output spreadsheet
-  writeLines(mut_profile, filename)
+### write output spreadsheet
+writeLines(mut_profile, filename)
 
-  ### notify
-  print(paste0(gsub("./3.analysis/6.mpileup/","",pileup_file), ": mutation rate successfully parsed"))
+### notify
+print(paste0(gsub("./3.analysis/6.mpileup/","",pileup_file), ": mutation rate successfully parsed"))
 }
 
 # archive output spreadsheets
