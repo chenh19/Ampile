@@ -6,6 +6,7 @@
 sudo apt-get update -qq && sudo apt-get install cutadapt fastp -y
 
 # trim by length and quality
+threads=$(nproc)
 for r1 in ./2.fastq/*_R1*.fastq*; do
     [ -f "$r1" ] || continue
     r2=$(echo "$r1" | sed -E 's/_R1/_R2/')
@@ -35,7 +36,7 @@ for r1 in ./2.fastq/*_R1*.fastq*; do
       --length_required 80 \
       --qualified_quality_phred 20 \
       --unqualified_percent_limit 20 \
-      --thread 16 \
+      --thread $$threads \
       -j /dev/null \
       -h /dev/null
 
