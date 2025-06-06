@@ -1,5 +1,5 @@
 # Amplie
-**Amplicon pileup analysis**
+**Amplicon pileup analysis pipeline**  
 *Current version: v1.0.0*  
 
 ### How to use:
