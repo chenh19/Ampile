@@ -18,7 +18,7 @@ if (dir.exists("./3.analysis/9.plots/3.absolute_mut")==FALSE){
 
 # plot absolute values
 message("\nPlotting absolute mutation rate...\n")
-csvs <- list.files(path='./3.analysis/7.parse', pattern='*.mpileup.csv', full.names = TRUE)
+csvs <- list.files(path='./3.analysis/8.spreadsheets/3.mpileup_parse', pattern='*.mpileup.csv', full.names = TRUE)
 for (csv in csvs) {
   
   df <- read.csv(csv, header = TRUE)
@@ -26,7 +26,7 @@ for (csv in csvs) {
   df$Mut_percentage[df$Mut_percentage < 0] <- 0
   region <- unique(df$Region)
   
-  filename <- gsub("./3.analysis/7.parse/","",csv)
+  filename <- basename(csv)
   filename <- gsub("_", "-", filename)
   filename <- gsub(".mpileup.csv","",filename)
   filename <- paste0(filename, "_", region)
