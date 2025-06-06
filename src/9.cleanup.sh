@@ -31,6 +31,7 @@ case "$choice" in
 
         echo -e " \n${TEXT_GREEN}Large intermediate files deleted.${TEXT_RESET} \n" && sleep 1
         ;;
+        
   * )   echo -e " \n${TEXT_YELLOW}Large intermediate files retained.${TEXT_RESET} \n" && sleep 1
         ;;
 esac
