@@ -54,7 +54,7 @@ invisible(foreach(pileup_file = pileup_files, .combine = c) %dopar% {
       }
     }
     mut_percentage <- (depth - match) / depth * 100
-    mut_profile <- c(mut_profile, paste(chr, pos, ref_base, round(mut_percentage, 4), sep = ","))
+    mut_profile <- c(mut_profile, paste(chr, pos, ref_base, depth, round(mut_percentage, 4), sep = ","))
   }
   
   ### write output spreadsheet
