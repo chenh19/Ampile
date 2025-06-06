@@ -16,9 +16,10 @@ if (dir.exists("./3.analysis/7.parse/")==FALSE){
 }
 
 # parse mpileup files
-print("Parsing mutation rate...")
+message("Parsing mutation rate...")
 pileup_files <- list.files(path='./3.analysis/6.mpileup', pattern='*.mpileup', full.names = TRUE)
 registerDoParallel(numCores)
+invisible(foreach(pileup_file = pileup_files, .combine = c) %dopar% {
 foreach (pileup_file = pileup_files) %dopar% {
   
   ## initialize
@@ -57,11 +58,11 @@ foreach (pileup_file = pileup_files) %dopar% {
 writeLines(mut_profile, filename)
 
 ### notify
-print(paste0(gsub("./3.analysis/6.mpileup/","",pileup_file), ": mutation rate successfully parsed"))
-}
+message(paste0(basename(pileup_file), ": mutation rate successfully parsed"))
+})
 
 # archive output spreadsheets
-print("Zipping mutation rate spreadsheets...")
+message("Zipping mutation rate spreadsheets...")
 files_to_zip <- list.files(path = "./3.analysis/7.parse", pattern = "*.mpileup.csv", full.names = TRUE)
 zip(zipfile = "./3.analysis/7.parse/mpileup_parse.zip", files = files_to_zip, extras = "-j")
 
