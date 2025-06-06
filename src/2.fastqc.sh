@@ -17,6 +17,7 @@ for zip in ./3.analysis/9.plots/1.fastqc/*.zip; do
     base=$(basename "$zip" .zip)
     unzip -p "$zip" "${base}/Images/per_base_quality.png" > "./3.analysis/9.plots/1.fastqc/${base}_per_base_quality.png"
 done
+rm -f ./3.analysis/9.plots/1.fastqc/*.html ./3.analysis/9.plots/1.fastqc/*.zip
 
 # count raw reads
 echo -e "\nCounting raw reads...\n"
@@ -33,6 +34,3 @@ for f in ./2.fastq/*.fastq ./2.fastq/*.fastq.gz; do
   echo "$(basename "$f"), $count" >> "$output_file"
 done
 echo -e "\nDone.\n"
-
-# cleanup
-rm -f ./3.analysis/9.plots/1.fastqc/*.html ./3.analysis/9.plots/1.fastqc/*.zip
