@@ -1,6 +1,6 @@
 #!/bin/bash
 [ ! -d ./3.analysis/ ] && mkdir ./3.analysis/
-[ ! -d ./3.analysis/9.plot/ ] && mkdir ./9.analysis/6.plot/
+[ ! -d ./3.analysis/9.plot/ ] && mkdir ./3.analysis/9.plot/
 [ ! -d ./3.analysis/9.plot/2.refastqc/ ] && mkdir ./3.analysis/9.plot/2.refastqc/
 
 # install fastqc
