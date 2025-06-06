@@ -1,7 +1,7 @@
 #!/bin/bash
 [ ! -d ./3.analysis/ ] && mkdir ./3.analysis/
 [ ! -d ./3.analysis/6.plot/ ] && mkdir ./3.analysis/6.plot/
-[ ! -d ./3.analysis/6.plot/ ] && mkdir ./3.analysis/6.plot/1.fastqc/
+[ ! -d ./3.analysis/6.plot/1.fastqc/ ] && mkdir ./3.analysis/6.plot/1.fastqc/
 
 # install fastqc
 sudo apt-get update -qq && sudo apt-get install fastqc -y
