@@ -21,7 +21,3 @@ for r1 in ./3.analysis/3.trim/*_R1*trimmed.fastq.gz; do
 
   rm -f ./3.analysis/5.bam/${sample}.bam ./3.analysis/5.bam/${sample}.bam.bai
 done
-
-# cleanup
-rm -f ./3.analysis/3.trim/*.trimmed.fastq.gz
-echo -e "" > ./3.analysis/3.trim/large_intermediate_files_deleted.txt
