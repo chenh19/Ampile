@@ -56,7 +56,7 @@ foreach (pileup_file = pileup_files) %dopar% {
   writeLines(mut_profile, filename)
 
   ### notify
-  print(paste0(gsub("./3.analysis/6.mpileup/","",pileup_file), ": parsed"))
+  print(paste0(gsub("./3.analysis/6.mpileup/","",pileup_file), ": mutation rate parsed"))
 }
 
 # archive output spreadsheets
