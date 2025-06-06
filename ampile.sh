@@ -48,3 +48,6 @@ curl -fsSL https://raw.githubusercontent.com/chenh19/Amplie/refs/heads/main/src/
 
 # plot
 curl -fsSL https://raw.githubusercontent.com/chenh19/Amplie/refs/heads/main/src/8.plot.R | Rscript -
+
+# cleanup
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/chenh19/Amplie/refs/heads/main/src/9.cleanup.sh)"
