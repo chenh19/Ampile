@@ -1,6 +1,6 @@
 #!/bin/bash
 [ ! -d ./3.analysis/ ] && mkdir ./3.analysis/
-[ ! -d ./3.analysis/3.trim/ ] && mkdir ./3.analysis/3.trim/
+[ ! -d ./3.analysis/2.trim/ ] && mkdir ./3.analysis/2.trim/
 
 # install fastqc
 sudo apt-get update -qq && sudo apt-get install cutadapt fastp -y
@@ -20,14 +20,14 @@ for r1 in ./2.fastq/*_R1*.fastq*; do
         continue
     fi
 
-    cutadapt -j 8 -l 180 -o "./3.analysis/3.trim/${sample}_R1.cut.fastq.gz" $r1
-    cutadapt -j 8 -l 180 -o "./3.analysis/3.trim/${sample}_R2.cut.fastq.gz" $r2
+    cutadapt -j 8 -l 180 -o "./3.analysis/2.trim/${sample}_R1.cut.fastq.gz" $r1
+    cutadapt -j 8 -l 180 -o "./3.analysis/2.trim/${sample}_R2.cut.fastq.gz" $r2
 
     fastp \
-      -i "./3.analysis/3.trim/${sample}_R1.cut.fastq.gz" \
-      -I "./3.analysis/3.trim/${sample}_R2.cut.fastq.gz" \
-      -o "./3.analysis/3.trim/${sample}_R1.trimmed.fastq.gz" \
-      -O "./3.analysis/3.trim/${sample}_R2.trimmed.fastq.gz" \
+      -i "./3.analysis/2.trim/${sample}_R1.cut.fastq.gz" \
+      -I "./3.analysis/2.trim/${sample}_R2.cut.fastq.gz" \
+      -o "./3.analysis/2.trim/${sample}_R1.trimmed.fastq.gz" \
+      -O "./3.analysis/2.trim/${sample}_R2.trimmed.fastq.gz" \
       --trim_front1 5 \
       --trim_front2 5 \
       --cut_tail \
@@ -40,5 +40,5 @@ for r1 in ./2.fastq/*_R1*.fastq*; do
       -j /dev/null \
       -h /dev/null
 
-      rm -f "./3.analysis/3.trim/${sample}_R1.cut.fastq.gz" "./3.analysis/3.trim/${sample}_R2.cut.fastq.gz"
+      rm -f "./3.analysis/2.trim/${sample}_R1.cut.fastq.gz" "./3.analysis/2.trim/${sample}_R2.cut.fastq.gz"
 done
