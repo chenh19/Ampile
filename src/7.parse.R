@@ -23,7 +23,7 @@ foreach (pileup_file = pileup_files) %dopar% {
   ## initialize
   mut_profile <- c("Region,Position,Ref_base,Mut_percentage")
   
-  ## read in the file
+  ## read the file
   pileup_data <- readLines(pileup_file)
   filename <- paste0("./3.analysis/7.parse/", gsub("./3.analysis/6.mpileup/","",pileup_file), ".csv")
   
