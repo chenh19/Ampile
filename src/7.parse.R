@@ -61,6 +61,4 @@ files_to_zip <- list.files(path = "./3.analysis/7.parse", pattern = "*.mpileup.c
 zip(zipfile = "./3.analysis/7.parse/mpileup_parse.zip", files = files_to_zip, extras = "-j")
 
 # cleanup
-file.remove(pileup_files)
-file.create("./3.analysis/6.mpileup/large_intermediate_files_deleted.txt")
 rm(list = ls())
