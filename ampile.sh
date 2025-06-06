@@ -26,28 +26,28 @@ if ! (find "./2.fastq/" -maxdepth 1 -type f \( -name "*.fastq" -o -name "*.fastq
 fi
 
 # process refseq
-bash -c "$(curl -fsSL https://raw.githubusercontent.com/chenh19/Amplie/refs/heads/main/src/1.refseq.sh)"
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/chenh19/Ampile/refs/heads/main/src/1.refseq.sh)"
 
 # perform fastqc
-bash -c "$(curl -fsSL https://raw.githubusercontent.com/chenh19/Amplie/refs/heads/main/src/2.fastqc.sh)"
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/chenh19/Ampile/refs/heads/main/src/2.fastqc.sh)"
 
 # trim and filter reads
-bash -c "$(curl -fsSL https://raw.githubusercontent.com/chenh19/Amplie/refs/heads/main/src/3.trim.sh)"
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/chenh19/Ampile/refs/heads/main/src/3.trim.sh)"
 
 # perform fastqc again
-bash -c "$(curl -fsSL https://raw.githubusercontent.com/chenh19/Amplie/refs/heads/main/src/4.refastqc.sh)"
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/chenh19/Ampile/refs/heads/main/src/4.refastqc.sh)"
 
 # align
-bash -c "$(curl -fsSL https://raw.githubusercontent.com/chenh19/Amplie/refs/heads/main/src/5.bam.sh)"
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/chenh19/Ampile/refs/heads/main/src/5.bam.sh)"
 
 # pileup
-bash -c "$(curl -fsSL https://raw.githubusercontent.com/chenh19/Amplie/refs/heads/main/src/6.mpileup.sh)"
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/chenh19/Ampile/refs/heads/main/src/6.mpileup.sh)"
 
 # parse
-curl -fsSL https://raw.githubusercontent.com/chenh19/Amplie/refs/heads/main/src/7.parse.R | Rscript -
+curl -fsSL https://raw.githubusercontent.com/chenh19/Ampile/refs/heads/main/src/7.parse.R | Rscript -
 
 # plot
-curl -fsSL https://raw.githubusercontent.com/chenh19/Amplie/refs/heads/main/src/8.plot.R | Rscript -
+curl -fsSL https://raw.githubusercontent.com/chenh19/Ampile/refs/heads/main/src/8.plot.R | Rscript -
 
 # cleanup
-bash -c "$(curl -fsSL https://raw.githubusercontent.com/chenh19/Amplie/refs/heads/main/src/9.cleanup.sh)"
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/chenh19/Ampile/refs/heads/main/src/9.cleanup.sh)"
