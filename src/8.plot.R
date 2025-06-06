@@ -40,6 +40,9 @@ for (csv in csvs) {
     theme_minimal() + 
     theme(plot.title = element_text(hjust = 0.5))
   ggsave(paste0("./3.analysis/8.plot/3.absolute_mut/", filename, ".jpg"), plot = p, width = 15, height = 3, units = "in", dpi = 1200)
+
+  ## notify
+  message(paste0("  ", basename(csv), ": absolute mutation rate plotted"))
 }
 message("\nDone. You may now proceed to analyze the relative mutation rate.\n")
 
