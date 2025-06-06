@@ -20,7 +20,6 @@ message("Parsing mutation rate...")
 pileup_files <- list.files(path='./3.analysis/6.mpileup', pattern='*.mpileup', full.names = TRUE)
 registerDoParallel(numCores)
 invisible(foreach(pileup_file = pileup_files, .combine = c) %dopar% {
-foreach (pileup_file = pileup_files) %dopar% {
   
   ## initialize
   mut_profile <- c("Region,Position,Ref_base,Mut_percentage")
@@ -54,11 +53,11 @@ foreach (pileup_file = pileup_files) %dopar% {
     mut_profile <- c(mut_profile, paste(chr, pos, ref_base, round(mut_percentage, 4), sep = ","))
   }
   
-### write output spreadsheet
-writeLines(mut_profile, filename)
-
-### notify
-message(paste0(basename(pileup_file), ": mutation rate successfully parsed"))
+  ### write output spreadsheet
+  writeLines(mut_profile, filename)
+  
+  ### notify
+  message(paste0(basename(pileup_file), ": mutation rate successfully parsed"))
 })
 
 # archive output spreadsheets
