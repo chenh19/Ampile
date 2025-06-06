@@ -54,6 +54,9 @@ foreach (pileup_file = pileup_files) %dopar% {
   
   ### write output spreadsheet
   writeLines(mut_profile, filename)
+
+  ### notify
+  print(paste0(gsub("./3.analysis/6.mpileup/","",pileup_file), ": parsed"))
 }
 
 # archive output spreadsheets
