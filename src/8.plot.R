@@ -9,11 +9,11 @@ for (package in packages) {
 }
 
 # create folder
-if (dir.exists("./3.analysis/8.plot/")==FALSE){
-  dir.create("./3.analysis/8.plot/")
+if (dir.exists("./3.analysis/9.plot/")==FALSE){
+  dir.create("./3.analysis/9.plot/")
 }
-if (dir.exists("./3.analysis/8.plot/3.absolute_mut")==FALSE){
-  dir.create("./3.analysis/8.plot/3.absolute_mut")
+if (dir.exists("./3.analysis/9.plot/3.absolute_mut")==FALSE){
+  dir.create("./3.analysis/9.plot/3.absolute_mut")
 }
 
 # plot absolute values
@@ -39,7 +39,7 @@ for (csv in csvs) {
     labs(title = filename, x = "Position", y = "Mutation (%)") +
     theme_minimal() + 
     theme(plot.title = element_text(hjust = 0.5))
-  ggsave(paste0("./3.analysis/8.plot/3.absolute_mut/", filename, ".jpg"), plot = p, width = 15, height = 3, units = "in", dpi = 1200)
+  ggsave(paste0("./3.analysis/9.plot/3.absolute_mut/", filename, ".jpg"), plot = p, width = 15, height = 3, units = "in", dpi = 1200)
 
   ## notify
   message(paste0("  ", basename(csv), ": absolute mutation rate plotted"))
