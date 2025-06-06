@@ -25,6 +25,8 @@ if ! (find "./2.fastq/" -maxdepth 1 -type f \( -name "*.fastq" -o -name "*.fastq
   exit 1
 fi
 
+echo "good to go"
+
 # process refseq
 #bash -c "$(curl -fsSL https://raw.githubusercontent.com/chenh19/Ampile/main/src/1.refseq.sh)"
 
