@@ -7,7 +7,8 @@
 sudo apt-get update -qq && sudo apt-get install fastqc -y
 
 # run fastqc in parallel
-fastqc --threads 16 ./2.fastq/*.fastq ./2.fastq/*.fastq.gz --outdir ./3.analysis/6.plot/1.fastqc/
+threads=$(nproc)
+fastqc --threads $threads ./2.fastq/*.fastq ./2.fastq/*.fastq.gz --outdir ./3.analysis/6.plot/1.fastqc/
 
 # extract per_base_quality.png
 for zip in ./3.analysis/6.plot/1.fastqc/*.zip; do
