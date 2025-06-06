@@ -58,7 +58,7 @@ invisible(foreach(pileup_file = pileup_files, .combine = c) %dopar% {
   writeLines(mut_profile, filename)
   
   ### notify
-  message(paste0(basename(pileup_file), ": mutation rate successfully parsed"))
+  message(paste0("  ", basename(pileup_file), ": mutation rate successfully parsed"))
 })
 
 # archive output spreadsheetsAdd commentMore actions
