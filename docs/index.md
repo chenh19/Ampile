@@ -1,3 +1,5 @@
+# Ampile: Amplicon pileup analysis pipeline
+
 ### [1/3] Prepare input files
 
 - Prepare reference sequences and sequencing reads:
@@ -14,7 +16,7 @@ bash -c "$(curl -fsSL https://raw.githubusercontent.com/chenh19/Ampile/refs/head
 ```
 
 <div style="text-align: center;">
-  <img src="./images/2.png" width="80%">
+  <img src="./images/2.png" width="90%">
 </div>
 
 - Or, you may [download the GitHub repo](https://github.com/chenh19/Ampile/archive/refs/heads/main.zip) and placed [all the scripts in /src/ folder](https://github.com/chenh19/Ampile/tree/main/src) with the input files:
@@ -29,7 +31,7 @@ bash -c "$(curl -fsSL https://raw.githubusercontent.com/chenh19/Ampile/refs/head
 - Done:
   
 <div style="text-align: center;">
-  <img src="./images/4.png" width="80%">
+  <img src="./images/4.png" width="90%">
 </div>
 
 - You may further analyze the parsed mutation rates and perform comparative analyses between groups.
