@@ -1,10 +1,11 @@
 # load packages
 packages <- c("parallel", "foreach", "doParallel", "filesstrings")
 for (package in packages) {
-  if (!require(package, character.only = TRUE)) {
+  if (!suppressPackageStartupMessages(require(package, character.only = TRUE))) {
     install.packages(package, repos = "https://cloud.r-project.org", quiet = TRUE)
-    library(package, character.only = TRUE)
+    suppressPackageStartupMessages(library(package, character.only = TRUE))
   }
+  message("Loaded package: ", package)
 }
 
 # Set cpu cores for parallel computing
