@@ -4,5 +4,5 @@
 
 ### How to use:
 ```
-bash -c "$(curl -fsSL https://raw.githubusercontent.com/chenh19/Amplie/refs/heads/main/ampile.sh)"
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/chenh19/Ampile/refs/heads/main/ampile.sh)"
 ```
