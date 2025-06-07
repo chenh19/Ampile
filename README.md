@@ -10,7 +10,8 @@
 
 ### How to use
 
-- Simply connect to internet and execute the below command in terminal: 
+- Prepare reference sequences and sequencing reads in a folder.
+- Connect to internet and execute the below command in terminal:
 ```
 bash -c "$(curl -fsSL https://raw.githubusercontent.com/chenh19/Ampile/refs/heads/main/ampile.sh)"
 ```
