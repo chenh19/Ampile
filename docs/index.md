@@ -1,6 +1,8 @@
-## Ampile: Amplicon pileup analysis pipeline
+---
+title: “Ampile: Amplicon pileup analysis pipeline”
+---
 
-### [1/3] Prepare input files
+## [1/3] Prepare input files
 
 - Prepare reference sequences and sequencing reads:
 
@@ -8,7 +10,7 @@
   <img src="./images/1.png" width="100%">
 </div>
 
-### [2/3] Running the pipeline
+## [2/3] Running the pipeline
 - Connect to internet
 - Copy the below command, paste in terminal and press ```Enter``` to run:
 ```
@@ -26,7 +28,7 @@ bash -c "$(curl -fsSL https://raw.githubusercontent.com/chenh19/Ampile/refs/head
 </div>
 
 
-### [3/3] Done
+## [3/3] Done
 
 - Done:
   
