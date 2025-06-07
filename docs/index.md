@@ -34,8 +34,6 @@ bash -c "$(curl -fsSL https://raw.githubusercontent.com/chenh19/Ampile/refs/head
 
 
 ### [3/3] Done
-
-- Done:
   
 <div style="text-align: center;">
   <img src="./images/4.png" width="90%">
