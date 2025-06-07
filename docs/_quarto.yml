@@ -5,7 +5,7 @@ project:
     - "*.Rmd"
     - "*.qmd"
     - "*.ipynb"
-  output-dir: ../docs
+  output-dir: .
 
 website:
   title: "Ampile"

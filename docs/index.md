@@ -5,7 +5,7 @@ toc: false
 
 ### [1/3] Prepare input files
 
-- Prepare reference sequences and sequencing reads:
+- Prepare reference sequences and sequencing reads in a folder:
 
 <div style="text-align: center;">
   <img src="./images/1.png" width="100%">
@@ -14,8 +14,9 @@ toc: false
 
 ### [2/3] Running the pipeline
 
-- Connect to internet
-- Copy the below command, paste in terminal and press ```Enter``` to run:  
+- Connect to internet.
+- Open Terminal, change current directory to the folder containing the input files.
+- Paste in the below code and press ```Enter``` to run:
 
 ```
 bash -c "$(curl -fsSL https://raw.githubusercontent.com/chenh19/Ampile/refs/heads/main/ampile.sh)"
