@@ -1,0 +1,31 @@
+<footer id="scroll-footer"
+        class="footer bg-white text-muted text-center py-3 fixed-bottom"
+        style="font-size: 0.8rem; transition: transform 0.3s ease; transform: translateY(100%);">
+  © Hang Chen • <a href="https://www.wangchembio.org/" target="_blank">Jingxin Wang lab</a>
+</footer>
+
+<script>
+  const footer = document.getElementById("scroll-footer");
+
+  // Show footer immediately without transition if page is too short to scroll
+  if (document.body.scrollHeight <= window.innerHeight) {
+    footer.style.transition = "none";     // disable transition temporarily
+    footer.style.transform = "translateY(0)";
+    void footer.offsetHeight;               // force reflow
+    footer.style.transition = "transform 0.3s ease";  // re-enable transition
+  }
+
+  window.addEventListener("scroll", function () {
+    const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+    const windowHeight = window.innerHeight;
+    const bodyHeight = document.body.scrollHeight;
+
+    if ((windowHeight + currentScroll) >= (bodyHeight - 5)) {
+      // At bottom — show footer
+      footer.style.transform = "translateY(0)";
+    } else {
+      // Any scroll not at bottom — hide footer
+      footer.style.transform = "translateY(100%)";
+    }
+  }, false);
+</script>

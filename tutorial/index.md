@@ -1,5 +1,6 @@
 ---
 title: Amplicon pileup analysis pipeline
+toc: false
 ---
 
 ### [1/3] Prepare input files

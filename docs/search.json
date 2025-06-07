@@ -1,0 +1,9 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Amplicon pileup analysis pipeline",
+    "section": "",
+    "text": "[1/3] Prepare input files\n\nPrepare reference sequences and sequencing reads:\n\n\n\n\n\n\n[2/3] Running the pipeline\n\nConnect to internet\nCopy the below command, paste in terminal and press Enter to run:\n\nbash -c \"$(curl -fsSL https://raw.githubusercontent.com/chenh19/Ampile/refs/heads/main/ampile.sh)\"\n\n\n\n\nOr, you may download the GitHub repo and placed all the scripts in /src/ folder with the input files to run manually:\n\n\n\n\n\n\n[3/3] Done\n\nDone:\n\n\n\n\n\nYou may further analyze the parsed mutation rates and perform comparative analyses between groups."
+  }
+]
