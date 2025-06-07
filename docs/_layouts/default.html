@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="{{ page.lang | default: site.lang | default: 'en' }}">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>{% if page.title %}{{ page.title }} | {% endif %}{{ site.title }}</title>
+
+    <!-- Slate theme styles -->
+    <link rel="stylesheet" href="{{ '/assets/css/style.css?v=' | append: site.github.build_revision | relative_url }}">
+
+    <!-- Your custom styles -->
+    <style>
+      body {
+        background-color: #ffffff !important;
+        color: #000000 !important;
+      }
+      a {
+        color: #0645AD;
+      }
+      a:visited {
+        color: #0B0080;
+      }
+      .site-header, .header {
+        background-color: #ffffff !important;
+        color: #000000 !important;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrapper">
+      <header class="site-header">
+        <h1 class="site-title">{{ site.title }}</h1>
+        <p class="site-description">{{ site.description }}</p>
+      </header>
+
+      <main class="container">
+        {{ content }}
+      </main>
+    </div>
+  </body>
+</html>
