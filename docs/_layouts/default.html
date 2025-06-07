@@ -10,18 +10,25 @@
   </head>
 
   <body>
-    <header class="site-header">
-      <div class="wrapper" style="display: flex; justify-content: space-between; align-items: center;">
+    <header class="site-header" style="position: relative; padding: 1rem 2rem;">
+      <div class="wrapper" style="display: inline-block;">
         <h1 class="site-title" style="margin: 0;">
           <a href="{{ '/' | relative_url }}">{{ site.title }}</a>
         </h1>
-    
-        <a href="https://github.com/chenh19/Ampile"
-           class="btn"
-           style="text-decoration: none; background: #0366d6; color: white; padding: 6px 12px; border-radius: 4px;">
-          Source Code
-        </a>
       </div>
+      <a href="https://github.com/chenh19/Ampile"
+         class="btn"
+         style="
+           position: absolute;
+           top: 1rem;
+           right: 2rem;
+           text-decoration: none;
+           background: #0366d6;
+           color: white;
+           padding: 6px 12px;
+           border-radius: 4px;">
+        Source Code
+      </a>
     </header>
     
     <main class="page-content" aria-label="Content">
