@@ -18,6 +18,12 @@
           </a>
         </h1>
       </div>
+    
+      {% if site.source_code_url %}
+        <div style="position: absolute; top: 1rem; right: 1rem;">
+          <a href="{{ site.source_code_url }}" target="_blank" class="btn">Source Code</a>
+        </div>
+      {% endif %}
     </header>
     
     <main class="page-content" aria-label="Content">
