@@ -10,17 +10,14 @@
   </head>
 
   <body>
-    <header class="site-header">
-      <div class="wrapper" style="display: flex; justify-content: space-between; align-items: center;">
-        <h1 class="site-title" style="margin: 0;">
+    <header class="site-header" role="banner">
+      <div class="wrapper">
+        <h1 class="site-title">
           <a href="{{ '/' | relative_url }}">{{ site.title }}</a>
         </h1>
-    
-        <a href="https://github.com/chenh19/Ampile"
-           class="btn"
-           style="text-decoration: none; background: #0366d6; color: white; padding: 6px 12px; border-radius: 4px;">
-          Source Code
-        </a>
+        {% if site.description %}
+          <p class="site-description">{{ site.description }}</p>
+        {% endif %}
       </div>
     </header>
     
