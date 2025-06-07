@@ -10,9 +10,12 @@ title: Amplicon pileup analysis pipeline
   <img src="./images/1.png" width="100%">
 </div>
 
+
 ## [2/3] Running the pipeline
+
 - Connect to internet
-- Copy the below command, paste in terminal and press ```Enter``` to run:
+- Copy the below command, paste in terminal and press ```Enter``` to run:  
+
 ```
 bash -c "$(curl -fsSL https://raw.githubusercontent.com/chenh19/Ampile/refs/heads/main/ampile.sh)"
 ```
