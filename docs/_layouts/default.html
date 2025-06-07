@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="{{ page.lang | default: site.lang | default: "en" }}">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ page.title | escape }}</title>
+    <link rel="stylesheet" href="{{ '/assets/main.css' | relative_url }}">
+    <link rel="stylesheet" href="{{ '/assets/custom.css' | relative_url }}">
+  </head>
+
+  <body>
+    <header class="site-header">
+      <div class="wrapper" style="display: flex; justify-content: space-between; align-items: center;">
+        <h1 class="site-title" style="margin: 0;">
+          <a href="{{ '/' | relative_url }}">{{ site.title }}</a>
+        </h1>
+
+        <!-- Replace with Source Code button -->
+        <a href="https://github.com/chenh19/Ampile" class="btn" style="text-decoration: none; background: #0366d6; color: white; padding: 6px 12px; border-radius: 4px;">
+          Source Code
+        </a>
+      </div>
+    </header>
+
+    <main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        {{ content }}
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="wrapper">
+        {{ site.footer_text | default: site.title }}
+      </div>
+    </footer>
+  </body>
+</html>
