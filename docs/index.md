@@ -1,5 +1,5 @@
 ---
-title: “Ampile: Amplicon pileup analysis pipeline”
+title: Ampile - Amplicon pileup analysis pipeline
 ---
 
 ## [1/3] Prepare input files
