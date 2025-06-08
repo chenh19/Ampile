@@ -33,4 +33,5 @@ case "$choice" in
   * )   echo -e " \n${TEXT_YELLOW}Large intermediate files retained.${TEXT_RESET} \n" && sleep 1;;
 esac
 
+# notify
 echo -e "${TEXT_GREEN}Done.\n\nYou may now proceed to analyze the relative mutation rate.\n${TEXT_RESET} \n"
