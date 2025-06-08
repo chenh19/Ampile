@@ -34,4 +34,4 @@ case "$choice" in
 esac
 
 # notify
-echo -e "${TEXT_GREEN}All done! You may now proceed to analyze the relative mutation rate.\n${TEXT_RESET} \n"
+echo -e "\n${TEXT_GREEN}All done! You may now proceed to analyze the relative mutation rate.\n${TEXT_RESET} \n"
