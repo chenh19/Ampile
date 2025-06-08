@@ -6,7 +6,7 @@ TEXT_GREEN=$(tput bold; tput setaf 2)
 TEXT_RESET=$(tput sgr0)
 
 # cleanup
-read -n1 -s -r -p "$(echo -e $TEXT_YELLOW'Would you like delete large intermediate files? [y/n/c]'$TEXT_RESET)"$' \n' choice
+ read -n1 -s -r -p $'\n'"$(echo -e $TEXT_YELLOW'Would you like delete large intermediate files? [y/n/c]'$TEXT_RESET)"$' \n' choice
 case "$choice" in
   y|Y ) # trim
         if find "./3.analysis/2.trim/" -maxdepth 1 -type f -name "*.trimmed.fastq.gz" | grep -q .; then
@@ -34,4 +34,4 @@ case "$choice" in
 esac
 
 # notify
-echo -e "${TEXT_GREEN}Done.\n\nYou may now proceed to analyze the relative mutation rate.\n${TEXT_RESET} \n"
+echo -e "${TEXT_GREEN}All done! You may now proceed to analyze the relative mutation rate.\n${TEXT_RESET} \n"
