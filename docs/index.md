@@ -3,7 +3,15 @@ title: Amplicon pileup analysis pipeline
 toc: false
 ---
 
-### [1/3] Prepare input files
+### [1/4] Setup workspace
+
+- Install R and needed sequencing data analysis tools (example shown for Debian-based systems):
+
+```
+sudo apt-get update -qq && sudo apt-get install r-base bwa fastqc fastp cutadapt samtools bamtools -y
+```
+
+### [2/4] Prepare input files
 
 - Prepare reference sequences and sequencing reads in a folder:
 
@@ -12,7 +20,7 @@ toc: false
 </div>
 
 
-### [2/3] Running the pipeline
+### [3/4] Running the pipeline
 
 - Connect to internet.
 - Open Terminal, change current directory to the folder containing the input files.
@@ -33,10 +41,14 @@ bash -c "$(curl -fsSL https://raw.githubusercontent.com/chenh19/Ampile/refs/head
 </div>
 
 
-### [3/3] Done
-  
+### [4/4] Done
+
 <div style="text-align: center;">
   <img src="./images/4.png" width="90%">
+</div>
+
+<div style="text-align: center;">
+  <img src="./images/5.png" width="100%">
 </div>
 
 - You may further analyze the parsed mutation rates and perform comparative analyses between groups.
