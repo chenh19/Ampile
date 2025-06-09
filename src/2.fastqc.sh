@@ -5,8 +5,13 @@
 [ ! -d ./3.analysis/9.plots/ ] && mkdir ./3.analysis/9.plots/
 [ ! -d ./3.analysis/9.plots/1.fastqc/ ] && mkdir ./3.analysis/9.plots/1.fastqc/
 
-# install fastqc
-sudo apt-get update -qq && sudo apt-get install fastqc -y
+# set terminal font color
+TEXT_YELLOW=$(tput bold; tput setaf 3)
+TEXT_GREEN=$(tput bold; tput setaf 2)
+TEXT_RESET=$(tput sgr0)
+
+# notify start
+echo -e "\n${TEXT_YELLOW}Performing FastQC on raw reads...${TEXT_RESET}\n" && sleep 1
 
 # run fastqc in parallel
 threads=$(nproc)
@@ -20,7 +25,7 @@ done
 rm -f ./3.analysis/9.plots/1.fastqc/*.html ./3.analysis/9.plots/1.fastqc/*.zip
 
 # count raw reads
-echo -e "\nCounting raw reads...\n"
+echo -e "\nCounting raw reads:\n"
 output_file="./3.analysis/8.spreadsheets/1.raw_read_counts/raw_read_counts.csv"
 > "$output_file"
 for f in ./2.fastq/*.fastq ./2.fastq/*.fastq.gz; do
@@ -33,4 +38,6 @@ for f in ./2.fastq/*.fastq ./2.fastq/*.fastq.gz; do
   echo "  $(basename "$f"): $count reads"
   echo "$(basename "$f"), $count" >> "$output_file"
 done
-echo -e "\nDone.\n"
+
+# notify end
+echo -e "\n${TEXT_GREEN}Done.${TEXT_RESET}\n" && sleep 1

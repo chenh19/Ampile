@@ -5,8 +5,13 @@
 [ ! -d ./3.analysis/8.spreadsheets/2.trimmed_read_counts/ ] && mkdir ./3.analysis/8.spreadsheets/2.trimmed_read_counts/
 [ ! -d ./3.analysis/9.plots/2.refastqc/ ] && mkdir ./3.analysis/9.plots/2.refastqc/
 
-# install fastqc
-sudo apt-get update -qq && sudo apt-get install fastqc -y
+# set terminal font color
+TEXT_YELLOW=$(tput bold; tput setaf 3)
+TEXT_GREEN=$(tput bold; tput setaf 2)
+TEXT_RESET=$(tput sgr0)
+
+# notify start
+echo -e "\n${TEXT_YELLOW}Performing FastQC on trimmed reads...${TEXT_RESET}\n" && sleep 1
 
 # run fastqc in parallel
 threads=$(nproc)
@@ -20,7 +25,7 @@ done
 rm -f ./3.analysis/9.plots/2.refastqc/*.html ./3.analysis/9.plots/2.refastqc/*.zip
 
 # count trimmed reads
-echo -e "\nCounting trimmed reads...\n"
+echo -e "\nCounting trimmed reads:\n"
 output_file="./3.analysis/8.spreadsheets/2.trimmed_read_counts/trimmed_read_counts.csv"
 > "$output_file"
 for f in ./3.analysis/2.trim/*.fastq ./3.analysis/2.trim/*.fastq.gz; do
@@ -33,4 +38,6 @@ for f in ./3.analysis/2.trim/*.fastq ./3.analysis/2.trim/*.fastq.gz; do
   echo "  $(basename "$f"): $count reads"
   echo "$(basename "$f"), $count" >> "$output_file"
 done
-echo -e "\nDone.\n"
+
+# notify end
+echo -e "\n${TEXT_GREEN}Done.${TEXT_RESET}\n" && sleep 1

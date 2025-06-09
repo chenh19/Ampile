@@ -2,8 +2,13 @@
 [ ! -d ./3.analysis/ ] && mkdir ./3.analysis/
 [ ! -d ./3.analysis/2.trim/ ] && mkdir ./3.analysis/2.trim/
 
-# install fastqc
-sudo apt-get update -qq && sudo apt-get install cutadapt fastp -y
+# set terminal font color
+TEXT_YELLOW=$(tput bold; tput setaf 3)
+TEXT_GREEN=$(tput bold; tput setaf 2)
+TEXT_RESET=$(tput sgr0)
+
+# notify start
+echo -e "\n${TEXT_YELLOW}Trimming and filtering reads...${TEXT_RESET}\n" && sleep 1
 
 # trim by length and quality
 threads=$(nproc)
@@ -42,3 +47,6 @@ for r1 in ./2.fastq/*_R1*.fastq*; do
 
       rm -f "./3.analysis/2.trim/${sample}_R1.cut.fastq.gz" "./3.analysis/2.trim/${sample}_R2.cut.fastq.gz"
 done
+
+# notify end
+echo -e "\n${TEXT_GREEN}Done.${TEXT_RESET}\n" && sleep 1

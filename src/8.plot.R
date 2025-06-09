@@ -1,3 +1,11 @@
+# Define terminal color codes
+TEXT_YELLOW <- "\033[1;33m"  # bold yellow
+TEXT_GREEN  <- "\033[1;32m"  # bold green
+TEXT_RESET  <- "\033[0m"     # reset to default
+
+# notify start
+cat("\n", TEXT_YELLOW, "Generating plots...", TEXT_RESET, "\n\n", sep = "")
+
 # load packages
 packages <- c("tidyverse", "ggplot2", "expss", "filesstrings")
 for (package in packages) {
@@ -75,14 +83,12 @@ for (csv in csvs) {
   message(paste0("  ", basename(csv), ": absolute mutation rate plotted"))
 }
 
-
 # plot absolute mutation rate summary
 colors <- c("avg_A" = "#1F77B4", "avg_C" = "#FF7F0E", "avg_G" = "#2CA02C", "avg_U" = "#D62728")
 names <- gsub(".mpileup.csv", "", basename(csvs))
 colnames(summary) <- c("Base", names)
 summary_long <- pivot_longer(summary, cols = 2:ncol(summary), names_to = "Group", values_to = "Value")
 unique_groups <- unique(summary_long$Group)
-
 if (length(unique_groups) <= 12) {
   
   plot_width <- max(5, length(unique_groups) * 0.8 + 2)
@@ -138,6 +144,9 @@ if (length(unique_groups) <= 12) {
 
 ## notify
 message("  All samples: summary of absolute mutation rate plotted")
+
+# notify end
+cat("\n", TEXT_GREEN, "Done.", TEXT_RESET, "\n\n", sep = "")
 
 # cleanup
 rm(list = ls())

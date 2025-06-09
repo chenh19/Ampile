@@ -1,3 +1,11 @@
+# Define terminal color codes
+TEXT_YELLOW <- "\033[1;33m"  # bold yellow
+TEXT_GREEN  <- "\033[1;32m"  # bold green
+TEXT_RESET  <- "\033[0m"     # reset to default
+
+# notify start
+cat("\n", TEXT_YELLOW, "Parsing pileup files...", TEXT_RESET, "\n\n", sep = "")
+
 # load packages
 packages <- c("parallel", "foreach", "doParallel", "filesstrings")
 for (package in packages) {
@@ -20,7 +28,7 @@ if (dir.exists("./3.analysis/8.spreadsheets/3.mpileup_parse/")==FALSE){
 }
 
 # parse mpileup files
-message("\nParsing mutation rate...\n")
+message("\nCalculating mutation rate...\n")
 pileup_files <- list.files(path='./3.analysis/4.mpileup', pattern='*.mpileup', full.names = TRUE)
 registerDoParallel(numCores)
 invisible(foreach(pileup_file = pileup_files, .combine = c) %dopar% {
@@ -68,7 +76,9 @@ invisible(foreach(pileup_file = pileup_files, .combine = c) %dopar% {
 message("\nZipping mutation rate spreadsheets...\n")
 files_to_zip <- list.files(path = "./3.analysis/8.spreadsheets/3.mpileup_parse/", pattern = "*.mpileup.csv", full.names = TRUE)
 zip(zipfile = "./3.analysis/8.spreadsheets/3.mpileup_parse/mpileup_parse.zip", files = files_to_zip, extras = "-j")
-message("\nDone.\n")
+
+# notify end
+cat("\n", TEXT_GREEN, "Done.", TEXT_RESET, "\n\n", sep = "")
 
 # cleanup
 rm(list = ls())
