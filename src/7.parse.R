@@ -19,7 +19,7 @@ for (package in packages) {
 # Set cpu cores for parallel computing
 numCores <- detectCores(all.tests = FALSE, logical = TRUE)
 
-# create folder
+# create folders
 if (dir.exists("./3.analysis/8.spreadsheets/")==FALSE){
   dir.create("./3.analysis/8.spreadsheets/")
 }

@@ -1,7 +1,7 @@
 # Define terminal color codes
-TEXT_YELLOW <- "\033[1;33m"  # bold yellow
-TEXT_GREEN  <- "\033[1;32m"  # bold green
-TEXT_RESET  <- "\033[0m"     # reset to default
+TEXT_YELLOW <- "\033[1;33m"
+TEXT_GREEN  <- "\033[1;32m"
+TEXT_RESET  <- "\033[0m"
 
 # notify start
 cat("\n", TEXT_YELLOW, "Generating plots...", TEXT_RESET, "\n\n", sep = "")
@@ -16,7 +16,7 @@ for (package in packages) {
   message("Loaded package: ", package)
 }
 
-# create folder
+# create folders
 if (dir.exists("./3.analysis/9.plots/")==FALSE){
   dir.create("./3.analysis/9.plots/")
 }

@@ -1,6 +1,4 @@
 #!/bin/bash
-[ ! -d ./3.analysis/ ] && mkdir ./3.analysis/
-[ ! -d ./3.analysis/2.trim/ ] && mkdir ./3.analysis/2.trim/
 
 # set terminal font color
 TEXT_YELLOW=$(tput bold; tput setaf 3)
@@ -9,6 +7,10 @@ TEXT_RESET=$(tput sgr0)
 
 # notify start
 echo -e "\n${TEXT_YELLOW}Trimming and filtering reads...${TEXT_RESET}\n" && sleep 1
+
+# create folders
+[ ! -d ./3.analysis/ ] && mkdir ./3.analysis/
+[ ! -d ./3.analysis/2.trim/ ] && mkdir ./3.analysis/2.trim/
 
 # trim by length and quality
 threads=$(nproc)

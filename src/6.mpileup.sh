@@ -1,6 +1,4 @@
 #!/bin/bash
-[ ! -d ./3.analysis/ ] && mkdir ./3.analysis/
-[ ! -d ./3.analysis/4.mpileup/ ] && mkdir ./3.analysis/4.mpileup/
 
 # set terminal font color
 TEXT_YELLOW=$(tput bold; tput setaf 3)
@@ -9,6 +7,10 @@ TEXT_RESET=$(tput sgr0)
 
 # notify start
 echo -e "\n${TEXT_YELLOW}Generating pileup files...${TEXT_RESET}\n" && sleep 1
+
+# create folders
+[ ! -d ./3.analysis/ ] && mkdir ./3.analysis/
+[ ! -d ./3.analysis/4.mpileup/ ] && mkdir ./3.analysis/4.mpileup/
 
 # pileup
 for bam in ./3.analysis/3.bam/*.filtered.bam; do
