@@ -1,11 +1,13 @@
 #!/bin/bash
-[ ! -d ./1.ref/ ] && mkdir ./1.ref/
-[ ! -d ./2.fastq/ ] && mkdir ./2.fastq/
 
 # set terminal font color
 TEXT_YELLOW=$(tput bold; tput setaf 3)
 TEXT_GREEN=$(tput bold; tput setaf 2)
 TEXT_RESET=$(tput sgr0)
+
+# create folders
+[ ! -d ./1.ref/ ] && mkdir ./1.ref/
+[ ! -d ./2.fastq/ ] && mkdir ./2.fastq/
 
 # check whether R is installed
 if ! command -v R >/dev/null 2>&1; then
