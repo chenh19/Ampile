@@ -14,7 +14,7 @@ required_tools=("R" "bwa" "fastqc" "fastp" "cutadapt" "samtools" "bamtools")
 missing=0
 for tool in "${required_tools[@]}"; do
   if ! command -v "$tool" >/dev/null 2>&1; then
-    echo -e "\n${TEXT_YELLOW}$tool is not installed.${TEXT_RESET}\n" >&2 
+    echo -e "\n${TEXT_YELLOW}$tool is not installed.${TEXT_RESET}" >&2 
     missing=1
   fi
 done
