@@ -33,6 +33,18 @@ bash -c "$(curl -fsSL https://raw.githubusercontent.com/chenh19/Ampile/refs/head
 # perform fastqc
 bash -c "$(curl -fsSL https://raw.githubusercontent.com/chenh19/Ampile/refs/heads/main/src/2.fastqc.sh)"
 
+  ## check whether paired-end short-read data
+  while IFS=, read -r fastq_file max_length; do
+    if [[ "$fastq_file" != *R1* && "$fastq_file" != *R2* ]]; then
+      echo -e "\n${TEXT_YELLOW}Error: expecting paired-end short-read sequencing data, please check input files.${TEXT_RESET}\n" >&2 && sleep 1
+      exit 1
+    fi
+    if (( max_length > 350 )); then
+      echo -e "\n${TEXT_YELLOW}Error: expecting paired-end short-read sequencing data, please check input files.${TEXT_RESET}\n" >&2 && sleep 1
+      exit 1
+    fi
+  done < <(tail -n +2 ./3.analysis/8.spreadsheets/1.raw_read_counts/sequence_lengths.csv)
+
 # trim and filter reads
 bash -c "$(curl -fsSL https://raw.githubusercontent.com/chenh19/Ampile/refs/heads/main/src/3.trim.sh)"
 
