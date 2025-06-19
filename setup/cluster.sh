@@ -33,6 +33,10 @@ fi
 # Refresh shell config
 source ~/.bashrc
 
+# Update conda
+conda update -y -n base -c defaults conda
+conda update --all -y
+
 # Set up channels
 conda config --add channels bioconda
 conda config --add channels conda-forge
