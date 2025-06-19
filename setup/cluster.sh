@@ -41,6 +41,7 @@ conda config --set channel_priority strict
 # Create a new environment for ampile
 conda create -y -n ampile \
   conda-forge::r-base \
+  conda-forge::r-littler \
   conda-forge::r-tidyverse \
   conda-forge::r-expss \
   conda-forge::r-filesstrings \
