@@ -43,7 +43,7 @@ conda create -y -n ampile conda-forge::libxml2 conda-forge::r-maditr conda-forge
   conda-forge::r-base bioconda::bwa bioconda::fastqc bioconda::fastp bioconda::samtools bioconda::bamtools
 
 # Update conda
-conda update -y -n base -c defaults conda && conda update --all -y
+conda update --all -y
 
 # Activate environment ampile
 conda activate ampile
