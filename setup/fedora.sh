@@ -1,4 +1,6 @@
 #!/bin/bash
+# for fedora and derivatives
+sudo dnf install R-core R-CRAN-tidyverse R-CRAN-ggplot2 R-CRAN-expss R-CRAN-filesstrings R-CRAN-foreach R-CRAN-doParallel -y
 
 # Install Miniconda
 mkdir -p ~/miniconda3
@@ -22,12 +24,4 @@ conda config --add channels conda-forge
 conda config --set channel_priority strict
 
 # Create a new environment called "ampile"
-conda create -y -n ampile \
-  bioconda::bwa \
-  bioconda::fastqc \
-  bioconda::fastp \
-  bioconda::samtools \
-  bioconda::bamtools
-
-# Activate the new environment
-conda activate ampile
+conda create -y -n ampile bioconda::bwa bioconda::fastqc bioconda::fastp bioconda::samtools bioconda::bamtools
