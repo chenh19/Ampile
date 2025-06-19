@@ -6,10 +6,7 @@ source /etc/os-release
 CODENAME=$VERSION_CODENAME
 DISTRO=$ID
 
-## install packages and dependencies
-sudo apt-get update -qq && sudo apt-get install wget bwa fastqc fastp samtools bamtools default-jre default-jdk cmake pandoc libcurl4-openssl-dev libssl-dev libfontconfig1-dev libfreetype6-dev libfribidi-dev libharfbuzz-dev libjpeg-dev libtiff-dev libtiff5-dev libgit2-dev libglpk-dev libnlopt-dev libgeos-dev libxml2-dev libv8-dev libcairo2-dev -y
-
-## install R from cran
+## config source list
 if [[ "$DISTRO" == "debian" ]]; then
   gpg --keyserver keyserver.ubuntu.com --recv-key '95C0FAF38DB3CCAD0C080A7BDC78B2DDEABC47B7'
   gpg --armor --export '95C0FAF38DB3CCAD0C080A7BDC78B2DDEABC47B7' | sudo tee /etc/apt/trusted.gpg.d/cran_debian_key.asc
@@ -21,7 +18,10 @@ else
   echo "Unsupported distribution: $DISTRO"
   exit 1
 fi
-sudo apt-get update -qq && sudo apt-get install r-base littler -y && sudo R CMD javareconf
+
+## install packages
+sudo apt-get update -qq && sudo apt-get install r-base littler bwa fastqc fastp samtools bamtools default-jre default-jdk cmake pandoc libcurl4-openssl-dev libssl-dev libfontconfig1-dev libfreetype6-dev libfribidi-dev libharfbuzz-dev libjpeg-dev libtiff-dev libtiff5-dev libgit2-dev libglpk-dev libnlopt-dev libgeos-dev libxml2-dev libv8-dev libcairo2-dev -y
+sudo R CMD javareconf
 
 ## config posit package manager
 if ! grep -q "options(repos = c(CRAN = 'https://packagemanager.posit.co/cran/__linux__/${CODENAME}/latest'))" /etc/R/Rprofile.site ; then echo -e "options(repos = c(CRAN = 'https://packagemanager.posit.co/cran/__linux__/${CODENAME}/latest'))" | sudo tee -a /etc/R/Rprofile.site ; fi
