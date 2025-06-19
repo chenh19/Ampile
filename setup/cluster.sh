@@ -28,7 +28,7 @@ case "$(uname -s)" in
         fi;;
     FreeBSD)
         sudo pkg install -y R bwa fastqc fastp samtools bamtools parallel
-        sudo Rscript -e "install.packages(c('dplyr', 'tidyr', 'ggplot2', 'expss', 'filesstrings', 'foreach', 'doParallel'), force = TRUE, repos = 'https://cloud.r-project.org')"
+        sudo Rscript -e "install.packages(c('tidyverse', 'expss', 'filesstrings', 'foreach', 'doParallel'), force = TRUE, repos = 'https://cloud.r-project.org')"
         exit 0;;
     *)  echo "Unsupported OS: $(uname -s)"
         exit 1;;
