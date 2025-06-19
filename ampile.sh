@@ -1,4 +1,5 @@
 #!/bin/bash
+# Ampile pipeline
 
 # activate conda
 source ~/miniconda3/etc/profile.d/conda.sh
