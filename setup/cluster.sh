@@ -1,4 +1,5 @@
 #!/bin/bash
+# for institute high-performance computing cluster, typically redhat/centos/rocky linux/almalinux os
 
 # Install Miniconda
 mkdir -p ~/miniconda3
