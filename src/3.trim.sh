@@ -27,12 +27,12 @@ for r1 in ./2.fastq/*_R1*.fastq*; do
         continue
     fi
 
-    cutadapt -j 8 -l 180 -o "./3.analysis/2.trim/${sample}_R1.cut.fastq.gz" $r1
-    cutadapt -j 8 -l 180 -o "./3.analysis/2.trim/${sample}_R2.cut.fastq.gz" $r2
+    #cutadapt -j 8 -l 180 -o "./3.analysis/2.trim/${sample}_R1.cut.fastq.gz" $r1
+    #cutadapt -j 8 -l 180 -o "./3.analysis/2.trim/${sample}_R2.cut.fastq.gz" $r2
 
     fastp \
-      -i "./3.analysis/2.trim/${sample}_R1.cut.fastq.gz" \
-      -I "./3.analysis/2.trim/${sample}_R2.cut.fastq.gz" \
+      -i $r1 \
+      -I $r2 \
       -o "./3.analysis/2.trim/${sample}_R1.trimmed.fastq.gz" \
       -O "./3.analysis/2.trim/${sample}_R2.trimmed.fastq.gz" \
       --trim_front1 5 \
@@ -47,7 +47,7 @@ for r1 in ./2.fastq/*_R1*.fastq*; do
       -j /dev/null \
       -h /dev/null
 
-      rm -f "./3.analysis/2.trim/${sample}_R1.cut.fastq.gz" "./3.analysis/2.trim/${sample}_R2.cut.fastq.gz"
+      #rm -f "./3.analysis/2.trim/${sample}_R1.cut.fastq.gz" "./3.analysis/2.trim/${sample}_R2.cut.fastq.gz"
 done
 
 # notify end
