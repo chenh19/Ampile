@@ -40,6 +40,9 @@ esac
 
 # install miniconda
 mkdir -p ~/miniconda3
+[ ! -f ~/.hidden ] && touch ~/.hidden
+if ! grep -q "miniconda3" ~/.hidden ; then echo -e "miniconda3" >> ~/.hidden ; fi
+if ! grep -q "bin" ~/.hidden ; then echo -e "bin" >> ~/.hidden ; fi
 curl -fsSL "$URL" -o ~/miniconda3/miniconda.sh
 bash ~/miniconda3/miniconda.sh -b -u -p ~/miniconda3
 rm ~/miniconda3/miniconda.sh
