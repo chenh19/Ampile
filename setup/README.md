@@ -7,6 +7,7 @@ For bash, you will need:
 - ```fastp```
 - ```samtools```
 - ```bamtools```
+- ```parallel```
 
 For R, you will need:
 - ```tidyverse```
