@@ -1,4 +1,4 @@
-# Dependency
+# Setup workspace
 
 For bash, you will need:
 - ```R```
