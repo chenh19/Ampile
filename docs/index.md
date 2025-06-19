@@ -38,13 +38,13 @@ Rscript -e "install.packages(c('tidyverse', 'expss', 'filesstrings', 'foreach', 
 - Prepare reference sequences (```.fa``` files) and sequencing reads (```.fastq``` or ```.fastq.gz``` files) in a folder:
 
 <div style="text-align: center;">
-  <img src="./images/0.png" width="90%">
+  <img src="./images/0.png" width="100%">
 </div>
 
 - You may also organize the files into the two designated subfolders, ```./1.ref/``` and ```./2.fastq/```:
 
 <div style="text-align: center;">
-  <img src="./images/1.png" width="90%">
+  <img src="./images/1.png" width="100%">
 </div>
 
 <details>
