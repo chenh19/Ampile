@@ -30,10 +30,6 @@ if [[ -f ~/.zshrc ]]; then
   unset start0 end0
 fi
 
-# Set alias for manual initialization
-[ ! -f ~/.bashrc] ] && touch ~/.bashrc
-if ! grep -q "alias conda-init='source ~/miniconda3/etc/profile.d/conda.sh'" ~/.bashrc ; then echo -e "alias conda-init='source ~/miniconda3/etc/profile.d/conda.sh'" >> ~/.bashrc ; fi
-
 # Refresh shell config
 source ~/.bashrc
 
