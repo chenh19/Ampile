@@ -18,7 +18,9 @@ conda config --set auto_activate_base false
 # Disable conda initialization when opening a shell
 start0="$(grep -wn "# >>> conda initialize >>>" ~/.bashrc | head -n 1 | cut -d: -f1)"
 end0="$(grep -wn "# <<< conda initialize <<<" ~/.bashrc | tail -n 1 | cut -d: -f1)"
-sed -i "$start0,$end0"'d' ~/.bashrc
+if [[ -n "$start0" && -n "$end0" ]]; then
+  sed -i "${start0},${end0}d" ~/.bashrc
+fi
 unset start0 end0
 
 # Set alias for manual initialization
