@@ -3,32 +3,71 @@ title: Amplicon pileup analysis pipeline
 toc: false
 ---
 
-### [1/4] Setup workspace
+### [1/4] Setup environment
 
-- Install R and needed sequencing data analysis tools (example shown for Debian-based systems):
+Pipeline failures are often due to an improperly configured environment. To ensure a robust and consistent setup for Ampile, I've created a dedicated configuration script. To execute the setup:
 
-```
-sudo apt-get update -qq && sudo apt-get install r-base bwa fastqc fastp cutadapt samtools bamtools -y
-```
+- Connect to internet
+- Open Terminal
+- Paste in the below command and press ```Enter``` to run:
+
+<pre> bash -c "$(curl -fsSL https://raw.githubusercontent.com/chenh19/Ampile/refs/heads/main/setup.sh)" </pre>
+
+<details>
+<summary>**Note:**</summary>
+
+<div style="font-size: 0.9em">
+
+- This pipeline is dependent on: ```R```, ```bwa```, ```fastqc```, ```fastp```,  ```samtools```, ```bamtools```, ```parallel```, ```r-tidyverse```, ```r-expss```, ```r-filesstrings```, ```r-foreach```, ```r-doParallel```.
+- Running the setup script does not require directory changes or administrative privileges.
+- [ampile.sh](https://github.com/chenh19/Ampile/blob/main/ampile.sh) will verify that all required packages are installed before proceeding with the analysis.
+- If you're using an unsupported OS or prefer an alternative setup method, please ensure that all required dependencies are installed (for example, using Homebrew on macOS, as shown below):
+
+<pre>
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+brew install r bwa fastqc fastp samtools bamtools parallel
+Rscript -e "install.packages(c('tidyverse', 'expss', 'filesstrings', 'foreach', 'doParallel'), force = TRUE, repos = 'https://cloud.r-project.org')"
+</pre>
+</div>
+
+</details>
+
 
 ### [2/4] Prepare input files
 
-- Prepare reference sequences and sequencing reads in a folder:
+- Prepare reference sequences (```.fa``` files) and sequencing reads (```.fastq``` or ```.fastq.gz``` files) in a folder:
 
 <div style="text-align: center;">
-  <img src="./images/1.png" width="100%">
+  <img src="./images/0.png" width="90%">
 </div>
+
+- You may also organize the files into the two designated subfolders, ```./1.ref/``` and ```./2.fastq/```:
+
+<div style="text-align: center;">
+  <img src="./images/1.png" width="90%">
+</div>
+
+<details>
+<summary>**Note:**</summary>
+
+<div style="font-size: 0.9em">
+
+- The pipeline will automatically organize input files if they are not already in the two designated subfolders.
+- The pipeline will also automatically compress sequencing reads to ```.fastq.gz``` if they are provided in ```.fastq``` format.
+
+</div>
+
+</details>
 
 
 ### [3/4] Running the pipeline
 
-- Connect to internet.
-- Open Terminal, change current directory to the folder containing the input files.
-- Paste in the below code and press ```Enter``` to run:
+- Connect to internet
+- Open Terminal
+- Change current directory to the folder containing the input files. For example: ```cd ~/Desktop/Ampile/```
+- Paste in the below command and press ```Enter``` to run:
 
-```
-bash -c "$(curl -fsSL https://raw.githubusercontent.com/chenh19/Ampile/refs/heads/main/ampile.sh)"
-```
+<pre> bash -c "$(curl -fsSL https://raw.githubusercontent.com/chenh19/Ampile/refs/heads/main/ampile.sh)" </pre>
 
 <div style="text-align: center;">
   <img src="./images/2.png" width="90%">
@@ -51,4 +90,15 @@ bash -c "$(curl -fsSL https://raw.githubusercontent.com/chenh19/Ampile/refs/head
   <img src="./images/5.png" width="100%">
 </div>
 
-- You may further analyze the parsed mutation rates and perform comparative analyses between groups.
+- You may further analyze the parsed mutation rates and perform comparative analyses between groups. The corresponding spreadsheets are located at ```./3.analysis/8.spreadsheets/3.mpileup_parse/```.
+
+<details>
+<summary>**Note:**</summary>
+
+<div style="font-size: 0.9em">
+
+- The directories ```./3.analysis/1.refseq/```, ```./3.analysis/2.trim/```, ```./3.analysis/3.bam/```, and ```./3.analysis/4.mpileup/``` contain large intermediate files. You may choose to delete them unless you need them for troubleshooting.
+
+</div>
+
+</details>

@@ -128,30 +128,68 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="setup-workspace" class="level3">
-<h3 class="anchored" data-anchor-id="setup-workspace">[1/4] Setup workspace</h3>
+<section id="setup-environment" class="level3">
+<h3 class="anchored" data-anchor-id="setup-environment">[1/4] Setup environment</h3>
+<p>Pipeline failures are often due to an improperly configured environment. To ensure a robust and consistent setup for Ampile, I’ve created a dedicated configuration script. To execute the setup:</p>
 <ul>
-<li>Install R and needed sequencing data analysis tools (example shown for Debian-based systems):</li>
+<li>Connect to internet</li>
+<li>Open Terminal</li>
+<li>Paste in the below command and press <code>Enter</code> to run:</li>
 </ul>
-<pre><code>sudo apt-get update -qq &amp;&amp; sudo apt-get install r-base bwa fastqc fastp cutadapt samtools bamtools -y</code></pre>
+<pre> bash -c "$(curl -fsSL https://raw.githubusercontent.com/chenh19/Ampile/refs/heads/main/setup.sh)" </pre>
+<details>
+<summary>
+<strong>Note:</strong>
+</summary>
+<div style="font-size: 0.9em">
+<ul>
+<li>This pipeline is dependent on: <code>R</code>, <code>bwa</code>, <code>fastqc</code>, <code>fastp</code>, <code>samtools</code>, <code>bamtools</code>, <code>parallel</code>, <code>r-tidyverse</code>, <code>r-expss</code>, <code>r-filesstrings</code>, <code>r-foreach</code>, <code>r-doParallel</code>.</li>
+<li>Running the setup script does not require directory changes or administrative privileges.</li>
+<li><a href="https://github.com/chenh19/Ampile/blob/main/ampile.sh">ampile.sh</a> will verify that all required packages are installed before proceeding with the analysis.</li>
+<li>If you’re using an unsupported OS or prefer an alternative setup method, please ensure that all required dependencies are installed (for example, using Homebrew on macOS, as shown below):</li>
+</ul>
+<pre>/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+brew install r bwa fastqc fastp samtools bamtools parallel
+Rscript -e "install.packages(c('tidyverse', 'expss', 'filesstrings', 'foreach', 'doParallel'), force = TRUE, repos = 'https://cloud.r-project.org')"
+</pre>
+</div>
+</details>
 </section>
 <section id="prepare-input-files" class="level3">
 <h3 class="anchored" data-anchor-id="prepare-input-files">[2/4] Prepare input files</h3>
 <ul>
-<li>Prepare reference sequences and sequencing reads in a folder:</li>
+<li>Prepare reference sequences (<code>.fa</code> files) and sequencing reads (<code>.fastq</code> or <code>.fastq.gz</code> files) in a folder:</li>
 </ul>
 <div style="text-align: center;">
-<p><img src="./images/1.png" width="100%"></p>
+<p><img src="./images/0.png" width="90%"></p>
 </div>
+<ul>
+<li>You may also organize the files into the two designated subfolders, <code>./1.ref/</code> and <code>./2.fastq/</code>:</li>
+</ul>
+<div style="text-align: center;">
+<p><img src="./images/1.png" width="90%"></p>
+</div>
+<details>
+<summary>
+<strong>Note:</strong>
+</summary>
+<div style="font-size: 0.9em">
+<ul>
+<li>The pipeline will automatically organize input files if they are not already in the two designated subfolders.</li>
+<li>The pipeline will also automatically compress sequencing reads to <code>.fastq.gz</code> if they are provided in <code>.fastq</code> format.</li>
+</ul>
+</div>
+</details>
 </section>
 <section id="running-the-pipeline" class="level3">
 <h3 class="anchored" data-anchor-id="running-the-pipeline">[3/4] Running the pipeline</h3>
 <ul>
-<li>Connect to internet.</li>
-<li>Open Terminal, change current directory to the folder containing the input files.</li>
-<li>Paste in the below code and press <code>Enter</code> to run:</li>
+<li>Connect to internet</li>
+<li>Open Terminal</li>
+<li>Change current directory to the folder containing the input files. For example: <code>cd ~/Desktop/Ampile/</code></li>
+<li>Paste in the below command and press <code>Enter</code> to run:</li>
 </ul>
-<pre><code>bash -c "$(curl -fsSL https://raw.githubusercontent.com/chenh19/Ampile/refs/heads/main/ampile.sh)"</code></pre>
+<pre> bash -c "$(curl -fsSL https://raw.githubusercontent.com/chenh19/Ampile/refs/heads/main/ampile.sh)" </pre>
 <div style="text-align: center;">
 <p><img src="./images/2.png" width="90%"></p>
 </div>
@@ -171,8 +209,18 @@ ul.task-list li input[type="checkbox"] {
 <p><img src="./images/5.png" width="100%"></p>
 </div>
 <ul>
-<li>You may further analyze the parsed mutation rates and perform comparative analyses between groups.</li>
+<li>You may further analyze the parsed mutation rates and perform comparative analyses between groups. The corresponding spreadsheets are located at <code>./3.analysis/8.spreadsheets/3.mpileup_parse/</code>.</li>
 </ul>
+<details>
+<summary>
+<strong>Note:</strong>
+</summary>
+<div style="font-size: 0.9em">
+<ul>
+<li>The directories <code>./3.analysis/1.refseq/</code>, <code>./3.analysis/2.trim/</code>, <code>./3.analysis/3.bam/</code>, and <code>./3.analysis/4.mpileup/</code> contain large intermediate files. You may choose to delete them unless you need them for troubleshooting.</li>
+</ul>
+</div>
+</details>
 
 
 </section>
