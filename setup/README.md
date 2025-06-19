@@ -10,7 +10,9 @@ For bash, you will need:
 - ```parallel```
 
 For R, you will need:
-- ```tidyverse```
+- ```dplyr```
+- ```tidyr```
+- ```ggplot2```
 - ```expss```
 - ```filesstrings```
 - ```foreach```
