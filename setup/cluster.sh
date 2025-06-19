@@ -42,4 +42,4 @@ conda create -y -n ampile conda-forge::libxml2 conda-forge::r-maditr \
 conda activate ampile
 
 # Install R packages
-Rscript -e "install.packages(c('tidyverse', 'ggplot2', 'expss', 'filesstrings', 'foreach', 'doParallel'), force = TRUE, repos = 'https://cloud.r-project.org')"
+Rscript -e "install.packages(c('dplyr', 'tidyr', 'ggplot2', 'expss', 'filesstrings', 'foreach', 'doParallel'), force = TRUE, repos = 'https://cloud.r-project.org')"
