@@ -10,7 +10,7 @@ TEXT_RESET=$(tput sgr0)
 [ ! -d ./2.fastq/ ] && mkdir ./2.fastq/
 
 # check whether required packages are all installed
-required_tools=("R" "bwa" "fastqc" "fastp" "cutadapt" "samtools" "bamtools")
+required_tools=("R" "bwa" "fastqc" "fastp" "samtools" "bamtools")
 missing=0
 for tool in "${required_tools[@]}"; do
   if ! command -v "$tool" >/dev/null 2>&1; then
