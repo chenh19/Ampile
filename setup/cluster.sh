@@ -40,17 +40,13 @@ conda config --set channel_priority strict
 
 # Create a new environment for ampile
 conda create -y -n ampile \
-  conda-forge::parallel \
-  conda-forge::libxml2 \
   conda-forge::r-base \
-  conda-forge::r-maditr \
-  conda-forge::r-dplyr \
-  conda-forge::r-tidyr \
-  conda-forge::r-ggplot2 \
+  conda-forge::r-tidyverse \
   conda-forge::r-expss \
   conda-forge::r-filesstrings \
   conda-forge::r-foreach \
   conda-forge::r-doparallel \
+  conda-forge::parallel \
   bioconda::bwa \
   bioconda::fastqc \
   bioconda::fastp \
@@ -62,6 +58,3 @@ conda update --all -y
 
 # Activate environment ampile
 conda activate ampile
-
-# Install R packages
-Rscript -e "install.packages(c('dplyr', 'tidyr', 'ggplot2', 'expss', 'filesstrings', 'foreach', 'doParallel'), force = TRUE, repos = 'https://cloud.r-project.org')"
