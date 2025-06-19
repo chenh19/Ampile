@@ -26,8 +26,7 @@ conda install -y \
   conda-forge::r-base \
   bioconda::bwa \
   bioconda::bwa-mem2 \
-  bioconda::samtools \
   bioconda::fastqc \
   bioconda::fastp \
-  bioconda::cutadapt \
+  bioconda::samtools \
   bioconda::bamtools
