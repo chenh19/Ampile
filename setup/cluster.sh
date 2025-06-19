@@ -1,9 +1,42 @@
 #!/bin/bash
-# for institute high-performance computing cluster, typically redhat/centos/rocky linux/almalinux os and users don't have root access
+# universal for all unix/linux systems
+
+# Set terminal font color
+TEXT_YELLOW="$(tput bold)$(tput setaf 3)"
+TEXT_GREEN="$(tput bold)$(tput setaf 2)"
+TEXT_RESET="$(tput sgr0)"
+
+# Check OS
+case "$(uname -s)" in
+    Linux)
+        if [[ "$(uname -m)" == "x86_64" ]]; then
+            URL="https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh"
+        elif [[ "$(uname -m)" == "aarch64" ]]; then
+            URL="https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-aarch64.sh"
+        else
+            echo -e "\n${TEXT_YELLOW}Unsupported Linux architecture: $(uname -m)${TEXT_RESET}\n" >&2
+            exit 1
+        fi;;
+    Darwin)
+        if [[ "$(uname -m)" == "x86_64" ]]; then
+            URL="https://repo.anaconda.com/miniconda/Miniconda3-latest-MacOSX-x86_64.sh"
+        elif [[ "$(uname -m)" == "arm64" ]]; then
+            URL="https://repo.anaconda.com/miniconda/Miniconda3-latest-MacOSX-arm64.sh"
+        else
+            echo -e "\n${TEXT_YELLOW}Unsupported MacOS architecture: $(uname -m)${TEXT_RESET}\n" >&2
+            exit 1
+        fi;;
+    FreeBSD)
+        sudo pkg install -y R bwa fastqc fastp samtools bamtools parallel
+        sudo Rscript -e "install.packages(c('dplyr', 'tidyr', 'ggplot2', 'expss', 'filesstrings', 'foreach', 'doParallel'), force = TRUE, repos = 'https://cloud.r-project.org')"
+        exit 0;;
+    *)  echo "Unsupported OS: $(uname -s)"
+        exit 1;;
+esac
 
 # Install Miniconda
 mkdir -p ~/miniconda3
-curl -fsSL https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -o ~/miniconda3/miniconda.sh
+curl -fsSL "$URL" -o ~/miniconda3/miniconda.sh
 bash ~/miniconda3/miniconda.sh -b -u -p ~/miniconda3
 rm ~/miniconda3/miniconda.sh
 
