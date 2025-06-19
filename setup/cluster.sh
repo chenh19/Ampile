@@ -34,7 +34,6 @@ fi
 source ~/.bashrc
 
 # Update conda
-conda update -y -n base -c defaults conda
 conda update --all -y
 
 # Set up channels
