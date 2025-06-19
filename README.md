@@ -13,7 +13,7 @@
 
 - Connect to internet and execute the below command in terminal:
 ```
-bash -c "$(curl -fsSL https://raw.githubusercontent.com/chenh19/Ampile/refs/heads/main/setup/universal.sh)"
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/chenh19/Ampile/refs/heads/main/setup.sh)"
 ```
 
 ### How to run
