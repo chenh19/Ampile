@@ -7,7 +7,7 @@ TEXT_RESET  <- "\033[0m"
 cat("\n", TEXT_YELLOW, "Parsing pileup files...", TEXT_RESET, "\n\n", sep = "")
 
 # load packages
-packages <- c("parallel", "foreach", "doParallel", "filesstrings")
+packages <- c("filesstrings", "foreach", "doParallel")
 for (package in packages) {
   if (!suppressPackageStartupMessages(require(package, character.only = TRUE))) {
     install.packages(package, repos = "https://cloud.r-project.org")
