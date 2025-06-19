@@ -27,4 +27,4 @@ sudo R CMD javareconf
 if ! grep -q "options(repos = c(CRAN = 'https://packagemanager.posit.co/cran/__linux__/${CODENAME}/latest'))" /etc/R/Rprofile.site ; then echo -e "options(repos = c(CRAN = 'https://packagemanager.posit.co/cran/__linux__/${CODENAME}/latest'))" | sudo tee -a /etc/R/Rprofile.site ; fi
 
 ## install R packages
-sudo Rscript -e "install.packages(c('tidyverse', 'ggplot2', 'expss', 'filesstrings', 'foreach', 'doParallel'), force = TRUE, Ncpus = system('nproc --all', intern = TRUE), repos = c(CRAN = 'https://packagemanager.posit.co/cran/__linux__/${CODENAME}/latest'))"
+sudo Rscript -e "install.packages(c('dplyr', 'tidyr', 'ggplot2', 'expss', 'filesstrings', 'foreach', 'doParallel'), force = TRUE, Ncpus = system('nproc --all', intern = TRUE), repos = c(CRAN = 'https://packagemanager.posit.co/cran/__linux__/${CODENAME}/latest'))"
