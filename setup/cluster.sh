@@ -91,4 +91,14 @@ conda create -y -n ampile \
 conda update --all -y
 
 # Activate environment ampile
+source ~/miniconda3/etc/profile.d/conda.sh
 conda activate ampile
+
+# Check packages
+required_tools=("R" "bwa" "fastqc" "fastp" "samtools" "bamtools" "parallel")
+for tool in "${required_tools[@]}"; do
+  if command -v "$tool" >/dev/null 2>&1; then
+    echo -e "\n${TEXT_GREEN}$tool package successfully installed.${TEXT_RESET}"
+  fi
+done
+Rscript -e 'for (pkg in c("tidyverse", "expss", "filesstrings", "foreach", "doParallel")) if (suppressPackageStartupMessages(require(pkg, character.only = TRUE))) message("\nr-", pkg, " package successfully installed") else message("Failed to load: ", pkg)'
