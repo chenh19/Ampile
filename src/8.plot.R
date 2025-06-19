@@ -7,7 +7,7 @@ TEXT_RESET  <- "\033[0m"
 cat("\n", TEXT_YELLOW, "Generating plots...", TEXT_RESET, "\n\n", sep = "")
 
 # load packages
-packages <- c("dplyr", "tidyr", "ggplot2", "expss", "filesstrings")
+packages <- c("filesstrings", "tidyverse", "expss")
 for (package in packages) {
   if (!suppressPackageStartupMessages(require(package, character.only = TRUE))) {
     install.packages(package, repos = "https://cloud.r-project.org")
