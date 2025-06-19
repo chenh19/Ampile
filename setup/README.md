@@ -1,4 +1,4 @@
-# Setup workspace
+# Setup environment
 
 For bash, you will need:
 - ```R```
