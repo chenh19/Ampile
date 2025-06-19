@@ -13,6 +13,8 @@ TEXT_RESET="$(tput sgr0)"
 [ ! -d ./1.ref/ ] && mkdir ./1.ref/
 [ ! -d ./2.fastq/ ] && mkdir ./2.fastq/
 
+# organize input files
+
 # check whether required packages are all installed
 required_tools=("R" "bwa" "fastqc" "fastp" "samtools" "bamtools" "parallel")
 missing=0
