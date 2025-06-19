@@ -10,7 +10,7 @@ cat("\n", TEXT_YELLOW, "Generating plots...", TEXT_RESET, "\n\n", sep = "")
 packages <- c("dplyr", "tidyr", "ggplot2", "expss", "filesstrings")
 for (package in packages) {
   if (!suppressPackageStartupMessages(require(package, character.only = TRUE))) {
-    install.packages(package, repos = "https://cloud.r-project.org", quiet = TRUE)
+    install.packages(package, repos = "https://cloud.r-project.org")
     suppressPackageStartupMessages(library(package, character.only = TRUE))
   }
   message("Loaded package: ", package)
