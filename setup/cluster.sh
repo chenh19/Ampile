@@ -39,7 +39,7 @@ conda config --add channels conda-forge
 conda config --set channel_priority strict
 
 # Create a new environment for ampile
-conda create -y -n ampile conda-forge::libxml2 conda-forge::r-maditr \
+conda create -y -n ampile conda-forge::libxml2 conda-forge::r-maditr conda-forge::parallel \
   conda-forge::r-base bioconda::bwa bioconda::fastqc bioconda::fastp bioconda::samtools bioconda::bamtools
 
 # Activate environment ampile
