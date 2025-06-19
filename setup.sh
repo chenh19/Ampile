@@ -24,7 +24,6 @@ conda config --set channel_priority strict
 # Create a new environment called "ampile"
 conda create -y -n ampile \
   bioconda::bwa \
-  bioconda::bwa-mem2 \
   bioconda::fastqc \
   bioconda::fastp \
   bioconda::samtools \
