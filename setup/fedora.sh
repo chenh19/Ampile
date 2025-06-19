@@ -15,6 +15,16 @@ conda init --all
 # Disable auto-activation of base environment
 conda config --set auto_activate_base false
 
+# Disable conda initialization when opening a shell
+start0="$(grep -wn "# >>> conda initialize >>>" ~/.bashrc | head -n 1 | cut -d: -f1)"
+end0="$(grep -wn "# <<< conda initialize <<<" ~/.bashrc | tail -n 1 | cut -d: -f1)"
+sed -i "$start0,$end0"'d' ~/.bashrc
+unset start0 end0
+
+# Set alias for manual initialization
+[ ! -f ~/.bashrc] ] && touch ~/.bashrc
+if ! grep -q "alias conda-init='source ~/miniconda3/etc/profile.d/conda.sh'" ~/.bashrc ; then echo -e "alias conda-init='source ~/miniconda3/etc/profile.d/conda.sh'" >> ~/.bashrc ; fi
+
 # Refresh shell config
 source ~/.bashrc
 
