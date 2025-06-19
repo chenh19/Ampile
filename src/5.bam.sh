@@ -23,7 +23,7 @@ for r1 in ./3.analysis/2.trim/*_R1*trimmed.fastq.gz; do
     samtools sort -@ 16 -o ./3.analysis/3.bam/${sample}.bam
   samtools index ./3.analysis/3.bam/${sample}.bam
 
-  bamtools filter -in ./3.analysis/3.bam/${sample}.bam -out ./3.analysis/3.bam/${sample}.filtered.bam -tag "NM:<34"
+  bamtools filter -in ./3.analysis/3.bam/${sample}.bam -out ./3.analysis/3.bam/${sample}.filtered.bam -tag "NM:<6"
   samtools index ./3.analysis/3.bam/${sample}.filtered.bam
 
   rm -f ./3.analysis/3.bam/${sample}.bam ./3.analysis/3.bam/${sample}.bam.bai
