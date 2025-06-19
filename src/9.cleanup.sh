@@ -1,9 +1,9 @@
 #!/bin/bash
 
 # set terminal font color
-TEXT_YELLOW=$(tput bold; tput setaf 3)
-TEXT_GREEN=$(tput bold; tput setaf 2)
-TEXT_RESET=$(tput sgr0)
+TEXT_YELLOW="$(tput bold)$(tput setaf 3)"
+TEXT_GREEN="$(tput bold)$(tput setaf 2)"
+TEXT_RESET="$(tput sgr0)"
 
 # cleanup
  read -n1 -s -r -p $'\n'"$(echo -e $TEXT_YELLOW'Would you like delete large intermediate files? [y/n/c]'$TEXT_RESET)"$' \n' choice
