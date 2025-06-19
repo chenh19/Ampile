@@ -18,7 +18,7 @@ Pipeline failures are often due to an improperly configured environment. To ensu
 
 <div style="font-size: 0.9em">
 
-- This pipeline is dependent on: ```R```, ```bwa```, ```fastqc```, ```fastp```,  ```samtools```, ```bamtools```, ```parallel```, ```r-tidyverse```, ```r-expss```, ```r-filesstrings```, ```r-foreach```, ```r-doParallel```.
+- This pipeline is dependent on: ```R```, ```bwa```, ```fastqc```, ```fastp```,  ```samtools```, ```bamtools```, ```parallel```, ```r-tidyverse```, ```r-expss```, ```r-filesstrings```, ```r-foreach```, ```r-doParallel```. It can be run in Linux, FreeBSD, and macOS environments.
 - Running the setup script does not require directory changes or administrative privileges.
 - [ampile.sh](https://github.com/chenh19/Ampile/blob/main/ampile.sh) will verify that all required packages are installed before proceeding with the analysis.
 - If you're using an unsupported OS or prefer an alternative setup method, please ensure that all required dependencies are installed (for example, using Homebrew on macOS, as shown below):
