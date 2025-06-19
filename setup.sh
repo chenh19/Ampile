@@ -17,12 +17,12 @@ conda config --set auto_activate_base false
 source ~/.bashrc
 
 # Set up channels
-conda config --add channels conda-forge
 conda config --add channels bioconda
+conda config --add channels conda-forge
 conda config --set channel_priority strict
 
-# Install into base environment
-conda install -y \
+# Create a new environment called "ampile"
+conda create -y -n ampile \
   conda-forge::r-base \
   bioconda::bwa \
   bioconda::bwa-mem2 \
@@ -30,3 +30,6 @@ conda install -y \
   bioconda::fastp \
   bioconda::samtools \
   bioconda::bamtools
+
+# Activate the new environment
+conda activate ampile
