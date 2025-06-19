@@ -1,7 +1,7 @@
 #!/bin/bash
 # universal for (almost) all unix/linux systems
 
-# Set terminal font color
+# set terminal font color
 TEXT_YELLOW="$(tput bold)$(tput setaf 3)"
 TEXT_GREEN="$(tput bold)$(tput setaf 2)"
 TEXT_RESET="$(tput sgr0)"
@@ -10,7 +10,7 @@ TEXT_RESET="$(tput sgr0)"
 sudo echo ""
 echo -e "${TEXT_YELLOW}Setting up environment for Ampile pipeline...${TEXT_RESET} \n" && sleep 1
 
-# Check OS
+# check OS
 case "$(uname -s)" in
     Linux)
         if [[ "$(uname -m)" == "x86_64" ]]; then
@@ -38,20 +38,20 @@ case "$(uname -s)" in
         exit 1;;
 esac
 
-# Install Miniconda
+# install miniconda
 mkdir -p ~/miniconda3
 curl -fsSL "$URL" -o ~/miniconda3/miniconda.sh
 bash ~/miniconda3/miniconda.sh -b -u -p ~/miniconda3
 rm ~/miniconda3/miniconda.sh
 
-# Initialize conda
+# initialize conda
 source ~/miniconda3/bin/activate
 conda init --all
 
-# Disable auto-activation of base environment
+# disable auto-activation of base environment
 conda config --set auto_activate_base false
 
-# Disable conda initialization when opening a shell
+# disable conda initialization when opening a shell
 if [[ -f ~/.bashrc ]]; then
   start0=$(( $(grep -wn "# >>> conda initialize >>>" ~/.bashrc | head -n 1 | cut -d: -f1) - 1 ))
   end0=$(( $(grep -wn "# <<< conda initialize <<<" ~/.bashrc | tail -n 1 | cut -d: -f1) + 1 ))
@@ -67,15 +67,15 @@ if [[ -f ~/.zshrc ]]; then
   unset start0 end0
 fi
 
-# Refresh shell config
+# refresh shell config
 source ~/.bashrc
 
-# Set up channels
+# set up channels
 conda config --add channels bioconda
 conda config --add channels conda-forge
 conda config --set channel_priority strict
 
-# Create a new environment for ampile
+# create a new environment for ampile
 conda create -y -n ampile \
   conda-forge::r-base \
   conda-forge::r-littler \
@@ -91,14 +91,14 @@ conda create -y -n ampile \
   bioconda::samtools \
   bioconda::bamtools
 
-# Update conda
+# update conda
 conda update --all -y
 
-# Activate environment ampile
+# activate environment ampile
 source ~/miniconda3/etc/profile.d/conda.sh
 conda activate ampile
 
-# Check packages
+# check packages
 echo -e "\nChecking packages:\n"
 required_tools=("R" "bwa" "fastqc" "fastp" "samtools" "bamtools" "parallel")
 for tool in "${required_tools[@]}"; do
