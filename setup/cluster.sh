@@ -33,9 +33,6 @@ fi
 # Refresh shell config
 source ~/.bashrc
 
-# Update conda
-conda update --all -y
-
 # Set up channels
 conda config --add channels bioconda
 conda config --add channels conda-forge
@@ -44,6 +41,9 @@ conda config --set channel_priority strict
 # Create a new environment for ampile
 conda create -y -n ampile conda-forge::libxml2 conda-forge::r-maditr conda-forge::parallel \
   conda-forge::r-base bioconda::bwa bioconda::fastqc bioconda::fastp bioconda::samtools bioconda::bamtools
+
+# Update conda
+conda update -y -n base -c defaults conda && conda update --all -y
 
 # Activate environment ampile
 conda activate ampile
