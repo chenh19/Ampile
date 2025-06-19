@@ -9,9 +9,7 @@ For bash, you will need:
 - ```bamtools```
 
 For R, you will need:
-- ```dplyr```
-- ```tidyr```
-- ```ggplot2```
+- ```tidyverse```
 - ```expss```
 - ```filesstrings```
 - ```foreach```
