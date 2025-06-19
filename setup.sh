@@ -11,7 +11,7 @@ source ~/miniconda3/bin/activate
 conda init --all
 
 # Disable auto-activation of base environment
-conda config --set auto_activate false
+conda config --set auto_activate_base false
 
 # Refresh shell config
 source ~/.bashrc
