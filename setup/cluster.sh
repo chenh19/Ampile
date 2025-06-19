@@ -15,12 +15,20 @@ conda init --all
 conda config --set auto_activate_base false
 
 # Disable conda initialization when opening a shell
-start0="$(grep -wn "# >>> conda initialize >>>" ~/.bashrc | head -n 1 | cut -d: -f1)"
-end0="$(grep -wn "# <<< conda initialize <<<" ~/.bashrc | tail -n 1 | cut -d: -f1)"
-if [[ -n "$start0" && -n "$end0" ]]; then
-  sed -i "${start0},${end0}d" ~/.bashrc
+if [[ -f ~/.bashrc ]]; then
+  start0="$(grep -wn "# >>> conda initialize >>>" ~/.bashrc | head -n 1 | cut -d: -f1)"
+  end0="$(grep -wn "# <<< conda initialize <<<" ~/.bashrc | tail -n 1 | cut -d: -f1)"
+  if [[ -n "$start0" && -n "$end0" ]]; then sed -i "${start0},${end0}d" ~/.bashrc; fi
+  if ! grep -q "alias conda-init='source ~/miniconda3/etc/profile.d/conda.sh'" ~/.bashrc ; then echo -e "alias conda-init='source ~/miniconda3/etc/profile.d/conda.sh'" >> ~/.bashrc ; fi
+  unset start0 end0
 fi
-unset start0 end0
+if [[ -f ~/.zshrc ]]; then
+  start0="$(grep -wn "# >>> conda initialize >>>" ~/.zshrc | head -n 1 | cut -d: -f1)"
+  end0="$(grep -wn "# <<< conda initialize <<<" ~/.zshrc | tail -n 1 | cut -d: -f1)"
+  if [[ -n "$start0" && -n "$end0" ]]; then sed -i "${start0},${end0}d" ~/.zshrc; fi
+  if ! grep -q "alias conda-init='source ~/miniconda3/etc/profile.d/conda.sh'" ~/.zshrc ; then echo -e "alias conda-init='source ~/miniconda3/etc/profile.d/conda.sh'" >> ~/.zshrc ; fi
+  unset start0 end0
+fi
 
 # Set alias for manual initialization
 [ ! -f ~/.bashrc] ] && touch ~/.bashrc
