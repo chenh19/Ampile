@@ -23,5 +23,5 @@ conda config --add channels bioconda
 conda config --add channels conda-forge
 conda config --set channel_priority strict
 
-# Create a new environment called "ampile"
+# Create a new environment for ampile
 conda create -y -n ampile bioconda::bwa bioconda::fastqc bioconda::fastp bioconda::samtools bioconda::bamtools
