@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# activate conda
+source ~/miniconda3/etc/profile.d/conda.sh
+conda activate ampile
+
 # set terminal font color
 TEXT_YELLOW=$(tput bold; tput setaf 3)
 TEXT_GREEN=$(tput bold; tput setaf 2)
