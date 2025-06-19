@@ -23,7 +23,6 @@ conda config --set channel_priority strict
 
 # Create a new environment called "ampile"
 conda create -y -n ampile \
-  conda-forge::r-base \
   bioconda::bwa \
   bioconda::bwa-mem2 \
   bioconda::fastqc \
