@@ -35,6 +35,9 @@ case "$(uname -s)" in
         /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
         brew install r bwa fastqc fastp samtools bamtools parallel
         Rscript -e "install.packages(c('tidyverse', 'expss', 'filesstrings', 'foreach', 'doParallel'), force = TRUE, repos = 'https://cloud.r-project.org')"
+        #Rscript -e "remove.packages(c(tidyverse', 'expss', 'filesstrings', 'foreach', 'doParallel'))"
+        #brew uninstall r bwa fastqc fastp samtools bamtools parallel
+        #NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/uninstall.sh)"
         exit 0
         ;;
     FreeBSD)
