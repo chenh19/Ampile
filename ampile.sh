@@ -15,11 +15,11 @@ missing=0
 required_tools=("R" "bwa" "fastqc" "fastp" "samtools" "bamtools" "parallel")
 for tool in "${required_tools[@]}"; do
   if ! command -v "$tool" >/dev/null 2>&1; then
-    echo -e "\n${TEXT_YELLOW}Error: $tool is not installed.${TEXT_RESET}" >&2 
+    echo -e "${TEXT_YELLOW}Error: $tool is not installed.${TEXT_RESET}\n" >&2 
     missing=1
   fi
 done
-output=$(Rscript -e 'for (pkg in c("tidyverse", "expss", "filesstrings", "foreach", "doParallel")) if (!suppressPackageStartupMessages(require(pkg, character.only = TRUE))) cat("\n", "\033[1;33m", "Error: r-", pkg, " is not installed.", "\033[0m", "\n", sep = "")' 2>/dev/null)
+output=$(Rscript -e 'for (pkg in c("tidyverse", "expss", "filesstrings", "foreach", "doParallel")) if (!suppressPackageStartupMessages(require(pkg, character.only = TRUE))) cat("\033[1;33m", "Error: r-", pkg, " is not installed.", "\033[0m", "\n\n", sep = "")' 2>/dev/null)
 if echo "$output" | grep -q "Error:"; then
   echo "$output"
   missing=1
@@ -28,7 +28,7 @@ if (( missing )); then
   echo -e "\n${TEXT_YELLOW}Please setup the workspace and try again.${TEXT_RESET}\n" >&2 && sleep 1
   exit 1
 else
-  echo -e "\n${TEXT_GREEN}Done.${TEXT_RESET} \n" && sleep 1
+  echo -e "${TEXT_GREEN}Done.${TEXT_RESET}\n" && sleep 1
 fi
 
 # organize input files
@@ -39,14 +39,14 @@ find . -maxdepth 1 -type f -name "*.fa" -exec mv -f {} ./1.ref/ \;
 find . -maxdepth 1 -type f -name "*.fastq*" -exec mv -f {} ./2.fastq/ \;
 find ./2.fastq/ -maxdepth 1 -type f -name "*.fastq" -print0 | parallel -0 gzip -f
 if ! find "./1.ref/" -maxdepth 1 -type f -name "*.fa" | grep -q .; then
-  echo -e "\n${TEXT_YELLOW}Reference sequences (.fa) were not found in ./1.ref/ folder. Please prepare them and try again.${TEXT_RESET}\n" >&2 && sleep 1
+  echo -e "${TEXT_YELLOW}Reference sequences (.fa) were not found in ./1.ref/ folder. Please prepare them and try again.${TEXT_RESET}\n" >&2 && sleep 1
   exit 1
 fi
 if ! (find "./2.fastq/" -maxdepth 1 -type f \( -name "*.fastq" -o -name "*.fastq.gz" \) | grep -q .); then
-  echo -e "\n${TEXT_YELLOW}Sequencing data (.fastq or .fastq.gz) were not found in ./2.fastq/ folder. Please prepare them and try again.${TEXT_RESET}\n" >&2 && sleep 1
+  echo -e "${TEXT_YELLOW}Sequencing data (.fastq or .fastq.gz) were not found in ./2.fastq/ folder. Please prepare them and try again.${TEXT_RESET}\n" >&2 && sleep 1
   exit 1
 fi
-echo -e "\n${TEXT_GREEN}Done.${TEXT_RESET} \n" && sleep 1
+echo -e "${TEXT_GREEN}Done.${TEXT_RESET}\n" && sleep 1
 
 # process refseq
 bash -c "$(curl -fsSL https://raw.githubusercontent.com/chenh19/Ampile/refs/heads/main/src/1.refseq.sh)"
