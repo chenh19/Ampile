@@ -16,7 +16,7 @@ for (package in packages) {
   message("Loaded package: ", package)
 }
 
-# Set cpu cores for parallel computing
+# set threads for parallel processing
 numCores <- min(detectCores(logical = TRUE), 32)
 
 # create folders
