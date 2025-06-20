@@ -15,7 +15,7 @@ echo -e "\n${TEXT_YELLOW}Performing FastQC on trimmed reads...${TEXT_RESET}\n" &
 [ ! -d ./3.analysis/9.plots/ ] && mkdir ./3.analysis/9.plots/
 [ ! -d ./3.analysis/9.plots/2.refastqc/ ] && mkdir ./3.analysis/9.plots/2.refastqc/
 
-# run fastqc in parallel
+# set threads for parallel processing
 if command -v nproc >/dev/null 2>&1; then
     threads=$(nproc)
 else
@@ -24,6 +24,8 @@ fi
 if [ "$threads" -gt 32 ]; then
   threads=32
 fi
+
+# run fastqc in parallel
 fastqc --threads $threads ./3.analysis/2.trim/*.fastq ./3.analysis/2.trim/*.fastq.gz --outdir ./3.analysis/9.plots/2.refastqc/
 
 # extract per_base_quality.png
