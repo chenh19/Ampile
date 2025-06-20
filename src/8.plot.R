@@ -17,27 +17,10 @@ for (package in packages) {
 }
 
 # create folders
-if (dir.exists("./3.analysis/9.plots/")==FALSE){
-  dir.create("./3.analysis/9.plots/")
-}
-if (dir.exists("./3.analysis/9.plots/3.absolute_mut/")==FALSE){
-  dir.create("./3.analysis/9.plots/3.absolute_mut/")
-}
-if (dir.exists("./3.analysis/9.plots/3.absolute_mut/pdf/")==FALSE){
-  dir.create("./3.analysis/9.plots/3.absolute_mut/pdf/")
-}
-if (dir.exists("./3.analysis/9.plots/3.absolute_mut/jpg/")==FALSE){
-  dir.create("./3.analysis/9.plots/3.absolute_mut/jpg/")
-}
-if (dir.exists("./3.analysis/9.plots/4.absolute_mut_summary/")==FALSE){
-  dir.create("./3.analysis/9.plots/4.absolute_mut_summary/")
-}
-if (dir.exists("./3.analysis/9.plots/4.absolute_mut_summary/pdf/")==FALSE){
-  dir.create("./3.analysis/9.plots/4.absolute_mut_summary/pdf/")
-}
-if (dir.exists("./3.analysis/9.plots/4.absolute_mut_summary/jpg/")==FALSE){
-  dir.create("./3.analysis/9.plots/4.absolute_mut_summary/jpg/")
-}
+dir.create("./3.analysis/9.plots/3.absolute_mut/pdf/", recursive = TRUE, showWarnings = FALSE)
+dir.create("./3.analysis/9.plots/3.absolute_mut/jpg/", recursive = TRUE, showWarnings = FALSE)
+dir.create("./3.analysis/9.plots/4.absolute_mut_summary/pdf/", recursive = TRUE, showWarnings = FALSE)
+dir.create("./3.analysis/9.plots/4.absolute_mut_summary/jpg/", recursive = TRUE, showWarnings = FALSE)
 
 # plot absolute mutation rate
 message("\nPlotting absolute mutation rate...\n")
