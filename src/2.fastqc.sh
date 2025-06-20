@@ -9,11 +9,8 @@ TEXT_RESET="$(tput sgr0)"
 echo -e "\n${TEXT_YELLOW}Performing FastQC on raw reads...${TEXT_RESET}\n" && sleep 1
 
 # create folders
-[ ! -d ./3.analysis/ ] && mkdir ./3.analysis/
-[ ! -d ./3.analysis/8.spreadsheets/ ] && mkdir ./3.analysis/8.spreadsheets/
-[ ! -d ./3.analysis/8.spreadsheets/1.raw_read_counts/ ] && mkdir ./3.analysis/8.spreadsheets/1.raw_read_counts/
-[ ! -d ./3.analysis/9.plots/ ] && mkdir ./3.analysis/9.plots/
-[ ! -d ./3.analysis/9.plots/1.fastqc/ ] && mkdir ./3.analysis/9.plots/1.fastqc/
+mkdir -p ./3.analysis/8.spreadsheets/1.raw_read_counts/
+mkdir -p ./3.analysis/9.plots/1.fastqc/
 
 # set threads for parallel processing
 if command -v nproc >/dev/null 2>&1; then
