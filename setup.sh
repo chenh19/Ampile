@@ -8,8 +8,9 @@ TEXT_GREEN="$(tput bold)$(tput setaf 2)"
 TEXT_RESET="$(tput sgr0)"
 
 # notify start
-echo ""
-echo -e "${TEXT_YELLOW}Setting up environment for Ampile pipeline...${TEXT_RESET}\n" && sleep 1
+echo -e "\n${TEXT_YELLOW}Setting up environment for Ampile pipeline...${TEXT_RESET}\n" && sleep 1
+[ ! -d ~/.parallel/ ] && mkdir ~/.parallel/
+[ ! -f ~/.parallel/will-cite ] && touch ~/.parallel/will-cite
 
 # check OS
 case "$(uname -s)" in
@@ -24,23 +25,12 @@ case "$(uname -s)" in
         fi
         ;;
     Darwin)
-        #if [[ "$(uname -m)" == "x86_64" ]]; then
-        #    URL="https://repo.anaconda.com/miniconda/Miniconda3-latest-MacOSX-x86_64.sh"
-        #elif [[ "$(uname -m)" == "arm64" ]]; then
-        #    URL="https://repo.anaconda.com/miniconda/Miniconda3-latest-MacOSX-arm64.sh"
-        #else
-        #    echo -e "${TEXT_YELLOW}Unsupported MacOS architecture: $(uname -m)${TEXT_RESET}\n" >&2
-        #    exit 1
-        #fi
         /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
         echo >> /Users/$USER/.bash_profile
         echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> /Users/$USER/.bash_profile
         eval "$(/opt/homebrew/bin/brew shellenv)"
         /bin/bash -c 'brew install r bwa fastqc fastp samtools bamtools parallel'
         Rscript -e "install.packages(c('tidyverse', 'expss', 'filesstrings', 'foreach', 'doParallel'), force = TRUE, repos = 'https://packagemanager.posit.co/cran/latest')"
-        #Rscript -e "remove.packages(c(tidyverse', 'expss', 'filesstrings', 'foreach', 'doParallel'))"
-        #brew uninstall r bwa fastqc fastp samtools bamtools parallel
-        #NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/uninstall.sh)"
         exit 0
         ;;
     FreeBSD)
