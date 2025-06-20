@@ -10,17 +10,7 @@ TEXT_YELLOW="$(tput bold)$(tput setaf 3)"
 TEXT_GREEN="$(tput bold)$(tput setaf 2)"
 TEXT_RESET="$(tput sgr0)"
 
-# create folders
-[ ! -d ./1.ref/ ] && mkdir ./1.ref/
-[ ! -d ./2.fastq/ ] && mkdir ./2.fastq/
-
-# organize input files
-mv -f ./*.fa ./1.ref/
-find . -maxdepth 1 -type f -name "*.fastq" -print0 | parallel -0 gzip -f
-find ./2.fastq/ -maxdepth 1 -type f -name "*.fastq" -print0 | parallel -0 gzip -f
-mv -f ./*.fastq.gz ./2.fastq/
-
-# check whether required packages are all installed
+# check required packages
 required_tools=("R" "bwa" "fastqc" "fastp" "samtools" "bamtools" "parallel")
 missing=0
 for tool in "${required_tools[@]}"; do
@@ -34,20 +24,31 @@ if (( missing )); then
   exit 1
 fi
 
-# check whether refseq files are placed in ./1.ref/
+# organize input files
+[ ! -d ./1.ref/ ] && mkdir ./1.ref/
+[ ! -d ./2.fastq/ ] && mkdir ./2.fastq/
+find . -maxdepth 1 -type f -name "*.fa" -exec mv -f {} ./1.ref/ \;
+find . -maxdepth 1 -type f -name "*.fastq*" -exec mv -f {} ./2.fastq/ \;
+find ./2.fastq/ -maxdepth 1 -type f -name "*.fastq" -print0 | parallel -0 gzip -f
+
+# check input files
 if ! find "./1.ref/" -maxdepth 1 -type f -name "*.fa" | grep -q .; then
   echo -e "\n${TEXT_YELLOW}Reference sequences (.fa) were not found in ./1.ref/ folder. Please prepare them and try again.${TEXT_RESET}\n" >&2 && sleep 1
   exit 1
 fi
-
-# check whether .fastq or .fastq.gz files are placed in ./2.fastq/
 if ! (find "./2.fastq/" -maxdepth 1 -type f \( -name "*.fastq" -o -name "*.fastq.gz" \) | grep -q .); then
   echo -e "\n${TEXT_YELLOW}Sequencing data (.fastq or .fastq.gz) were not found in ./2.fastq/ folder. Please prepare them and try again.${TEXT_RESET}\n" >&2 && sleep 1
   exit 1
 fi
-
+######################################################################################
 # process refseq
 bash -c "$(curl -fsSL https://raw.githubusercontent.com/chenh19/Ampile/refs/heads/main/src/1.refseq.sh)"
+
+  ## check whether successfully indexed
+  if ! ls ./3.analysis/1.refseq/refseq.fa.{amb,ann,bwt,pac,sa} >/dev/null 2>&1; then
+    echo -e "\n${TEXT_YELLOW}Error: failed to index reference sequences, please check input files.${TEXT_RESET}\n" >&2 && sleep 1
+    exit 1
+  fi
 
 # perform fastqc
 bash -c "$(curl -fsSL https://raw.githubusercontent.com/chenh19/Ampile/refs/heads/main/src/2.fastqc.sh)"
