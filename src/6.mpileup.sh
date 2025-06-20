@@ -11,6 +11,8 @@ echo -e "\n${TEXT_YELLOW}Generating pileup files...${TEXT_RESET}\n" && sleep 1
 # create folders
 [ ! -d ./3.analysis/ ] && mkdir ./3.analysis/
 [ ! -d ./3.analysis/4.mpileup/ ] && mkdir ./3.analysis/4.mpileup/
+[ ! -d ~/.parallel/ ] && mkdir ~/.parallel/
+[ ! -f ~/.parallel/will-cite ] && touch ~/.parallel/will-cite
 
 # pileup
 ls ./3.analysis/3.bam/*.filtered.bam | parallel '
