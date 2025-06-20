@@ -126,9 +126,11 @@ required_tools=("R" "bwa" "fastqc" "fastp" "samtools" "bamtools" "parallel")
 for tool in "${required_tools[@]}"; do
   if command -v "$tool" >/dev/null 2>&1; then
     echo -e "  - $tool package successfully installed.\n"
+  else
+    echo -e "  x Failed to load: $tool.\n"
   fi
 done
-Rscript -e 'for (pkg in c("tidyverse", "expss", "filesstrings", "foreach", "doParallel")) if (suppressPackageStartupMessages(require(pkg, character.only = TRUE))) message("  - r-", pkg, " package successfully installed.\n") else message("Failed to load: ", pkg)'
+Rscript -e 'for (pkg in c("tidyverse", "expss", "filesstrings", "foreach", "doParallel")) if (suppressPackageStartupMessages(require(pkg, character.only = TRUE))) message("  - r-", pkg, " package successfully installed.\n") else message("  x Failed to load: ", pkg, "\n")'
 
 # deactivate ampile and base
 conda deactivate
