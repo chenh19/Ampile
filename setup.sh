@@ -1,5 +1,6 @@
 #!/bin/bash
-# universal for (almost) all unix/linux systems
+# Universal for (almost) all unix/linux systems
+# Thanks to Xiaocheng for kindly letting me run tests on her Mac
 
 # set terminal font color
 TEXT_YELLOW="$(tput bold)$(tput setaf 3)"
