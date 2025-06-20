@@ -86,14 +86,12 @@ if [[ -f ~/.bashrc ]]; then
   start0=$(( $(grep -wn "# >>> conda initialize >>>" ~/.bashrc | head -n 1 | cut -d: -f1) - 1 ))
   end0=$(( $(grep -wn "# <<< conda initialize <<<" ~/.bashrc | tail -n 1 | cut -d: -f1) + 1 ))
   if [[ -n "$start0" && -n "$end0" ]]; then sed -i "${start0},${end0}d" ~/.bashrc; fi
-  if ! grep -q "alias conda-init='source ~/miniconda3/etc/profile.d/conda.sh'" ~/.bashrc ; then echo -e "alias conda-init='source ~/miniconda3/etc/profile.d/conda.sh'" >> ~/.bashrc ; fi
   unset start0 end0
 fi
 if [[ -f ~/.zshrc ]]; then
   start0=$(( $(grep -wn "# >>> conda initialize >>>" ~/.zshrc | head -n 1 | cut -d: -f1) - 1 ))
   end0=$(( $(grep -wn "# <<< conda initialize <<<" ~/.zshrc | tail -n 1 | cut -d: -f1) + 1 ))
   if [[ -n "$start0" && -n "$end0" ]]; then sed -i "${start0},${end0}d" ~/.zshrc; fi
-  if ! grep -q "alias conda-init='source ~/miniconda3/etc/profile.d/conda.sh'" ~/.zshrc ; then echo -e "alias conda-init='source ~/miniconda3/etc/profile.d/conda.sh'" >> ~/.zshrc ; fi
   unset start0 end0
 fi
 
@@ -121,11 +119,7 @@ source ~/miniconda3/etc/profile.d/conda.sh
 conda activate ampile
 R CMD javareconf
 conda update --all -y
-
-# create alias for ampile
-if ! grep -q "alias ampile='source ~/miniconda3/etc/profile.d/conda.sh && conda activate ampile'" ~/.bashrc ; then echo -e "alias ampile='source ~/miniconda3/etc/profile.d/conda.sh && conda activate ampile'" >> ~/.bashrc ; fi
-if ! grep -q "alias ampile='source ~/miniconda3/etc/profile.d/conda.sh && conda activate ampile'" ~/.zshrc ; then echo -e "alias ampile='source ~/miniconda3/etc/profile.d/conda.sh && conda activate ampile'" >> ~/.zshrc ; fi
-        
+       
 # check packages
 echo -e "\nChecking packages:\n"
 required_tools=("R" "bwa" "fastqc" "fastp" "samtools" "bamtools" "parallel")
