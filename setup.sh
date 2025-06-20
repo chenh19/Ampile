@@ -73,11 +73,12 @@ fi
 # refresh shell config
 source ~/.bashrc
 
-# set up channels
+# set up channels and update base
 conda config --add channels bioconda
 conda config --add channels conda-forge
 conda config --set channel_priority strict
-
+conda update --all -y
+        
 # create a new environment for ampile
 conda create -y -n ampile \
   conda-forge::r-base \
@@ -94,12 +95,11 @@ conda create -y -n ampile \
   bioconda::samtools \
   bioconda::bamtools
 
-# update conda
-conda update --all -y
-
-# activate environment ampile
+# activate and update ampile
 source ~/miniconda3/etc/profile.d/conda.sh
 conda activate ampile
+R CMD javareconf
+conda update --all -y
 
 # check packages
 echo -e "\nChecking packages:\n"
@@ -110,6 +110,9 @@ for tool in "${required_tools[@]}"; do
   fi
 done
 Rscript -e 'for (pkg in c("tidyverse", "expss", "filesstrings", "foreach", "doParallel")) if (suppressPackageStartupMessages(require(pkg, character.only = TRUE))) message("  - r-", pkg, " package successfully installed.\n") else message("Failed to load: ", pkg)'
+
+conda deactivate
+conda deactivate
 
 # notify end
 echo -e "\n${TEXT_GREEN}Environment setup complete! You may now proceed to run the Ampile pipeline.${TEXT_RESET}\n\n" && sleep 1
