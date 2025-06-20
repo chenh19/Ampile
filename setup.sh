@@ -45,6 +45,7 @@ if ! grep -q "miniconda3" ~/.hidden ; then echo -e "miniconda3" >> ~/.hidden ; f
 if ! grep -q "bin" ~/.hidden ; then echo -e "bin" >> ~/.hidden ; fi
 curl -fsSL "$URL" -o ~/miniconda3/miniconda.sh
 bash ~/miniconda3/miniconda.sh -b -u -p ~/miniconda3
+[ ! -f ~/.condarc ] && touch ~/.condarc
 rm ~/miniconda3/miniconda.sh
 
 # initialize conda
