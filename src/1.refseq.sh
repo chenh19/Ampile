@@ -17,4 +17,4 @@ cat ./1.ref/*.fa > ./3.analysis/1.refseq/refseq.fa
 bwa index ./3.analysis/1.refseq/refseq.fa
 
 # notify end
-echo -e "\n${TEXT_GREEN}Done.${TEXT_RESET} \n" && sleep 1
+echo -e "\n${TEXT_GREEN}Done.${TEXT_RESET}\n" && sleep 1
