@@ -20,12 +20,7 @@ for (package in packages) {
 numCores <- min(detectCores(logical = TRUE), 32)
 
 # create folders
-if (dir.exists("./3.analysis/8.spreadsheets/")==FALSE){
-  dir.create("./3.analysis/8.spreadsheets/")
-}
-if (dir.exists("./3.analysis/8.spreadsheets/3.mpileup_parse/")==FALSE){
-  dir.create("./3.analysis/8.spreadsheets/3.mpileup_parse/")
-}
+dir.create("./3.analysis/8.spreadsheets/3.mpileup_parse/", recursive = TRUE, showWarnings = FALSE)
 
 # parse mpileup files
 message("\nCalculating mutation rate...\n")
