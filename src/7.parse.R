@@ -73,11 +73,6 @@ invisible(foreach(pileup_file = pileup_files, .combine = c) %dopar% {
   message(paste0("  ", basename(pileup_file), ": mutation rate successfully parsed"))
 })
 
-# archive output spreadsheetsAdd commentMore actions
-message("\nZipping mutation rate spreadsheets...\n")
-files_to_zip <- list.files(path = "./3.analysis/8.spreadsheets/3.mpileup_parse/", pattern = "*.mpileup.csv", full.names = TRUE)
-zip(zipfile = "./3.analysis/8.spreadsheets/3.mpileup_parse/mpileup_parse.zip", files = files_to_zip, extras = "-j")
-
 # notify end
 cat("\n", TEXT_GREEN, "Done.", TEXT_RESET, "\n\n", sep = "")
 
