@@ -1,6 +1,8 @@
 #!/bin/bash
 # Ampile pipeline
 
+################################################################################
+
 # activate conda
 [ -f ~/miniconda3/etc/profile.d/conda.sh ] && source ~/miniconda3/etc/profile.d/conda.sh && conda activate ampile
 
@@ -8,6 +10,8 @@
 TEXT_YELLOW="$(tput bold)$(tput setaf 3)"
 TEXT_GREEN="$(tput bold)$(tput setaf 2)"
 TEXT_RESET="$(tput sgr0)"
+
+################################################################################
 
 # check required packages
 echo -e "\n${TEXT_YELLOW}Checking required packages...${TEXT_RESET}\n" && sleep 1
@@ -31,6 +35,8 @@ else
   echo -e "${TEXT_GREEN}Done.${TEXT_RESET}\n" && sleep 1
 fi
 
+################################################################################
+
 # organize input files
 echo -e "\n${TEXT_YELLOW}Organizing input files...${TEXT_RESET}\n" && sleep 1
 mkdir -p ./1.ref/
@@ -48,6 +54,8 @@ if ! (find "./2.fastq/" -maxdepth 1 -type f \( -name "*.fastq" -o -name "*.fastq
 fi
 echo -e "${TEXT_GREEN}Done.${TEXT_RESET}\n" && sleep 1
 
+################################################################################
+
 # process refseq
 bash -c "$(curl -fsSL https://raw.githubusercontent.com/chenh19/Ampile/refs/heads/main/src/1.refseq.sh)"
 
@@ -56,6 +64,8 @@ bash -c "$(curl -fsSL https://raw.githubusercontent.com/chenh19/Ampile/refs/head
     echo -e "\n${TEXT_YELLOW}Error: failed to index reference sequences, please check input files.${TEXT_RESET}\n" >&2 && sleep 1
     exit 1
   fi
+
+################################################################################
 
 # perform fastqc
 bash -c "$(curl -fsSL https://raw.githubusercontent.com/chenh19/Ampile/refs/heads/main/src/2.fastqc.sh)"
@@ -72,17 +82,27 @@ bash -c "$(curl -fsSL https://raw.githubusercontent.com/chenh19/Ampile/refs/head
     fi
   done < <(tail -n +2 ./3.analysis/8.spreadsheets/1.raw_read_counts/sequence_lengths.csv)
 
+################################################################################
+
 # trim and filter reads
 bash -c "$(curl -fsSL https://raw.githubusercontent.com/chenh19/Ampile/refs/heads/main/src/3.trim.sh)"
+
+################################################################################
 
 # perform fastqc again
 bash -c "$(curl -fsSL https://raw.githubusercontent.com/chenh19/Ampile/refs/heads/main/src/4.refastqc.sh)"
 
+################################################################################
+
 # align
 bash -c "$(curl -fsSL https://raw.githubusercontent.com/chenh19/Ampile/refs/heads/main/src/5.bam.sh)"
 
+################################################################################
+
 # pileup
 bash -c "$(curl -fsSL https://raw.githubusercontent.com/chenh19/Ampile/refs/heads/main/src/6.mpileup.sh)"
+
+################################################################################
 
 # parse
 curl -fsSL https://raw.githubusercontent.com/chenh19/Ampile/refs/heads/main/src/7.parse.R | Rscript -
@@ -90,12 +110,18 @@ curl -fsSL https://raw.githubusercontent.com/chenh19/Ampile/refs/heads/main/src/
   # archive output spreadsheet
   echo -e "Zipping mutation rate spreadsheets...\n"
   zip -j ./3.analysis/8.spreadsheets/3.mpileup_parse/mpileup_parse.zip ./3.analysis/8.spreadsheets/3.mpileup_parse/*.csv
-  
+
+################################################################################
+
 # plot
 curl -fsSL https://raw.githubusercontent.com/chenh19/Ampile/refs/heads/main/src/8.plot.R | Rscript -
 
+################################################################################
+
 # cleanup
 bash -c "$(curl -fsSL https://raw.githubusercontent.com/chenh19/Ampile/refs/heads/main/src/9.cleanup.sh)"
+
+################################################################################
 
 # deactivate conda
 [ -f ~/miniconda3/etc/profile.d/conda.sh ] && conda deactivate
