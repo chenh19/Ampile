@@ -10,14 +10,19 @@ TEXT_GREEN="$(tput bold)$(tput setaf 2)"
 TEXT_RESET="$(tput sgr0)"
 
 # check required packages
-required_tools=("R" "bwa" "fastqc" "fastp" "samtools" "bamtools" "parallel")
 missing=0
+required_tools=("R" "bwa" "fastqc" "fastp" "samtools" "bamtools" "parallel")
 for tool in "${required_tools[@]}"; do
   if ! command -v "$tool" >/dev/null 2>&1; then
     echo -e "\n${TEXT_YELLOW}Error: $tool is not installed.${TEXT_RESET}" >&2 
     missing=1
   fi
 done
+output=$(Rscript -e 'for (pkg in c("tidyverse", "expss", "filesstrings", "foreach", "doParallel")) if (!suppressPackageStartupMessages(require(pkg, character.only = TRUE))) cat("\n", "\033[1;33m", "Error: r-", pkg, " is not installed.", "\033[0m", "\n", sep = "")' 2>/dev/null)
+if echo "$output" | grep -q "Error:"; then
+  echo "$output"
+  missing=1
+fi
 if (( missing )); then
   echo -e "\n${TEXT_YELLOW}Please setup the workspace and try again.${TEXT_RESET}\n" >&2 && sleep 1
   exit 1
