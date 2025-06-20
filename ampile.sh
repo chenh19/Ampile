@@ -80,8 +80,15 @@ bash -c "$(curl -fsSL https://raw.githubusercontent.com/chenh19/Ampile/refs/head
 # parse
 curl -fsSL https://raw.githubusercontent.com/chenh19/Ampile/refs/heads/main/src/7.parse.R | Rscript -
 
+  # archive output spreadsheet
+  echo -e "Zipping mutation rate spreadsheets...\n"
+  zip -j ./3.analysis/8.spreadsheets/3.mpileup_parse/mpileup_parse.zip ./3.analysis/8.spreadsheets/3.mpileup_parse/*.csv
+  
 # plot
 curl -fsSL https://raw.githubusercontent.com/chenh19/Ampile/refs/heads/main/src/8.plot.R | Rscript -
 
 # cleanup
 bash -c "$(curl -fsSL https://raw.githubusercontent.com/chenh19/Ampile/refs/heads/main/src/9.cleanup.sh)"
+
+# deactivate conda
+conda deactivate
