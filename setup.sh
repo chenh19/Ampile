@@ -21,22 +21,35 @@ case "$(uname -s)" in
         else
             echo -e "\n${TEXT_YELLOW}Unsupported Linux architecture: $(uname -m)${TEXT_RESET}\n" >&2
             exit 1
-        fi;;
+        fi
+        ;;
     Darwin)
-        if [[ "$(uname -m)" == "x86_64" ]]; then
-            URL="https://repo.anaconda.com/miniconda/Miniconda3-latest-MacOSX-x86_64.sh"
-        elif [[ "$(uname -m)" == "arm64" ]]; then
-            URL="https://repo.anaconda.com/miniconda/Miniconda3-latest-MacOSX-arm64.sh"
-        else
-            echo -e "\n${TEXT_YELLOW}Unsupported MacOS architecture: $(uname -m)${TEXT_RESET}\n" >&2
-            exit 1
-        fi;;
+        #if [[ "$(uname -m)" == "x86_64" ]]; then
+        #    URL="https://repo.anaconda.com/miniconda/Miniconda3-latest-MacOSX-x86_64.sh"
+        #elif [[ "$(uname -m)" == "arm64" ]]; then
+        #    URL="https://repo.anaconda.com/miniconda/Miniconda3-latest-MacOSX-arm64.sh"
+        #else
+        #    echo -e "\n${TEXT_YELLOW}Unsupported MacOS architecture: $(uname -m)${TEXT_RESET}\n" >&2
+        #    exit 1
+        #fi
+        /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+        brew install r bwa fastqc fastp samtools bamtools parallel
+        Rscript -e "install.packages(c('tidyverse', 'expss', 'filesstrings', 'foreach', 'doParallel'), force = TRUE, repos = 'https://cloud.r-project.org')"
+        ;;
     FreeBSD)
-        sudo pkg upgrade -y && sudo pkg install -y R bwa fastqc fastp samtools bamtools parallel
-        sudo Rscript -e "install.packages(c('tidyverse', 'expss', 'filesstrings', 'foreach', 'doParallel'), force = TRUE, repos = 'https://cloud.r-project.org')"
-        exit 0;;
+        if grep -q '^ID=freebsd' /etc/os-release 2>/dev/null; then
+            sudo pkg upgrade -y && sudo pkg install -y R bwa fastqc fastp samtools bamtools parallel R-cran-tidyverse R-cran-foreach R-cran-doParallel
+            sudo Rscript -e "install.packages(c('expss', 'filesstrings'), force = TRUE, repos = 'https://cloud.r-project.org')"
+            exit 0
+        else
+            OS_NAME=$(grep '^NAME=' /etc/os-release 2>/dev/null | cut -d= -f2- | tr -d '"')
+            echo -e "\n${TEXT_YELLOW}Unsupported BSD: ${OS_NAME}${TEXT_RESET}\n" >&2
+            exit 1
+        fi
+        ;;
     *)  echo "Unsupported OS: $(uname -s)"
-        exit 1;;
+        exit 1
+        ;;
 esac
 
 # install miniconda
