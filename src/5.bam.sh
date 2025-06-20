@@ -27,14 +27,11 @@ for r1 in ./3.analysis/2.trim/*_R1*trimmed.fastq.gz; do
   r2=$(echo "$r1" | sed -E 's/_R1/_R2/')
   base=$(basename "$r1" .trimmed.fastq.gz)
   sample=$(echo "$base" | sed -E 's/_R1//')
-
   bwa mem -t $threads ./3.analysis/1.refseq/refseq.fa $r1 $r2 | \
     samtools sort -@ $threads -o ./3.analysis/3.bam/${sample}.bam
   samtools index ./3.analysis/3.bam/${sample}.bam
-
   bamtools filter -in ./3.analysis/3.bam/${sample}.bam -out ./3.analysis/3.bam/${sample}.filtered.bam -tag "NM:<6"
   samtools index ./3.analysis/3.bam/${sample}.filtered.bam
-
   rm -f ./3.analysis/3.bam/${sample}.bam ./3.analysis/3.bam/${sample}.bam.bai
 done
 
