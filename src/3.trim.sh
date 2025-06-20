@@ -12,7 +12,7 @@ echo -e "\n${TEXT_YELLOW}Trimming and filtering reads...${TEXT_RESET}\n" && slee
 [ ! -d ./3.analysis/ ] && mkdir ./3.analysis/
 [ ! -d ./3.analysis/2.trim/ ] && mkdir ./3.analysis/2.trim/
 
-# trim reads in parallel
+# set threads for parallel processing
 if command -v nproc >/dev/null 2>&1; then
     threads=$(nproc)
 else
@@ -21,6 +21,8 @@ fi
 if [ "$threads" -gt 32 ]; then
   threads=32
 fi
+
+# trim reads in parallel
 for r1 in ./2.fastq/*_R1*.fastq.gz; do
     [ -f "$r1" ] || continue
     r2=$(echo "$r1" | sed -E 's/_R1/_R2/')
