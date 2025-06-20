@@ -15,7 +15,7 @@ echo -e "\n${TEXT_YELLOW}Performing FastQC on raw reads...${TEXT_RESET}\n" && sl
 [ ! -d ./3.analysis/9.plots/ ] && mkdir ./3.analysis/9.plots/
 [ ! -d ./3.analysis/9.plots/1.fastqc/ ] && mkdir ./3.analysis/9.plots/1.fastqc/
 
-# run fastqc in parallel
+# set threads for parallel processing
 if command -v nproc >/dev/null 2>&1; then
     threads=$(nproc)
 else
@@ -24,6 +24,8 @@ fi
 if [ "$threads" -gt 32 ]; then
   threads=32
 fi
+
+# run fastqc in parallel
 fastqc --threads $threads ./2.fastq/*.fastq ./2.fastq/*.fastq.gz --outdir ./3.analysis/9.plots/1.fastqc/
 
 # extract per_base_quality.png and read_lengths
