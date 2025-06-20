@@ -32,7 +32,7 @@ case "$(uname -s)" in
             exit 1
         fi;;
     FreeBSD)
-        sudo pkg install -y R bwa fastqc fastp samtools bamtools parallel
+        sudo pkg upgrade -y && sudo pkg install -y R bwa fastqc fastp samtools bamtools parallel
         sudo Rscript -e "install.packages(c('tidyverse', 'expss', 'filesstrings', 'foreach', 'doParallel'), force = TRUE, repos = 'https://cloud.r-project.org')"
         exit 0;;
     *)  echo "Unsupported OS: $(uname -s)"
