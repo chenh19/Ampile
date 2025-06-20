@@ -111,6 +111,7 @@ for tool in "${required_tools[@]}"; do
 done
 Rscript -e 'for (pkg in c("tidyverse", "expss", "filesstrings", "foreach", "doParallel")) if (suppressPackageStartupMessages(require(pkg, character.only = TRUE))) message("  - r-", pkg, " package successfully installed.\n") else message("Failed to load: ", pkg)'
 
+# deactivate ampile and base
 conda deactivate
 conda deactivate
 
