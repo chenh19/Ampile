@@ -1,6 +1,6 @@
 #!/bin/bash
 # Universal setup script for unix/linux systems
-# Thanks to Xiaocheng Yu for kindly letting me run tests on her Mac
+# Thanks to Xiaocheng Yu and Zi-You Tian for kindly letting me run tests on their Mac
 
 # set terminal font color
 TEXT_YELLOW="$(tput bold)$(tput setaf 3)"
