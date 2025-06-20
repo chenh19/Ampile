@@ -35,7 +35,7 @@ Rscript -e "install.packages(c('tidyverse', 'expss', 'filesstrings', 'foreach', 
 
 ### [2/4] Prepare input files
 
-- Prepare reference sequences (```.fa``` files) and sequencing reads (```.fastq``` or ```.fastq.gz``` files) in a folder:
+- Prepare reference sequences (```.fa``` files) and sequencing reads (```.fastq``` or ```.fastq.gz``` files) in a master folder (you may name the folder as desired):
 
 <div style="text-align: center;">
   <img src="./images/0.png" width="100%">
@@ -78,6 +78,17 @@ Rscript -e "install.packages(c('tidyverse', 'expss', 'filesstrings', 'foreach', 
 <div style="text-align: center;">
   <img src="./images/3.png" width="100%">
 </div>
+
+<details>
+<summary>**Note:**</summary>
+
+<div style="font-size: 0.9em">
+
+- All scripts assume the master folder as the working directory.
+
+</div>
+
+</details>
 
 
 ### [4/4] Done
