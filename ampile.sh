@@ -10,6 +10,7 @@ TEXT_GREEN="$(tput bold)$(tput setaf 2)"
 TEXT_RESET="$(tput sgr0)"
 
 # check required packages
+echo -e "\n${TEXT_YELLOW}Checking required packages...${TEXT_RESET}\n" && sleep 1
 missing=0
 required_tools=("R" "bwa" "fastqc" "fastp" "samtools" "bamtools" "parallel")
 for tool in "${required_tools[@]}"; do
@@ -26,16 +27,17 @@ fi
 if (( missing )); then
   echo -e "\n${TEXT_YELLOW}Please setup the workspace and try again.${TEXT_RESET}\n" >&2 && sleep 1
   exit 1
+else
+  echo -e "\n${TEXT_GREEN}Done.${TEXT_RESET} \n" && sleep 1
 fi
 
 # organize input files
+echo -e "\n${TEXT_YELLOW}Organizing input files...${TEXT_RESET}\n" && sleep 1
 [ ! -d ./1.ref/ ] && mkdir ./1.ref/
 [ ! -d ./2.fastq/ ] && mkdir ./2.fastq/
 find . -maxdepth 1 -type f -name "*.fa" -exec mv -f {} ./1.ref/ \;
 find . -maxdepth 1 -type f -name "*.fastq*" -exec mv -f {} ./2.fastq/ \;
 find ./2.fastq/ -maxdepth 1 -type f -name "*.fastq" -print0 | parallel -0 gzip -f
-
-# check input files
 if ! find "./1.ref/" -maxdepth 1 -type f -name "*.fa" | grep -q .; then
   echo -e "\n${TEXT_YELLOW}Reference sequences (.fa) were not found in ./1.ref/ folder. Please prepare them and try again.${TEXT_RESET}\n" >&2 && sleep 1
   exit 1
@@ -44,6 +46,7 @@ if ! (find "./2.fastq/" -maxdepth 1 -type f \( -name "*.fastq" -o -name "*.fastq
   echo -e "\n${TEXT_YELLOW}Sequencing data (.fastq or .fastq.gz) were not found in ./2.fastq/ folder. Please prepare them and try again.${TEXT_RESET}\n" >&2 && sleep 1
   exit 1
 fi
+echo -e "\n${TEXT_GREEN}Done.${TEXT_RESET} \n" && sleep 1
 
 # process refseq
 bash -c "$(curl -fsSL https://raw.githubusercontent.com/chenh19/Ampile/refs/heads/main/src/1.refseq.sh)"
