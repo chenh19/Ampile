@@ -125,7 +125,7 @@ echo -e "\nChecking packages:\n"
 required_tools=("R" "bwa" "fastqc" "fastp" "samtools" "bamtools" "parallel")
 for tool in "${required_tools[@]}"; do
   if command -v "$tool" >/dev/null 2>&1; then
-    echo -e "  - Successfully installed: $tool.\n"
+    echo -e "  - Successfully installed: $tool\n"
   else
     echo -e "  x Failed to install: $tool\n"
   fi
