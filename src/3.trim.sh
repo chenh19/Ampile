@@ -12,7 +12,7 @@ echo -e "\n${TEXT_YELLOW}Trimming and filtering reads...${TEXT_RESET}\n" && slee
 [ ! -d ./3.analysis/ ] && mkdir ./3.analysis/
 [ ! -d ./3.analysis/2.trim/ ] && mkdir ./3.analysis/2.trim/
 
-# trim by length and quality
+# trim reads in parallel
 if command -v nproc >/dev/null 2>&1; then
     threads=$(nproc)
 else
@@ -21,22 +21,11 @@ fi
 if [ "$threads" -gt 32 ]; then
   threads=32
 fi
-for r1 in ./2.fastq/*_R1*.fastq*; do
+for r1 in ./2.fastq/*_R1*.fastq.gz; do
     [ -f "$r1" ] || continue
     r2=$(echo "$r1" | sed -E 's/_R1/_R2/')
-    if [[ "$r1" == *.fastq.gz ]]; then
-        base=$(basename "$r1" .fastq.gz)
-        sample=$(echo "$base" | sed -E 's/_R1//')
-    elif [[ "$r1" == *.fastq ]]; then
-        base=$(basename "$r1" .fastq)
-        sample=$(echo "$base" | sed -E 's/_R1//')
-    else
-        continue
-    fi
-
-    #cutadapt -j 8 -l 180 -o "./3.analysis/2.trim/${sample}_R1.cut.fastq.gz" $r1
-    #cutadapt -j 8 -l 180 -o "./3.analysis/2.trim/${sample}_R2.cut.fastq.gz" $r2
-
+    base=$(basename "$r1" .fastq.gz)
+    sample=$(echo "$base" | sed -E 's/_R1//')
     fastp \
       -i $r1 \
       -I $r2 \
@@ -53,8 +42,6 @@ for r1 in ./2.fastq/*_R1*.fastq*; do
       --thread $threads \
       -j /dev/null \
       -h /dev/null
-
-      #rm -f "./3.analysis/2.trim/${sample}_R1.cut.fastq.gz" "./3.analysis/2.trim/${sample}_R2.cut.fastq.gz"
 done
 
 # notify end
