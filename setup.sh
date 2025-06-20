@@ -48,13 +48,18 @@ bash ~/miniconda3/miniconda.sh -b -u -p ~/miniconda3
 [ ! -f ~/.condarc ] && touch ~/.condarc
 rm ~/miniconda3/miniconda.sh
 
-# initialize conda
+# initialize conda and refresh shell
 source ~/miniconda3/bin/activate
 conda init --all
+source ~/.bashrc
 
-# disable auto-activation of base environment
+# set up channels
+conda config --add channels bioconda
+conda config --add channels conda-forge
+conda config --set channel_priority strict
+
+# disable auto-activation of conda
 if ! grep -q "auto_activate_base: false" ~/.condarc ; then conda config --set auto_activate_base false ; fi
-
 # disable conda initialization when opening a shell
 if [[ -f ~/.bashrc ]]; then
   start0=$(( $(grep -wn "# >>> conda initialize >>>" ~/.bashrc | head -n 1 | cut -d: -f1) - 1 ))
@@ -71,13 +76,7 @@ if [[ -f ~/.zshrc ]]; then
   unset start0 end0
 fi
 
-# refresh shell config
-source ~/.bashrc
-
-# set up channels and update base
-conda config --add channels bioconda
-conda config --add channels conda-forge
-conda config --set channel_priority strict
+# update base
 conda update --all -y
         
 # create a new environment for ampile
@@ -102,6 +101,10 @@ conda activate ampile
 R CMD javareconf
 conda update --all -y
 
+# create alias for ampile
+if ! grep -q "alias ampile='source ~/miniconda3/etc/profile.d/conda.sh && conda activate ampile'" ~/.bashrc ; then echo -e "alias ampile='source ~/miniconda3/etc/profile.d/conda.sh && conda activate ampile'" >> ~/.bashrc ; fi
+if ! grep -q "alias ampile='source ~/miniconda3/etc/profile.d/conda.sh && conda activate ampile'" ~/.zshrc ; then echo -e "alias ampile='source ~/miniconda3/etc/profile.d/conda.sh && conda activate ampile'" >> ~/.zshrc ; fi
+        
 # check packages
 echo -e "\nChecking packages:\n"
 required_tools=("R" "bwa" "fastqc" "fastp" "samtools" "bamtools" "parallel")
