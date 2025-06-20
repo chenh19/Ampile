@@ -17,9 +17,9 @@ echo -e "\n${TEXT_YELLOW}Performing FastQC on raw reads...${TEXT_RESET}\n" && sl
 
 # set threads for parallel processing
 if command -v nproc >/dev/null 2>&1; then
-    threads=$(nproc)
+  threads=$(nproc)
 else
-    threads=$(sysctl -n hw.ncpu)
+  threads=$(sysctl -n hw.ncpu)
 fi
 if [ "$threads" -gt 32 ]; then
   threads=32
@@ -31,11 +31,11 @@ fastqc --threads $threads ./2.fastq/*.fastq ./2.fastq/*.fastq.gz --outdir ./3.an
 # extract per_base_quality.png and read_lengths
 echo "fastq_file,max_length" > "./3.analysis/8.spreadsheets/1.raw_read_counts/sequence_lengths.csv"
 for zip in ./3.analysis/9.plots/1.fastqc/*.zip; do
-    base=$(basename "$zip" .zip)
-    base_short=$(basename "$zip" _fastqc.zip)
-    unzip -p "$zip" "${base}/Images/per_base_quality.png" > "./3.analysis/9.plots/1.fastqc/${base}_per_base_quality.png"
-    max_len=$(unzip -p "$zip" "${base}/fastqc_data.txt" | awk -F '\t' '/Sequence length/ {split($2,a,"-"); print a[length(a)]}')
-    echo "$base_short,$max_len" >> "./3.analysis/8.spreadsheets/1.raw_read_counts/sequence_lengths.csv"
+  base=$(basename "$zip" .zip)
+  base_short=$(basename "$zip" _fastqc.zip)
+  unzip -p "$zip" "${base}/Images/per_base_quality.png" > "./3.analysis/9.plots/1.fastqc/${base}_per_base_quality.png"
+  max_len=$(unzip -p "$zip" "${base}/fastqc_data.txt" | awk -F '\t' '/Sequence length/ {split($2,a,"-"); print a[length(a)]}')
+  echo "$base_short,$max_len" >> "./3.analysis/8.spreadsheets/1.raw_read_counts/sequence_lengths.csv"
 done
 rm -f ./3.analysis/9.plots/1.fastqc/*.html ./3.analysis/9.plots/1.fastqc/*.zip
 
