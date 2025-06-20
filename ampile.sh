@@ -2,8 +2,7 @@
 # Ampile pipeline
 
 # activate conda
-source ~/miniconda3/etc/profile.d/conda.sh
-conda activate ampile
+[ -f ~/miniconda3/etc/profile.d/conda.sh ] && source ~/miniconda3/etc/profile.d/conda.sh && conda activate ampile
 
 # set terminal font color
 TEXT_YELLOW="$(tput bold)$(tput setaf 3)"
@@ -40,7 +39,7 @@ if ! (find "./2.fastq/" -maxdepth 1 -type f \( -name "*.fastq" -o -name "*.fastq
   echo -e "\n${TEXT_YELLOW}Sequencing data (.fastq or .fastq.gz) were not found in ./2.fastq/ folder. Please prepare them and try again.${TEXT_RESET}\n" >&2 && sleep 1
   exit 1
 fi
-######################################################################################
+
 # process refseq
 bash -c "$(curl -fsSL https://raw.githubusercontent.com/chenh19/Ampile/refs/heads/main/src/1.refseq.sh)"
 
@@ -91,4 +90,4 @@ curl -fsSL https://raw.githubusercontent.com/chenh19/Ampile/refs/heads/main/src/
 bash -c "$(curl -fsSL https://raw.githubusercontent.com/chenh19/Ampile/refs/heads/main/src/9.cleanup.sh)"
 
 # deactivate conda
-conda deactivate
+[ -f ~/miniconda3/etc/profile.d/conda.sh ] && conda deactivate
