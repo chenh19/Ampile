@@ -40,13 +40,9 @@ rm -f ./3.analysis/9.plots/1.fastqc/*.html ./3.analysis/9.plots/1.fastqc/*.zip
 echo -e "\nCounting raw reads:\n"
 output_file="./3.analysis/8.spreadsheets/1.raw_read_counts/raw_read_counts.csv"
 > "$output_file"
-for f in ./2.fastq/*.fastq ./2.fastq/*.fastq.gz; do
+for f in ./2.fastq/*.fastq.gz; do
   [[ -f "$f" ]] || continue
-  if [[ "$f" == *.gz ]]; then
-    count=$(gzip -dc "$f" | awk 'END {print NR/4}')
-  else
-    count=$(awk 'END {print NR/4}' "$f")
-  fi
+  count=$(gzip -dc "$f" | awk 'END {print NR/4}')
   echo "  $(basename "$f"): $count reads"
   echo "$(basename "$f"), $count" >> "$output_file"
 done
