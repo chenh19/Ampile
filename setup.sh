@@ -1,6 +1,6 @@
 #!/bin/bash
-# Universal for (almost) all unix/linux systems
-# Thanks to Xiaocheng for kindly letting me run tests on her Mac
+# Universal setup script for unix/linux systems
+# Thanks to Xiaocheng Yu for kindly letting me run tests on her Mac
 
 # set terminal font color
 TEXT_YELLOW="$(tput bold)$(tput setaf 3)"
@@ -9,7 +9,7 @@ TEXT_RESET="$(tput sgr0)"
 
 # notify start
 echo ""
-echo -e "${TEXT_YELLOW}Setting up environment for Ampile pipeline...${TEXT_RESET} \n" && sleep 1
+echo -e "${TEXT_YELLOW}Setting up environment for Ampile pipeline...${TEXT_RESET}\n" && sleep 1
 
 # check OS
 case "$(uname -s)" in
@@ -19,7 +19,7 @@ case "$(uname -s)" in
         elif [[ "$(uname -m)" == "aarch64" ]]; then
             URL="https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-aarch64.sh"
         else
-            echo -e "\n${TEXT_YELLOW}Unsupported Linux architecture: $(uname -m)${TEXT_RESET}\n" >&2
+            echo -e "${TEXT_YELLOW}Unsupported Linux architecture: $(uname -m)${TEXT_RESET}\n" >&2
             exit 1
         fi
         ;;
@@ -29,12 +29,13 @@ case "$(uname -s)" in
         #elif [[ "$(uname -m)" == "arm64" ]]; then
         #    URL="https://repo.anaconda.com/miniconda/Miniconda3-latest-MacOSX-arm64.sh"
         #else
-        #    echo -e "\n${TEXT_YELLOW}Unsupported MacOS architecture: $(uname -m)${TEXT_RESET}\n" >&2
+        #    echo -e "${TEXT_YELLOW}Unsupported MacOS architecture: $(uname -m)${TEXT_RESET}\n" >&2
         #    exit 1
         #fi
         /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
         brew install r bwa fastqc fastp samtools bamtools parallel
         Rscript -e "install.packages(c('tidyverse', 'expss', 'filesstrings', 'foreach', 'doParallel'), force = TRUE, repos = 'https://cloud.r-project.org')"
+        exit 0
         ;;
     FreeBSD)
         if grep -q '^ID=freebsd' /etc/os-release 2>/dev/null; then
@@ -43,11 +44,11 @@ case "$(uname -s)" in
             exit 0
         else
             OS_NAME=$(grep '^NAME=' /etc/os-release 2>/dev/null | cut -d= -f2- | tr -d '"')
-            echo -e "\n${TEXT_YELLOW}Unsupported BSD: ${OS_NAME}${TEXT_RESET}\n" >&2
+            echo -e "${TEXT_YELLOW}Unsupported BSD: ${OS_NAME}${TEXT_RESET}\n" >&2
             exit 1
         fi
         ;;
-    *)  echo "Unsupported OS: $(uname -s)"
+    *)  echo -e "${TEXT_YELLOW}Unsupported OS: $(uname -s)${TEXT_RESET}\n" >&2
         exit 1
         ;;
 esac
