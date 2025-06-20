@@ -143,15 +143,11 @@ ul.task-list li input[type="checkbox"] {
 </summary>
 <div style="font-size: 0.9em">
 <ul>
-<li>This pipeline is dependent on: <code>R</code>, <code>bwa</code>, <code>fastqc</code>, <code>fastp</code>, <code>samtools</code>, <code>bamtools</code>, <code>parallel</code>, <code>r-tidyverse</code>, <code>r-expss</code>, <code>r-filesstrings</code>, <code>r-foreach</code>, <code>r-doParallel</code>. It can be run in Linux, FreeBSD, and macOS environments.</li>
+<li>This pipeline is dependent on: <code>R</code>, <code>bwa</code>, <code>fastqc</code>, <code>fastp</code>, <code>samtools</code>, <code>bamtools</code>, <code>parallel</code>, <code>r-tidyverse</code>, <code>r-expss</code>, <code>r-filesstrings</code>, <code>r-foreach</code>, <code>r-doParallel</code>. It can be run in Linux, FreeBSD, and MacOS environments.</li>
 <li>Running the setup script does not require directory changes or administrative privileges.</li>
 <li><a href="https://github.com/chenh19/Ampile/blob/main/ampile.sh">ampile.sh</a> will verify that all required packages are installed before proceeding with the analysis.</li>
-<li>If you’re using an unsupported OS or prefer an alternative setup method, please ensure that all required dependencies are installed (for example, using Homebrew on macOS, as shown below):</li>
+<li>If you’re using an unsupported OS or prefer an alternative setup method, please ensure that all required dependencies are installed.</li>
 </ul>
-<pre>/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-brew install r bwa fastqc fastp samtools bamtools parallel
-Rscript -e "install.packages(c('tidyverse', 'expss', 'filesstrings', 'foreach', 'doParallel'), force = TRUE, repos = 'https://cloud.r-project.org')"
-</pre>
 </div>
 </details>
 </section>
