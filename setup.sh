@@ -37,7 +37,7 @@ case "$(uname -s)" in
         echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> /Users/$USER/.bash_profile
         eval "$(/opt/homebrew/bin/brew shellenv)"
         /bin/bash -c 'brew install r bwa fastqc fastp samtools bamtools parallel'
-        Rscript -e "install.packages(c('tidyverse', 'expss', 'filesstrings', 'foreach', 'doParallel'), force = TRUE, repos = 'https://cloud.r-project.org')"
+        Rscript -e "install.packages(c('tidyverse', 'expss', 'filesstrings', 'foreach', 'doParallel'), force = TRUE, repos = 'https://packagemanager.posit.co/cran/latest')"
         #Rscript -e "remove.packages(c(tidyverse', 'expss', 'filesstrings', 'foreach', 'doParallel'))"
         #brew uninstall r bwa fastqc fastp samtools bamtools parallel
         #NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/uninstall.sh)"
