@@ -9,7 +9,7 @@ TEXT_RESET="$(tput sgr0)"
 
 # notify start
 echo -e "\n${TEXT_YELLOW}Setting up environment for Ampile pipeline...${TEXT_RESET}\n" && sleep 1
-[ ! -d ~/.parallel/ ] && mkdir ~/.parallel/
+mkdir -p ~/.parallel/
 [ ! -f ~/.parallel/will-cite ] && touch ~/.parallel/will-cite
 
 # check OS
