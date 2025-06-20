@@ -7,7 +7,7 @@ TEXT_GREEN="$(tput bold)$(tput setaf 2)"
 TEXT_RESET="$(tput sgr0)"
 
 # notify start
-sudo echo ""
+echo ""
 echo -e "${TEXT_YELLOW}Setting up environment for Ampile pipeline...${TEXT_RESET} \n" && sleep 1
 
 # check OS
