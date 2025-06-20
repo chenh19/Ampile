@@ -33,7 +33,10 @@ case "$(uname -s)" in
         #    exit 1
         #fi
         /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-        brew install r bwa fastqc fastp samtools bamtools parallel
+        echo >> /Users/$USER/.bash_profile
+        echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> /Users/$USER/.bash_profile
+        eval "$(/opt/homebrew/bin/brew shellenv)"
+        /bin/bash -c 'brew install r bwa fastqc fastp samtools bamtools parallel'
         Rscript -e "install.packages(c('tidyverse', 'expss', 'filesstrings', 'foreach', 'doParallel'), force = TRUE, repos = 'https://cloud.r-project.org')"
         #Rscript -e "remove.packages(c(tidyverse', 'expss', 'filesstrings', 'foreach', 'doParallel'))"
         #brew uninstall r bwa fastqc fastp samtools bamtools parallel
