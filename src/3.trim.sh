@@ -13,7 +13,14 @@ echo -e "\n${TEXT_YELLOW}Trimming and filtering reads...${TEXT_RESET}\n" && slee
 [ ! -d ./3.analysis/2.trim/ ] && mkdir ./3.analysis/2.trim/
 
 # trim by length and quality
-threads=$(nproc)
+if command -v nproc >/dev/null 2>&1; then
+    threads=$(nproc)
+else
+    threads=$(sysctl -n hw.ncpu)
+fi
+if [ "$threads" -gt 32 ]; then
+  threads=32
+fi
 for r1 in ./2.fastq/*_R1*.fastq*; do
     [ -f "$r1" ] || continue
     r2=$(echo "$r1" | sed -E 's/_R1/_R2/')
