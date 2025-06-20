@@ -36,13 +36,9 @@ rm -f ./3.analysis/9.plots/2.refastqc/*.html ./3.analysis/9.plots/2.refastqc/*.z
 echo -e "\nCounting trimmed reads:\n"
 output_file="./3.analysis/8.spreadsheets/2.trimmed_read_counts/trimmed_read_counts.csv"
 > "$output_file"
-for f in ./3.analysis/2.trim/*.fastq ./3.analysis/2.trim/*.fastq.gz; do
+for f in ./3.analysis/2.trim/*.fastq.gz; do
   [[ -f "$f" ]] || continue
-  if [[ "$f" == *.gz ]]; then
-    count=$(gzip -dc "$f" | awk 'END {print NR/4}')
-  else
-    count=$(awk 'END {print NR/4}' "$f")
-  fi
+  count=$(gzip -dc "$f" | awk 'END {print NR/4}')
   echo "  $(basename "$f"): $count reads"
   echo "$(basename "$f"), $count" >> "$output_file"
 done
