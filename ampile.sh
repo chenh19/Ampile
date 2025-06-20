@@ -33,8 +33,8 @@ fi
 
 # organize input files
 echo -e "\n${TEXT_YELLOW}Organizing input files...${TEXT_RESET}\n" && sleep 1
-[ ! -d ./1.ref/ ] && mkdir ./1.ref/
-[ ! -d ./2.fastq/ ] && mkdir ./2.fastq/
+mkdir -p ./1.ref/
+mkdir -p ./2.fastq/
 find . -maxdepth 1 -type f -name "*.fa" -exec mv -f {} ./1.ref/ \;
 find . -maxdepth 1 -type f -name "*.fastq*" -exec mv -f {} ./2.fastq/ \;
 find ./2.fastq/ -maxdepth 1 -type f -name "*.fastq" -print0 | parallel -0 gzip -f
