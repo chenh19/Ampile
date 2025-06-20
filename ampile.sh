@@ -15,6 +15,10 @@ TEXT_RESET="$(tput sgr0)"
 [ ! -d ./2.fastq/ ] && mkdir ./2.fastq/
 
 # organize input files
+mv -f ./*.fa ./1.ref/
+find . -maxdepth 1 -type f -name "*.fastq" -print0 | parallel -0 gzip -f
+find ./2.fastq/ -maxdepth 1 -type f -name "*.fastq" -print0 | parallel -0 gzip -f
+mv -f ./*.fastq.gz ./2.fastq/
 
 # check whether required packages are all installed
 required_tools=("R" "bwa" "fastqc" "fastp" "samtools" "bamtools" "parallel")
