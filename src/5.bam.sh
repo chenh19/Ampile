@@ -37,4 +37,3 @@ done
 
 # notify end
 echo -e "\n${TEXT_GREEN}Done.${TEXT_RESET}\n" && sleep 1
-
