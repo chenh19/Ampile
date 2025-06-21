@@ -6,7 +6,7 @@ TEXT_GREEN="$(tput bold)$(tput setaf 2)"
 TEXT_RESET="$(tput sgr0)"
 
 # notify start
-echo -e "\n${TEXT_YELLOW}Mapping reads to the refseq...${TEXT_RESET}\n" && sleep 1
+echo -e "\n${TEXT_YELLOW}Generating bam files...${TEXT_RESET}\n" && sleep 1
 
 # create folders
 mkdir -p ./3.analysis/3.bam/
