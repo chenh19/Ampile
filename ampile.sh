@@ -94,17 +94,17 @@ bash -c "$(curl -fsSL https://raw.githubusercontent.com/chenh19/Ampile/refs/head
 
 ###################################################################################################
 
-# align
+# generate bam files
 bash -c "$(curl -fsSL https://raw.githubusercontent.com/chenh19/Ampile/refs/heads/main/src/5.bam.sh)"
 
 ###################################################################################################
 
-# pileup
+# generate pileup files
 bash -c "$(curl -fsSL https://raw.githubusercontent.com/chenh19/Ampile/refs/heads/main/src/6.mpileup.sh)"
 
 ###################################################################################################
 
-# parse
+# parse pileup files
 curl -fsSL https://raw.githubusercontent.com/chenh19/Ampile/refs/heads/main/src/7.parse.R | Rscript -
 
   # archive output spreadsheet
@@ -113,7 +113,7 @@ curl -fsSL https://raw.githubusercontent.com/chenh19/Ampile/refs/heads/main/src/
 
 ###################################################################################################
 
-# plot
+# generate plot
 curl -fsSL https://raw.githubusercontent.com/chenh19/Ampile/refs/heads/main/src/8.plot.R | Rscript -
 
 ###################################################################################################
