@@ -12,7 +12,7 @@ echo -e "\n${TEXT_YELLOW}Processing reference sequences...${TEXT_RESET}\n" && sl
 mkdir -p ./3.analysis/1.refseq/
 
 # combine and index refseq
-cat ./1.ref/*.fa > ./3.analysis/1.refseq/refseq.fa
+cat ./1.ref/*.fa | grep -v '^[[:space:]]*$' > ./3.analysis/1.refseq/refseq.fa
 bwa index ./3.analysis/1.refseq/refseq.fa
 
 # notify end
