@@ -28,6 +28,7 @@ fastqc --threads $threads ./2.fastq/*.fastq ./2.fastq/*.fastq.gz --outdir ./3.an
 # extract per_base_quality.png and read_lengths
 echo "fastq_file,max_length" > "./3.analysis/8.spreadsheets/1.raw_read_counts/sequence_lengths.csv"
 for zip in ./3.analysis/9.plots/1.fastqc/*.zip; do
+  [ -f "$zip" ] || continue
   base=$(basename "$zip" .zip)
   base_short=$(basename "$zip" _fastqc.zip)
   unzip -p "$zip" "${base}/Images/per_base_quality.png" > "./3.analysis/9.plots/1.fastqc/${base}_per_base_quality.png"
