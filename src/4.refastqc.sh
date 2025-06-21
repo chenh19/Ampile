@@ -27,6 +27,7 @@ fastqc --threads $threads ./3.analysis/2.trim/*.fastq ./3.analysis/2.trim/*.fast
 
 # extract per_base_quality.png
 for zip in ./3.analysis/9.plots/2.refastqc/*.zip; do
+  [ -f "$zip" ] || continue
   base=$(basename "$zip" .zip)
   unzip -p "$zip" "${base}/Images/per_base_quality.png" > "./3.analysis/9.plots/2.refastqc/${base}_per_base_quality.png"
 done
