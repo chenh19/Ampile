@@ -18,7 +18,7 @@ bash -c "$(curl -fsSL https://raw.githubusercontent.com/chenh19/Ampile/refs/head
 
 #### How to run the pipeline:
 
-- Prepare reference sequences and sequencing reads in a folder.
+- Prepare reference sequences and sequencing reads in a folder (example files are provided in the [/examples/](https://github.com/chenh19/Ampile/tree/main/examples) folder.)
 - Connect to internet and execute the below command in terminal:
 ```
 bash -c "$(curl -fsSL https://raw.githubusercontent.com/chenh19/Ampile/refs/heads/main/ampile.sh)"
