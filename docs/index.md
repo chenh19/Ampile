@@ -46,6 +46,7 @@ Pipeline failures are often due to an improperly configured environment. To ensu
 
 <div style="font-size: 0.9em">
 
+- Example files are provided in the [/examples/](https://github.com/chenh19/Ampile/tree/main/examples) folder.
 - The pipeline will automatically organize input files if they are not already in the two designated subfolders.
 - The pipeline will also automatically compress sequencing reads to ```.fastq.gz``` if they are provided in ```.fastq``` format.
 
