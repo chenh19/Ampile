@@ -78,6 +78,7 @@ Pipeline failures are often due to an improperly configured environment. To ensu
 <div style="font-size: 0.9em">
 
 - All scripts assume the master folder as the working directory.
+- If you are running the scripts manually on Linux, please don't forget to load conda environment first: ```source ~/miniconda3/etc/profile.d/conda.sh && conda activate ampile```
 
 </div>
 
