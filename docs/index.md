@@ -7,9 +7,8 @@ toc: false
 
 Pipeline failures are often due to an improperly configured environment. To ensure a robust and consistent setup for Ampile, I've created a dedicated configuration script. To execute the setup:
 
-- Connect to internet
-- Open Terminal
-- Paste in the below command and press ```Enter``` to run:
+- Install ```curl``` if it is not already installed on your system.
+- Connect to internet and execute the below command in terminal:
 
 <pre> bash -c "$(curl -fsSL https://raw.githubusercontent.com/chenh19/Ampile/refs/heads/main/setup.sh)" </pre>
 
@@ -57,10 +56,8 @@ Pipeline failures are often due to an improperly configured environment. To ensu
 
 ### [3/4] Running the pipeline
 
-- Connect to internet
-- Open Terminal
 - Change current directory to the folder containing the input files. For example: ```cd ~/Desktop/Ampile/```
-- Paste in the below command and press ```Enter``` to run:
+- Connect to internet and execute the below command in terminal:
 
 <pre> bash -c "$(curl -fsSL https://raw.githubusercontent.com/chenh19/Ampile/refs/heads/main/ampile.sh)" </pre>
 

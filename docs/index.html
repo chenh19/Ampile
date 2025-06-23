@@ -132,9 +132,8 @@ ul.task-list li input[type="checkbox"] {
 <h3 class="anchored" data-anchor-id="setup-environment">[1/4] Setup environment</h3>
 <p>Pipeline failures are often due to an improperly configured environment. To ensure a robust and consistent setup for Ampile, I’ve created a dedicated configuration script. To execute the setup:</p>
 <ul>
-<li>Connect to internet</li>
-<li>Open Terminal</li>
-<li>Paste in the below command and press <code>Enter</code> to run:</li>
+<li>Install <code>curl</code> if it is not already installed on your system.</li>
+<li>Connect to internet and execute the below command in terminal:</li>
 </ul>
 <pre> bash -c "$(curl -fsSL https://raw.githubusercontent.com/chenh19/Ampile/refs/heads/main/setup.sh)" </pre>
 <details>
@@ -180,10 +179,8 @@ ul.task-list li input[type="checkbox"] {
 <section id="running-the-pipeline" class="level3">
 <h3 class="anchored" data-anchor-id="running-the-pipeline">[3/4] Running the pipeline</h3>
 <ul>
-<li>Connect to internet</li>
-<li>Open Terminal</li>
 <li>Change current directory to the folder containing the input files. For example: <code>cd ~/Desktop/Ampile/</code></li>
-<li>Paste in the below command and press <code>Enter</code> to run:</li>
+<li>Connect to internet and execute the below command in terminal:</li>
 </ul>
 <pre> bash -c "$(curl -fsSL https://raw.githubusercontent.com/chenh19/Ampile/refs/heads/main/ampile.sh)" </pre>
 <div style="text-align: center;">
