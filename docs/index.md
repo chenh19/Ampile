@@ -103,7 +103,7 @@ Pipeline failures are often due to an improperly configured environment. To ensu
   <img src="./images/8.png" width="100%">
 </div>
 
-- You may further analyze the parsed mutation rates and perform comparative analyses between groups. The corresponding spreadsheets are located at ```./3.analysis/8.spreadsheets/3.mpileup_parse/```.
+- You may further analyze the parsed mutation rates and perform comparative analyses between groups. The corresponding spreadsheets are located at ```./3.analysis/8.spreadsheets/2.mutation_rates/```.
 
 <details>
 <summary>**Note:**</summary>
