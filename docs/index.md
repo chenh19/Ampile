@@ -12,6 +12,14 @@ Pipeline failures are often due to an improperly configured environment. To ensu
 
 <pre> bash -c "$(curl -fsSL https://raw.githubusercontent.com/chenh19/Ampile/refs/heads/main/setup.sh)" </pre>
 
+<div style="text-align: center;">
+  <img src="./images/1.png" width="90%">
+</div>
+
+<div style="text-align: center;">
+  <img src="./images/2.png" width="90%">
+</div>
+
 <details>
 <summary>**Note:**</summary>
 
@@ -32,13 +40,13 @@ Pipeline failures are often due to an improperly configured environment. To ensu
 - Prepare reference sequences (```.fa``` files) and sequencing reads (```.fastq``` or ```.fastq.gz``` files) in a master folder (you may name the folder as desired):
 
 <div style="text-align: center;">
-  <img src="./images/0.png" width="100%">
+  <img src="./images/3.png" width="100%">
 </div>
 
 - You may also organize the files into the two designated subfolders, ```./1.ref/``` and ```./2.fastq/```:
 
 <div style="text-align: center;">
-  <img src="./images/1.png" width="100%">
+  <img src="./images/4.png" width="100%">
 </div>
 
 <details>
@@ -63,13 +71,13 @@ Pipeline failures are often due to an improperly configured environment. To ensu
 <pre> bash -c "$(curl -fsSL https://raw.githubusercontent.com/chenh19/Ampile/refs/heads/main/ampile.sh)" </pre>
 
 <div style="text-align: center;">
-  <img src="./images/2.png" width="90%">
+  <img src="./images/5.png" width="90%">
 </div>
 
 - Alternatively, you may [download](https://github.com/chenh19/Ampile/archive/refs/heads/main.zip) the GitHub repository and place all scripts in the [/src/](https://github.com/chenh19/Ampile/tree/main/src) folder along with the input files to run them manually:
 
 <div style="text-align: center;">
-  <img src="./images/3.png" width="100%">
+  <img src="./images/6.png" width="100%">
 </div>
 
 <details>
@@ -88,11 +96,11 @@ Pipeline failures are often due to an improperly configured environment. To ensu
 ### [4/4] Done
 
 <div style="text-align: center;">
-  <img src="./images/4.png" width="90%">
+  <img src="./images/7.png" width="90%">
 </div>
 
 <div style="text-align: center;">
-  <img src="./images/5.png" width="100%">
+  <img src="./images/8.png" width="100%">
 </div>
 
 - You may further analyze the parsed mutation rates and perform comparative analyses between groups. The corresponding spreadsheets are located at ```./3.analysis/8.spreadsheets/3.mpileup_parse/```.
