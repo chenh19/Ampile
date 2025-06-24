@@ -8,8 +8,14 @@ TEXT_RESET="$(tput sgr0)"
 # notify start
 echo -e "\n${TEXT_YELLOW}Performing FastQC on trimmed reads...${TEXT_RESET}\n" && sleep 1
 
+# check for trimmed fastq input
+if ! find "./3.analysis/2.trim/" -maxdepth 1 -type f -name "*.fastq.gz" | grep -q .; then
+  echo -e "${TEXT_YELLOW}Trimmed reads (.fastq.gz) were not found in ./3.analysis/2.trim/ folder, please double check.${TEXT_RESET}\n" >&2 && sleep 1
+  exit 1
+fi
+
 # create folders
-mkdir -p ./3.analysis/8.spreadsheets/2.trimmed_read_counts/
+mkdir -p ./3.analysis/8.spreadsheets/1.read_counts/
 mkdir -p ./3.analysis/9.plots/2.refastqc/
 
 # set threads for parallel processing
@@ -35,7 +41,7 @@ rm -f ./3.analysis/9.plots/2.refastqc/*.html ./3.analysis/9.plots/2.refastqc/*.z
 
 # count trimmed reads
 echo -e "\nCounting trimmed reads:\n"
-output_file="./3.analysis/8.spreadsheets/2.trimmed_read_counts/trimmed_read_counts.csv"
+output_file="./3.analysis/8.spreadsheets/1.read_counts/trimmed_read_counts.csv"
 > "$output_file"
 for f in ./3.analysis/2.trim/*.fastq.gz; do
   [[ -f "$f" ]] || continue

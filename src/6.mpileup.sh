@@ -8,6 +8,12 @@ TEXT_RESET="$(tput sgr0)"
 # notify start
 echo -e "\n${TEXT_YELLOW}Generating pileup files...${TEXT_RESET}\n" && sleep 1
 
+# check for bam files
+if ! find "./3.analysis/3.bam/" -maxdepth 1 -type f -name "*.filtered.bam" | grep -q .; then
+  echo -e "${TEXT_YELLOW}Aligned reads (.bam) were not found in ./3.analysis/2.bam/ folder, please double check.${TEXT_RESET}\n" >&2 && sleep 1
+  exit 1
+fi
+
 # create folders
 mkdir -p ./3.analysis/4.mpileup/
 mkdir -p ~/.parallel/
@@ -24,8 +30,8 @@ if [ "$threads" -gt 32 ]; then
 fi
 
 # pileup
-ls ./3.analysis/3.bam/*.filtered.bam | parallel -j $threads '
-  bam={}
+find ./3.analysis/3.bam/ -maxdepth 1 -name "*.filtered.bam" -print0 | parallel -0 -j $threads '
+  bam="{}"
   base=$(basename "$bam" .filtered.bam)
   samtools mpileup -aa -A -B -Q 0 -d 2000000 -f ./3.analysis/1.refseq/refseq.fa "$bam" > ./3.analysis/4.mpileup/"$base".mpileup
 '
