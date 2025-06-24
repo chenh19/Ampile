@@ -10,7 +10,7 @@ echo -e "\n${TEXT_YELLOW}Generating pileup files...${TEXT_RESET}\n" && sleep 1
 
 # check for bam files
 if ! find "./3.analysis/3.bam/" -maxdepth 1 -type f -name "*.filtered.bam" | grep -q .; then
-  echo -e "${TEXT_YELLOW}Aligned reads (.bam) were not found in ./3.analysis/2.bam/ folder, please double check.${TEXT_RESET}\n" >&2 && sleep 1
+  echo -e "${TEXT_YELLOW}Aligned reads (.bam) were not found in ./3.analysis/3.bam/ folder, please double check.${TEXT_RESET}\n" >&2 && sleep 1
   exit 1
 fi
 
