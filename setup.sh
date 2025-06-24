@@ -70,7 +70,7 @@ conda config --add channels conda-forge
 conda config --set channel_priority strict
 
 # disable auto-activation of conda
-if ! grep -q "auto_activate_base: false" ~/.condarc ; then conda config --set auto_activate_base false ; fi
+if ! grep -q "auto_activate: false" ~/.condarc ; then conda config --set auto_activate false ; fi
 # disable conda initialization when opening a shell
 if [[ -f ~/.bashrc ]]; then
   start0=$(( $(grep -wn "# >>> conda initialize >>>" ~/.bashrc | head -n 1 | cut -d: -f1) - 1 ))
