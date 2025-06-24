@@ -1,5 +1,7 @@
 #!/bin/bash
 # Ampile pipeline
+
+# enable exit on error
 set -e
 
 # activate conda

@@ -1,8 +1,5 @@
 #!/bin/bash
 # Universal setup script for unix/linux systems
-# Thanks to Xiaocheng Yu and Zi-You Tian for kindly letting me run tests on their Mac
-
-###################################################################################################
 
 # set terminal font color
 TEXT_YELLOW="$(tput bold)$(tput setaf 3)"
@@ -13,8 +10,6 @@ TEXT_RESET="$(tput sgr0)"
 echo -e "\n${TEXT_YELLOW}Setting up environment for Ampile pipeline...${TEXT_RESET}\n" && sleep 1
 mkdir -p ~/.parallel/
 [ ! -f ~/.parallel/will-cite ] && touch ~/.parallel/will-cite
-
-###################################################################################################
 
 # check OS
 case "$(uname -s)" in
@@ -52,8 +47,6 @@ case "$(uname -s)" in
         exit 1
         ;;
 esac
-
-###################################################################################################
 
 # install miniconda
 mkdir -p ~/miniconda3
@@ -95,8 +88,6 @@ fi
 # update base
 conda update --all -y
 
-###################################################################################################
-
 # create a new environment for ampile
 conda create -y -n ampile \
   conda-forge::r-base \
@@ -119,8 +110,6 @@ conda activate ampile
 R CMD javareconf
 conda update --all -y
 
-###################################################################################################
-
 # check packages
 echo -e "\nChecking packages:\n"
 required_tools=("R" "bwa" "fastqc" "fastp" "samtools" "bamtools" "parallel")
@@ -132,8 +121,6 @@ for tool in "${required_tools[@]}"; do
   fi
 done
 Rscript -e 'for (pkg in c("tidyverse", "expss", "filesstrings", "foreach", "doParallel")) if (suppressWarnings(suppressPackageStartupMessages(require(pkg, character.only = TRUE)))) message("  - Successfully installed: r-", pkg, "\n") else message("  x Failed to install: r-", pkg, "\n")'
-
-###################################################################################################
 
 # deactivate ampile and base
 conda deactivate
