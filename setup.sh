@@ -29,10 +29,10 @@ case "$(uname -s)" in
         echo 'eval "$($(which brew) shellenv)"' >> ~/.bash_profile
         echo 'eval "$($(which brew) shellenv)"' >> ~/.zprofile
         eval "$($(which brew) shellenv)"
-        /bin/bash -c 'brew install r bwa fastqc fastp samtools bamtools parallel'
+        /bin/bash -c 'brew install bwa fastqc fastp samtools bamtools parallel'
         if [[ "$(uname -m)" == "x86_64" ]]; then
             URL="https://cran.r-project.org/bin/macosx/big-sur-x86_64/base/R-4.5.1-x86_64.pkg"
-        elif [[ "$(uname -m)" == "arm64" ]]; thenAdd commentMore actions
+        elif [[ "$(uname -m)" == "arm64" ]]; then
             URL="https://cran.r-project.org/bin/macosx/big-sur-arm64/base/R-4.5.1-arm64.pkg"
         else
             echo -e "\n${TEXT_YELLOW}Unsupported MacOS architecture: $(uname -m)${TEXT_RESET}\n" >&2
