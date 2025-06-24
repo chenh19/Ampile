@@ -9,9 +9,9 @@ cat("\n", TEXT_YELLOW, "Generating plots...", TEXT_RESET, "\n\n", sep = "")
 # load packages
 packages <- c("filesstrings", "doParallel", "tidyverse", "foreach", "expss")
 for (package in packages) {
-  if (!suppressPackageStartupMessages(require(package, character.only = TRUE))) {
+  if (!suppressWarnings(suppressPackageStartupMessages(require(package, character.only = TRUE)))) {
     install.packages(package, repos = "https://cloud.r-project.org")
-    suppressPackageStartupMessages(library(package, character.only = TRUE))
+    suppressWarnings(suppressPackageStartupMessages(library(package, character.only = TRUE)))
   }
   message("Loaded package: ", package)
 }

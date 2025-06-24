@@ -6,7 +6,7 @@ TEXT_GREEN="$(tput bold)$(tput setaf 2)"
 TEXT_RESET="$(tput sgr0)"
 
 # notify start
-echo -e "\n${TEXT_YELLOW}Initializing Ampile...${TEXT_RESET}" && sleep 1
+echo -e "\n${TEXT_YELLOW}Initializing Ampile...${TEXT_RESET}\n" && sleep 1
 
 # set threads for parallel processing
 if command -v nproc >/dev/null 2>&1; then
