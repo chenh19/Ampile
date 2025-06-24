@@ -25,7 +25,7 @@ for tool in "${required_tools[@]}"; do
     error=1
   fi
 done
-output=$(Rscript -e 'for (pkg in c("tidyverse", "expss", "filesstrings", "foreach", "doParallel")) if (!suppressPackageStartupMessages(require(pkg, character.only = TRUE))) cat("\033[1;33m", "Error: r-", pkg, " is not installed.", "\033[0m", "\n\n", sep = "")' 2>/dev/null)
+output=$(Rscript -e 'for (pkg in c("tidyverse", "expss", "filesstrings", "foreach", "doParallel")) if (!suppressWarnings(suppressPackageStartupMessages(require(pkg, character.only = TRUE)))) cat("\033[1;33m", "Error: r-", pkg, " is not installed.", "\033[0m", "\n\n", sep = "")' 2>/dev/null)
 if echo "$output" | grep -q "Error:"; then
   echo "  $output" && echo ""
   error=1
