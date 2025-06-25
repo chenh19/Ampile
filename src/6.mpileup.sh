@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # set terminal font color
 TEXT_YELLOW="$(tput bold)$(tput setaf 3)"
