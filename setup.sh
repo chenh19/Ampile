@@ -43,12 +43,14 @@ case "$(uname -s)" in
         sudo installer -pkg ~/R.pkg -target /
         rm -f ~/R.pkg
         Rscript -e "install.packages(c('tidyverse', 'expss', 'filesstrings', 'foreach', 'doParallel'), force = TRUE, repos = 'https://cloud.r-project.org')"
+        check_installed_packages
         exit 0
         ;;
     FreeBSD)
         if grep -q '^ID=freebsd' /etc/os-release 2>/dev/null; then
             sudo pkg upgrade -y && sudo pkg install -y R bwa fastqc fastp samtools bamtools parallel R-cran-tidyverse R-cran-foreach R-cran-doParallel
             sudo Rscript -e "install.packages(c('expss', 'filesstrings'), force = TRUE, repos = 'https://cloud.r-project.org')"
+            check_installed_packages
             exit 0
         else
             OS_NAME=$(grep '^NAME=' /etc/os-release 2>/dev/null | cut -d= -f2- | tr -d '"')
@@ -123,21 +125,25 @@ conda activate ampile
 R CMD javareconf
 conda update --all -y
 
-# check packages
-echo -e "\nChecking packages:\n"
-required_tools=("R" "bwa" "fastqc" "fastp" "samtools" "bamtools" "parallel")
-for tool in "${required_tools[@]}"; do
-  if command -v "$tool" >/dev/null 2>&1; then
-    echo -e "  - Successfully installed: $tool\n"
-  else
-    echo -e "  x Failed to install: $tool\n"
-  fi
-done
-Rscript -e 'for (pkg in c("tidyverse", "expss", "filesstrings", "foreach", "doParallel")) if (suppressWarnings(suppressPackageStartupMessages(require(pkg, character.only = TRUE)))) message("  - Successfully installed: r-", pkg, "\n") else message("  x Failed to install: r-", pkg, "\n")'
+# check installed packages
+check_installed_packages() {
+    TEXT_GREEN="$(tput bold)$(tput setaf 2)"
+    TEXT_RESET="$(tput sgr0)"
+    printf "\nChecking packages:\n\n"
+    required_tools="R bwa fastqc fastp samtools bamtools parallel"
+    for tool in $required_tools; do
+        if command -v "$tool" >/dev/null 2>&1; then
+            printf "  - Successfully installed: %s\n\n" "$tool"
+        else
+            printf "  x Failed to install: %s\n\n" "$tool"
+        fi
+    done
+    Rscript -e 'for (pkg in c("tidyverse", "expss", "filesstrings", "foreach", "doParallel")) if (suppressWarnings(suppressPackageStartupMessages(require(pkg, character.only = TRUE)))) message("  - Successfully installed: r-", pkg, "\n") else message("  x Failed to install: r-", pkg, "\n")'
+    printf "\n%sEnvironment setup complete! You may now proceed to run the Ampile pipeline.%s\n\n\n" "$TEXT_GREEN" "$TEXT_RESET"
+    sleep 1
+}
+check_installed_packages
 
 # deactivate ampile and base
 conda deactivate
 conda deactivate
-
-# notify end
-echo -e "\n${TEXT_GREEN}Environment setup complete! You may now proceed to run the Ampile pipeline.${TEXT_RESET}\n\n" && sleep 1
