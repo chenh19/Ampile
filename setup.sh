@@ -24,24 +24,25 @@ case "$(uname -s)" in
         fi
         ;;
     Darwin)
-        xcode-select --install
-        /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-        echo 'eval "$($(which brew) shellenv)"' >> ~/.bash_profile
-        echo 'eval "$($(which brew) shellenv)"' >> ~/.zprofile
-        eval "$($(which brew) shellenv)"
-        /bin/bash -c 'brew install bwa fastqc fastp samtools bamtools parallel'
         if [[ "$(uname -m)" == "x86_64" ]]; then
             URL="https://cran.r-project.org/bin/macosx/big-sur-x86_64/base/R-4.5.1-x86_64.pkg"
         elif [[ "$(uname -m)" == "arm64" ]]; then
             URL="https://cran.r-project.org/bin/macosx/big-sur-arm64/base/R-4.5.1-arm64.pkg"
+            /usr/sbin/softwareupdate --install-rosetta --agree-to-license
         else
             echo -e "\n${TEXT_YELLOW}Unsupported MacOS architecture: $(uname -m)${TEXT_RESET}\n" >&2
             exit 1
         fi
+        xcode-select --install
+        bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+        echo 'eval "$($(which brew) shellenv)"' >> ~/.bash_profile
+        echo 'eval "$($(which brew) shellenv)"' >> ~/.zprofile
+        eval "$($(which brew) shellenv)"
+        brew install bwa fastqc fastp samtools bamtools parallel
         curl -fsSL "$URL" -o ~/R.pkg
         sudo installer -pkg ~/R.pkg -target /
         rm -f ~/R.pkg
-        /usr/local/bin/Rscript -e "install.packages(c('tidyverse', 'expss', 'filesstrings', 'foreach', 'doParallel'), force = TRUE, repos = 'https://cloud.r-project.org')"
+        Rscript -e "install.packages(c('tidyverse', 'expss', 'filesstrings', 'foreach', 'doParallel'), force = TRUE, repos = 'https://cloud.r-project.org')"
         exit 0
         ;;
     FreeBSD)
