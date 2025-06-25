@@ -124,6 +124,7 @@ conda update --all -y
 
 # create a new environment for ampile
 conda create -y -n ampile \
+  conda-forge::python=3.13 \
   conda-forge::r-base \
   conda-forge::r-littler \
   conda-forge::r-tidyverse \
