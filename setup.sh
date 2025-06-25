@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Universal setup script for unix/linux systems
 
 # set terminal font color
