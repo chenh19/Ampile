@@ -7,7 +7,7 @@ TEXT_RESET  <- "\033[0m"
 cat("\n", TEXT_YELLOW, "Generating plots...", TEXT_RESET, "\n\n", sep = "")
 
 # load packages
-packages <- c("filesstrings", "doParallel", "tidyverse", "foreach", "expss")
+packages <- c("filesstrings", "tidyverse", "expss")
 for (package in packages) {
   if (!suppressWarnings(suppressPackageStartupMessages(require(package, character.only = TRUE)))) {
     install.packages(package, repos = "https://cloud.r-project.org")
@@ -23,8 +23,6 @@ if (length(mutation_rate_spreadsheets) == 0) {
   Sys.sleep(1)
   quit(status = 1)
 }
-# set threads for parallel processing
-numCores <- min(detectCores(logical = TRUE), 32)
 
 # create folders
 dir.create("./3.analysis/9.plots/3.absolute_mut/pdf/", recursive = TRUE, showWarnings = FALSE)
@@ -82,8 +80,7 @@ if (max_mut * 1.2 < 4) {
 } else {
   max_y <- max_mut * 1.2
 }
-registerDoParallel(numCores)
-invisible(foreach (csv = csvs) %dopar% {
+for (csv in csvs) {
   
   df <- read.csv(csv, header = TRUE)
   df <- filter(df, !is.na(Mut_percentage))
@@ -109,7 +106,7 @@ invisible(foreach (csv = csvs) %dopar% {
   
   ## notify
   message(paste0("  ", basename(csv), ": absolute mutation rate plotted"))
-})
+}
 
 # plot absolute mutation rate summary
 max_y <- max(summary_long$Mean + summary_long$SD, na.rm = TRUE)
