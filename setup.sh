@@ -67,7 +67,7 @@ case "$(uname -s)" in
         ;;
     FreeBSD)
         if grep -q '^ID=freebsd' /etc/os-release 2>/dev/null; then
-            sudo pkg upgrade -y && sudo pkg install -y R bwa fastqc fastp samtools bamtools parallel R-cran-tidyverse R-cran-foreach R-cran-doParallel
+            sudo pkg upgrade -y && sudo pkg install -y R bwa fastqc fastp samtools bamtools parallel R-cran-tidyverse R-cran-foreach R-cran-doParallel zip
             sudo Rscript -e "install.packages(c('expss', 'filesstrings'), force = TRUE, repos = 'https://cloud.r-project.org')"
             check_installed_packages
             exit 0
