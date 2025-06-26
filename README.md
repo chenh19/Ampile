@@ -1,6 +1,6 @@
 # Ampile
 **Amplicon pileup analysis pipeline**  
-*Current version: v1.1.3*
+*Current version: v1.1.4*
 
 ### Introduction
 
@@ -14,6 +14,12 @@
 - Connect to internet and execute the below command in terminal:
 ```
 bash -c "$(curl -fsSL https://raw.githubusercontent.com/chenh19/Ampile/refs/heads/main/setup.sh)"
+```
+
+#### How to setup the environment:
+- Connect to internet and execute the below command in terminal:
+```
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/chenh19/Ampile/refs/heads/main/check.sh)"
 ```
 
 #### How to run the pipeline:
