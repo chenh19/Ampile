@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
-# check installed package function
+# check installed packages
+[ -d ~/miniconda3/envs/ampile/ ] && source ~/miniconda3/etc/profile.d/conda.sh && conda activate ampile
 check_installed_packages() {
     TEXT_GREEN="$(tput bold)$(tput setaf 2)"
     TEXT_RESET="$(tput sgr0)"
