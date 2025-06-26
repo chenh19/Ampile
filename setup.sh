@@ -53,6 +53,7 @@ case "$(uname -s)" in
             exit 1
         fi
         xcode-select --install
+        echo ""
         bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
         echo 'eval "$($(which brew) shellenv)"' >> ~/.bash_profile
         echo 'eval "$($(which brew) shellenv)"' >> ~/.zprofile
