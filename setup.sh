@@ -40,8 +40,8 @@ case "$(uname -s)" in
             echo -e "\n${TEXT_YELLOW}Unsupported MacOS architecture: $(uname -m)${TEXT_RESET}\n" >&2
             exit 1
         fi
-        xcode-select --install
         printf "\n\n\033[1mInstall the Xcode Command Line Tools if a popup appears, then proceed.\033[0m\n\n"
+	xcode-select --install
         printf "\n\033[1mInitializing Homebrew setup...\033[0m\n\n"
         bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 	if [[ "$(uname -m)" == "x86_64" ]]; then
