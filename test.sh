@@ -6,6 +6,11 @@ check_installed_packages() {
     TEXT_RESET="$(tput sgr0)"
     printf "\nChecking packages:\n\n"
 
+    required_tools=("R" "bwa" "fastqc" "fastp" "samtools" "bamtools" "parallel")
+    for tool in "${required_tools[@]}"; do
+      echo "$tool"
+    done
+
     # Portable string list
     required_tools_str="R bwa fastqc fastp samtools bamtools parallel"
 
