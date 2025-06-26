@@ -10,7 +10,7 @@
 
 #### How to setup the environment:
 
-- Install ```curl``` if it is not already installed on your system.
+- Install ```curl``` if it is not already installed on your system (e.g., ```sudo apt install curl``` on Ubuntu)
 - Connect to internet and execute the below command in terminal:
 ```
 bash -c "$(curl -fsSL https://raw.githubusercontent.com/chenh19/Ampile/refs/heads/main/setup.sh)"
