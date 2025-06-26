@@ -38,4 +38,4 @@ curl -fsSL https://raw.githubusercontent.com/chenh19/Ampile/refs/heads/main/src/
 bash -c "$(curl -fsSL https://raw.githubusercontent.com/chenh19/Ampile/refs/heads/main/src/9.cleanup.sh)"
 
 # deactivate conda
-[ -f ~/miniconda3/etc/profile.d/conda.sh ] && conda deactivate
+[ -d ~/miniconda3/envs/ampile/ ] && conda deactivate
