@@ -52,7 +52,7 @@ case "$(uname -s)" in
             echo -e "\n${TEXT_YELLOW}Unsupported MacOS architecture: $(uname -m)${TEXT_RESET}\n" >&2
             exit 1
         fi
-        xcode-select --install
+        xcode-select --install; osascript -e 'tell application "System Events" to set frontmost of (first process whose name is "Software Update" or name is "Installer") to true'
         echo ""
         bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
         echo 'eval "$($(which brew) shellenv)"' >> ~/.bash_profile
