@@ -14,9 +14,6 @@ zip -rq ./3.analysis/9.plots/all_plots.zip ./3.analysis/9.plots/
 ## cleanup Rhistory
 [ -f ./.Rhistory ] && rm -f ./.Rhistory
 
-## cleanup 
-find . -name '.DS_Store' -type f -delete
-
 # cleanup large intermediate files
 read -n1 -s -r -p $'\n'"$(echo -e $TEXT_YELLOW'Would you like delete large intermediate files? [y/n/c]'$TEXT_RESET)"$'\n' choice
 case "$choice" in
