@@ -5,7 +5,7 @@
 set -e
 
 # activate conda
-[ -f ~/miniconda3/etc/profile.d/conda.sh ] && source ~/miniconda3/etc/profile.d/conda.sh && conda activate ampile
+[ -d ~/miniconda3/envs/ampile/ ] && source ~/miniconda3/etc/profile.d/conda.sh && conda activate ampile
 
 # initialize
 bash -c "$(curl -fsSL https://raw.githubusercontent.com/chenh19/Ampile/refs/heads/main/src/0.initialize.sh)"
