@@ -53,7 +53,7 @@ case "$(uname -s)" in
             exit 1
         fi
         xcode-select --install
-        printf "\nPlease install required command-line tools if prompted.\n\n"
+        printf "\n\n\033[1mPlease install the Xcode Command Line Tools if prompted by a popup window.\033[0m\n\n\n"
         bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
         echo 'eval "$($(which brew) shellenv)"' >> ~/.bash_profile
         echo 'eval "$($(which brew) shellenv)"' >> ~/.zprofile
