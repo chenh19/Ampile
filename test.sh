@@ -20,3 +20,4 @@ check_installed_packages() {
     sleep 1
 }
 check_installed_packages
+[ -d ~/miniconda3/envs/ampile/ ] && conda deactivate
