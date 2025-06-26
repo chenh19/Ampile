@@ -16,12 +16,6 @@
 bash -c "$(curl -fsSL https://raw.githubusercontent.com/chenh19/Ampile/refs/heads/main/setup.sh)"
 ```
 
-#### How to check the environment:
-- Connect to internet and execute the below command in terminal:
-```
-bash -c "$(curl -fsSL https://raw.githubusercontent.com/chenh19/Ampile/refs/heads/main/check.sh)"
-```
-
 #### How to run the pipeline:
 
 - Prepare reference sequences and sequencing reads in a folder ([examples files available](https://github.com/chenh19/Ampile/tree/main/examples)).
