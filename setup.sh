@@ -41,6 +41,7 @@ case "$(uname -s)" in
             exit 1
         fi
         printf "\n\n\033[1mInstall the Xcode Command Line Tools if a popup appears, then proceed.\033[0m\n\n"
+	sleep 3
 	xcode-select --install
         printf "\n\033[1mInitializing Homebrew setup...\033[0m\n\n"
         bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
