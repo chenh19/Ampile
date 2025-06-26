@@ -53,8 +53,8 @@ case "$(uname -s)" in
             exit 1
         fi
         xcode-select --install
-        printf "\n\n\033[1mPlease install the Xcode Command Line Tools if prompted by a popup window.\033[0m\n\n"
-        printf "\n\033[1mSetting up homebrew...\033[0m\n\n"
+        printf "\n\n\033[1mInstall the Xcode Command Line Tools if a popup appears, then proceed.\033[0m\n\n"
+        printf "\n\033[1mInitializing Homebrew setup...\033[0m\n\n"
         bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
         echo 'eval "$($(which brew) shellenv)"' >> ~/.bash_profile
         echo 'eval "$($(which brew) shellenv)"' >> ~/.zprofile
