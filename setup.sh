@@ -116,19 +116,18 @@ conda update --all -y
 
 # create a new environment for ampile
 conda create -y -n ampile \
-  conda-forge::r-base \
-  conda-forge::r-littler \
-  conda-forge::r-tidyverse \
-  conda-forge::r-expss \
-  conda-forge::r-filesstrings \
-  conda-forge::r-foreach \
-  conda-forge::r-doparallel \
-  conda-forge::parallel \
-  bioconda::bwa \
-  bioconda::fastqc \
-  bioconda::fastp \
-  bioconda::samtools \
-  bioconda::bamtools
+  conda-forge::r-base=4.4.2 \
+  conda-forge::r-tidyverse=2.0.0 \
+  conda-forge::r-expss=0.11.6 \
+  conda-forge::r-filesstrings=3.4.0 \
+  conda-forge::r-foreach=1.5.2 \
+  conda-forge::r-doparallel=1.0.17 \
+  conda-forge::parallel=20250622 \
+  bioconda::bwa=0.7.19 \
+  bioconda::fastqc=0.12.1 \
+  bioconda::fastp=1.0.1 \
+  bioconda::samtools=1.22 \
+  bioconda::bamtools=2.5.3
 
 # activate and update ampile
 source ~/miniconda3/etc/profile.d/conda.sh
