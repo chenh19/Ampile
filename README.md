@@ -16,7 +16,7 @@
 bash -c "$(curl -fsSL https://raw.githubusercontent.com/chenh19/Ampile/refs/heads/main/setup.sh)"
 ```
 
-#### How to setup the environment:
+#### How to check the environment:
 - Connect to internet and execute the below command in terminal:
 ```
 bash -c "$(curl -fsSL https://raw.githubusercontent.com/chenh19/Ampile/refs/heads/main/check.sh)"
