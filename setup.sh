@@ -30,11 +30,11 @@ case "$(uname -s)" in
         if [[ "$(uname -m)" == "x86_64" ]]; then
             URL="https://cran.r-project.org/bin/macosx/big-sur-x86_64/base/R-4.5.1-x86_64.pkg"
             if ! grep -q 'eval "$(/usr/local/bin/brew shellenv)"' ~/.bash_profile ; then echo 'eval "$(/usr/local/bin/brew shellenv)"' >> ~/.bash_profile; fi
-	        if ! grep -q 'eval "$(/usr/local/bin/brew shellenv)"' ~/.zprofile ; then echo 'eval "$(/usr/local/bin/brew shellenv)"' >> ~/.zprofile; fi
+            if ! grep -q 'eval "$(/usr/local/bin/brew shellenv)"' ~/.zprofile ; then echo 'eval "$(/usr/local/bin/brew shellenv)"' >> ~/.zprofile; fi
         elif [[ "$(uname -m)" == "arm64" ]]; then
             URL="https://cran.r-project.org/bin/macosx/big-sur-arm64/base/R-4.5.1-arm64.pkg"
             if ! grep -q 'eval "$(/opt/homebrew/bin/brew shellenv)"' ~/.bash_profile ; then echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> ~/.bash_profile; fi
-	        if ! grep -q 'eval "$(/opt/homebrew/bin/brew shellenv)"' ~/.zprofile ; then echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> ~/.zprofile; fi
+            if ! grep -q 'eval "$(/opt/homebrew/bin/brew shellenv)"' ~/.zprofile ; then echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> ~/.zprofile; fi
             /usr/sbin/softwareupdate --install-rosetta --agree-to-license
         else
             echo -e "\n${TEXT_YELLOW}Unsupported MacOS architecture: $(uname -m)${TEXT_RESET}\n" >&2
@@ -44,8 +44,12 @@ case "$(uname -s)" in
         printf "\n\n\033[1mInstall the Xcode Command Line Tools if a popup appears, then proceed.\033[0m\n\n"
         printf "\n\033[1mInitializing Homebrew setup...\033[0m\n\n"
         bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-        eval "$($(which brew) shellenv)"
-        brew install bwa fastqc fastp samtools bamtools parallel
+	if [[ "$(uname -m)" == "x86_64" ]]; then
+            eval "$(/usr/local/bin/brew shellenv)"
+        elif [[ "$(uname -m)" == "arm64" ]]; then
+            eval "$(/opt/homebrew/bin/brew shellenv)"
+        fi
+	brew install bwa fastqc fastp samtools bamtools parallel
         curl -fsSL "$URL" -o ~/R.pkg
         sudo installer -pkg ~/R.pkg -target /
         rm -f ~/R.pkg
