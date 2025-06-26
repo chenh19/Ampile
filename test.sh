@@ -21,7 +21,8 @@ check_installed_packages() {
         if (suppressWarnings(suppressPackageStartupMessages(require(pkg, character.only = TRUE)))) 
             message("  - Successfully installed: r-", pkg, "\n") 
         else 
-            message("  x Failed to install: r-", pkg, "\n")'
+            message("  x Failed to install: r-", pkg, "\n")
+        fi'
 
     printf "\n%sEnvironment setup complete! You may now proceed to run the Ampile pipeline.%s\n\n\n" "$TEXT_GREEN" "$TEXT_RESET"
     sleep 1
