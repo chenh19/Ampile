@@ -17,7 +17,7 @@ check_installed_packages() {
     TEXT_GREEN="$(tput bold)$(tput setaf 2)"
     TEXT_RESET="$(tput sgr0)"
     printf "\nChecking packages:\n\n"
-    required_tools="R bwa fastqc fastp samtools bamtools parallel"
+    required_tools=("R" "bwa" "fastqc" "fastp" "samtools" "bamtools" "parallel")
     for tool in $required_tools; do
         if command -v "$tool" >/dev/null 2>&1; then
             printf "  - Successfully installed: %s\n\n" "$tool"
