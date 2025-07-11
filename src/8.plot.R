@@ -60,7 +60,6 @@ for (csv in csvs) {
 }
 names <- gsub(".mpileup.csv", "", basename(csvs))
 colnames(summary) <- c("Base", names)
-#summary_long <- pivot_longer(summary, cols = 2:ncol(summary), names_to = "Group", values_to = "Value")
 summary_long <- summary %>%
   separate(Base, into = c("stat", "base")) %>%   # Split 'Base' into 'stat' and 'base'
   pivot_longer(-c(stat, base), names_to = "sample", values_to = "value") %>%  # Long format
