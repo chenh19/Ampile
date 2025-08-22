@@ -1,6 +1,6 @@
 # Ampile
 **Amplicon pileup analysis pipeline**  
-*Current version: v1.2.1*
+*Current version: v1.2.1*  
 
 ### Introduction
 
@@ -24,3 +24,7 @@ bash -c "$(curl -fsSL https://raw.githubusercontent.com/chenh19/Ampile/refs/head
 bash -c "$(curl -fsSL https://raw.githubusercontent.com/chenh19/Ampile/refs/heads/main/ampile.sh)"
 ```
 - There is also a simple [**tutorial**](https://chenh19.github.io/Ampile/) for quick reference.
+
+#### To-do:
+
+- [ ] include long-read fastq processing
