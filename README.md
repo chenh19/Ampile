@@ -28,3 +28,4 @@ bash -c "$(curl -fsSL https://raw.githubusercontent.com/chenh19/Ampile/refs/head
 #### To-do:
 
 - [ ] include long-read fastq processing
+- [ ] allow space in input (.fa and .fastq) file names
