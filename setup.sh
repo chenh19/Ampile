@@ -112,6 +112,10 @@ if [[ -f ~/.zshrc ]]; then
   unset start0 end0
 fi
 
+# accept Term of Service
+conda tos accept --override-channels --channel https://repo.anaconda.com/pkgs/main
+conda tos accept --override-channels --channel https://repo.anaconda.com/pkgs/r
+
 # update base
 conda update --all -y
 
