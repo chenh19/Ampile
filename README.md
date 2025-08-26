@@ -29,3 +29,4 @@ bash -c "$(curl -fsSL https://raw.githubusercontent.com/chenh19/Ampile/refs/head
 
 - [ ] include long-read fastq processing
 - [ ] allow space in input (.fa and .fastq) file names
+- [ ] debian 13 debug
