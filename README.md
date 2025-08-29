@@ -27,6 +27,7 @@ bash -c "$(curl -fsSL https://raw.githubusercontent.com/chenh19/Ampile/refs/head
 
 #### To-do:
 
+- [ ] include .fasta refseq processing
 - [ ] include long-read fastq processing (minimap2)
 - [ ] allow space in input (.fa and .fastq) file names
 - [ ] interactive delta mutation rate analysis (maybe Shiny)
