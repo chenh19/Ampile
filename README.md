@@ -34,3 +34,4 @@ bash -c "$(curl -fsSL https://raw.githubusercontent.com/chenh19/Ampile/refs/head
 - [ ] interactive delta mutation rate analysis (maybe Shiny)
 - [ ] change to download the latest release archive, and keep the scripts for every run
 - [ ] tutorial includes explanantion for input (refseq trimming, how many amplicons per run, etc)
+- [ ] hide error folder, show only when there are files in it after finishing (mv)
