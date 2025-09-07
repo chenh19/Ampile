@@ -13,7 +13,7 @@
 - Install ```curl``` if it is not already installed on your system (e.g., ```sudo apt install curl``` on Ubuntu).
 - Connect to internet and execute the below command in terminal:
 ```
-bash -c "$(curl -fsSL https://raw.githubusercontent.com/chenh19/Ampile/refs/heads/main/setup.sh)"
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/chenh19/Ampile/main/setup.sh)"
 ```
 
 #### How to run the pipeline:
@@ -21,7 +21,7 @@ bash -c "$(curl -fsSL https://raw.githubusercontent.com/chenh19/Ampile/refs/head
 - Prepare reference sequences and sequencing reads in a folder ([examples files available](https://github.com/chenh19/Ampile/tree/main/examples)).
 - Connect to internet and execute the below command in terminal:
 ```
-bash -c "$(curl -fsSL https://raw.githubusercontent.com/chenh19/Ampile/refs/heads/main/ampile.sh)"
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/chenh19/Ampile/main/ampile.sh)"
 ```
 - There is also a simple [**tutorial**](https://chenh19.github.io/Ampile/) for quick reference.
 
