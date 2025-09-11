@@ -21,7 +21,7 @@ Pipeline failures are often due to an improperly configured environment. To ensu
 </div>
 
 <details>
-<summary>**Note:**</summary>
+<summary>**Note: (click to expand)**</summary>
 
 <div style="font-size: 0.9em">
 
@@ -50,7 +50,7 @@ Pipeline failures are often due to an improperly configured environment. To ensu
 </div>
 
 <details>
-<summary>**Note:**</summary>
+<summary>**Note: (click to expand)**</summary>
 
 <div style="font-size: 0.9em">
 
@@ -81,7 +81,7 @@ Pipeline failures are often due to an improperly configured environment. To ensu
 </div>
 
 <details>
-<summary>**Note:**</summary>
+<summary>**Note: (click to expand)**</summary>
 
 <div style="font-size: 0.9em">
 
@@ -106,7 +106,7 @@ Pipeline failures are often due to an improperly configured environment. To ensu
 - You may further analyze the parsed mutation rates and perform comparative analyses between groups. The corresponding spreadsheets are located at ```./3.analysis/8.spreadsheets/2.mutation_rates/```.
 
 <details>
-<summary>**Note:**</summary>
+<summary>**Note: (click to expand)**</summary>
 
 <div style="font-size: 0.9em">
 

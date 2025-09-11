@@ -1,6 +1,6 @@
 # Ampile
 **Amplicon pileup analysis pipeline**  
-*Current version: v1.2.2*  
+*Current version: v1.2.3*  
 
 ### Introduction
 
