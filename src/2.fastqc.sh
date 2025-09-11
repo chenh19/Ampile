@@ -51,7 +51,7 @@ for f in ./2.fastq/*.fastq.gz; do
   [[ -f "$f" ]] || continue
   count=$(gzip -dc "$f" | awk 'END {print NR/4}')
   echo "  $(basename "$f"): $count reads"
-  echo "$(basename "$f"),$count" >> "$output_file"
+  echo "$(basename "$f"), $count" >> "$output_file"
 done
 
 # check whether paired-end short-read data
