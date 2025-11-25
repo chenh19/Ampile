@@ -9,3 +9,4 @@
 - [ ] tutorial includes explanantion for input (refseq trimming, how many amplicons per run, etc)
 - [ ] hide error folder, show only when there are files in it after finishing (mv)
 - [ ] basic QC in the process, such as coverage
+- [ ] rename parent folder if containing "%" or other symbols
