@@ -33,7 +33,7 @@ fi
 find ./3.analysis/3.bam/ -maxdepth 1 -name "*.filtered.bam" -print0 | parallel -0 -j $threads '
   bam="{}"
   base=$(basename "$bam" .filtered.bam)
-  samtools mpileup -aa -A -B -Q 0 -d 2000000 -f ./3.analysis/1.refseq/refseq.fa "$bam" > ./3.analysis/4.mpileup/"$base".mpileup
+  samtools mpileup -aa -A -B -Q 0 -d 100000000 -f ./3.analysis/1.refseq/refseq.fa "$bam" > ./3.analysis/4.mpileup/"$base".mpileup
 '
 
 # notify end
